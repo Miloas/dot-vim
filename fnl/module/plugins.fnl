@@ -20,6 +20,7 @@
 (paq "voldikss/vim-floaterm")
 (paq "yuttie/comfortable-motion.vim")
 (paq "kethku/golden-ratio")
+;; (paq "nvim-treesitter/nvim-treesitter")
 
 ;; File Management
 ;; (paq "c:/dev/Projects/vim-balsamic")

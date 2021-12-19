@@ -24,6 +24,7 @@
 
 ;; Neovide
 (set vim.g.neovide_refresh_rate 150)
+;; (set vim.g.neovide_cursor_animate_in_insert_mode 0)
 
 ;; Options
 (set vim.o.guifont "JetBrainsMono Nerd Font:h15")

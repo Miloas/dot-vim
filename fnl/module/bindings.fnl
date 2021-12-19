@@ -121,6 +121,9 @@
       ;;  :j [":blast<CR>" "last"]
        :d [":BD<CR>" "delete"]}
    :f {:name "Files"
+       :f [":Telescope find_files<CR>" "find files"]
+       :b [":Telescope buffers<CR>" "find buffers"]
+      ;;  :h [":Telescope help_tags<CR>" "help tags"]
        :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "recent"]
        :s [":w<CR>" "save"]}
    :t {:name "Terminal"
@@ -131,6 +134,10 @@
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
+
+;; search ;;
+;;;;;;;;;;;;
+(noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
 
 
 ;; Buffer ;;
