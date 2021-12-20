@@ -112,7 +112,7 @@
        :- [":split<CR><C-w>j<ESC>" "split down"]
       ;;  :i [":split<CR><ESC>" "split up"]
        :/ [":vsplit<CR><C-w>l<ESC>" "split right"]
-       := ["<Plug>(golden_ratio_resize)" "auto resize"]}
+       := ["<C-w>=" "auto resize"]}
    :b {:name "Buffers"
        :o [":BufferOrderByBufferNumber<CR>" "order buffers"]
        :p [":bprevious<CR>" "previous"]
@@ -131,6 +131,11 @@
        :n ["<ESC>:call v:lua.g.new_terminal()<CR>" "New Terminal"]
        :l ["<ESC>:call v:lua.g.next_terminal()<CR>" "Next Terminal"]
        :h ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
+   :s {:name "String"
+       :s [":Telescope grep_string<CR>" "grep string"]}
+   :p {:name "Project"
+       :t [":Telescope file_browser<CR>" "files tree"]
+       :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
@@ -138,6 +143,10 @@
 ;; search ;;
 ;;;;;;;;;;;;
 (noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
+
+;; File ;;
+;;;;;;;;;;
+;; (noremap-silent :n "<leader>pf" ":CHADopen<CR>")
 
 
 ;; Buffer ;;

@@ -19,11 +19,10 @@
 (paq "qpkorr/vim-bufkill")
 (paq "voldikss/vim-floaterm")
 (paq "yuttie/comfortable-motion.vim")
-(paq "kethku/golden-ratio")
-;; (paq "nvim-treesitter/nvim-treesitter")
+(paq "nvim-treesitter/nvim-treesitter")
 
 ;; File Management
-;; (paq "c:/dev/Projects/vim-balsamic")
+;; (paq "ms-jpq/chadtree")
 
 ;; LSP
 (paq "neovim/nvim-lspconfig")
