@@ -134,7 +134,7 @@
    :s {:name "String"
        :s [":Telescope grep_string<CR>" "grep string"]}
    :p {:name "Project"
-       :t [":Telescope file_browser<CR>" "files tree"]
+       :t [":CHADopen<CR>" "files tree"]
        :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}

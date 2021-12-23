@@ -22,7 +22,7 @@
 (paq "nvim-treesitter/nvim-treesitter")
 
 ;; File Management
-;; (paq "ms-jpq/chadtree")
+(paq "ms-jpq/chadtree")
 
 ;; LSP
 (paq "neovim/nvim-lspconfig")

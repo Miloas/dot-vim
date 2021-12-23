@@ -49,3 +49,8 @@
 (set-option :noshowmode)
 (set-option :hidden)
 (set-option :nowrap)
+
+(set vim.o.smartindent true)
+(set vim.o.expandtab true)
+(set vim.o.shiftwidth 2)
+(set vim.o.tabstop 2)
