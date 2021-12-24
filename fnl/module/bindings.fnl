@@ -91,14 +91,14 @@
   {:v {:name "Vim"
        :i [":luafile $MYVIMRC<CR>:PaqInstall<CR>" "install"]
        :u [":luafile $MYVIMRC<CR>:PaqUpdate<CR>" "update"]
-       :c [":luafile $MYVIMRC<CR>:PaqClean<CR>" "clean unused"]
-       :e {:name "Edit"
-           :I [":e $MYVIMRC<CR>" "init.lua (bootstrap)"]
-           :i [":e $MYVIMRC/../fnl/init.fnl<CR>" "init.fnl"]
-           :b [":e $MYVIMRC/../fnl/module/bindings.fnl<CR>" "bindings.fnl"]
-           :p [":e $MYVIMRC/../fnl/module/plugins.fnl<CR>" "plugins.fnl"]
-           :s [":e $MYVIMRC/../fnl/module/settings.fnl<CR>" "settings.fnl"]
-           :l [":e $MYVIMRC/../fnl/module/lsp.fnl<CR>" "lsp.fnl"]}}
+       :c [":luafile $MYVIMRC<CR>:PaqClean<CR>" "clean unused"]}
+      ;;  :e {:name "Edit"
+      ;;      :I [":e $MYVIMRC<CR>" "init.lua (bootstrap)"]
+      ;;      :i [":e $MYVIMRC/../fnl/init.fnl<CR>" "init.fnl"]
+      ;;      :b [":e $MYVIMRC/../fnl/module/bindings.fnl<CR>" "bindings.fnl"]
+      ;;      :p [":e $MYVIMRC/../fnl/module/plugins.fnl<CR>" "plugins.fnl"]
+      ;;      :s [":e $MYVIMRC/../fnl/module/settings.fnl<CR>" "settings.fnl"]
+      ;;      :l [":e $MYVIMRC/../fnl/module/lsp.fnl<CR>" "lsp.fnl"]}}
    :q {:name "Quit"
        :q [":wqall<CR>" "quit and save everything"]
        :r [":Obsession ~/session.vim<CR>:!start neovide -S ~/session.vim<CR><CR>:wqall<CR>" "quit and reload"]}
@@ -133,6 +133,8 @@
        :h ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
    :s {:name "String"
        :s [":Telescope grep_string<CR>" "grep string"]}
+   :g {:name "git"
+       :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":CHADopen<CR>" "files tree"]
        :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]}

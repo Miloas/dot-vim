@@ -41,6 +41,7 @@
 
 ;; Git
 (paq "airblade/vim-gitgutter")
+(paq "kdheepak/lazygit.nvim")
 
 ;; Key Bindings
 (paq "tpope/vim-commentary")
