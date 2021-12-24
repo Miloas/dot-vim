@@ -1,3 +1,5 @@
+# neovide nvim config
+
 ```
 # install paq
 git clone --depth=1 https://github.com/savq/paq-nvim.git \
