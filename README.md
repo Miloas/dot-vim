@@ -1,4 +1,4 @@
-# neovide nvim config
+# neovide
 
 ```
 # install paq
