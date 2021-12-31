@@ -23,9 +23,11 @@
 
 ;; File Management
 (paq "ms-jpq/chadtree")
+(paq "filipdutescu/renamer.nvim" :branch "master")
 
 ;; LSP
 (paq "neovim/nvim-lspconfig")
+(paq "nvim-lua/plenary.nvim")
 
 ;; Completion
 (paq "nvim-lua/popup.nvim")
