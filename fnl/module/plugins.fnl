@@ -53,3 +53,6 @@
 ;; Project
 (paq "ahmedkhalf/project.nvim")
 
+;; motion
+(paq "gbprod/substitute.nvim")
+(paq "phaazon/hop.nvim")

@@ -113,37 +113,38 @@
       ;;  :i [":split<CR><ESC>" "split up"]
        :/ [":vsplit<CR><C-w>l<ESC>" "split right"]
        := ["<C-w>=" "auto resize"]}
+   :j {:name "Hop"
+       :w [":HopWord<CR>" "jump word"]
+       :j [":HopLine<CR>" "jump line"]}
    :b {:name "Buffers"
        :o [":BufferOrderByBufferNumber<CR>" "order buffers"]
        :p [":bprevious<CR>" "previous"]
        :n [":bnext<CR>" "next"]
-      ;;  :k [":bfirst<CR>" "first"]
-      ;;  :j [":blast<CR>" "last"]
        :d [":BD<CR>" "delete"]}
    :f {:name "Files"
-       :f [":Telescope find_files<CR>" "find files"]
-       :b [":Telescope buffers<CR>" "find buffers"]
-      ;;  :h [":Telescope help_tags<CR>" "help tags"]
-       :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "recent"]
-       :s [":w<CR>" "save"]}
+       :f [":lua require'telescope.builtin'.find_files{}<CR>" "find files"]
+       :b [":require'telescope.builtin'.buffers{}<CR>" "find buffers"]
+       :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "find recent files"]}
    :t {:name "Terminal"
        :t ["<ESC>:call v:lua.g.toggle_terminal()<CR>" "Open Terminal"]
        :n ["<ESC>:call v:lua.g.new_terminal()<CR>" "New Terminal"]
        :l ["<ESC>:call v:lua.g.next_terminal()<CR>" "Next Terminal"]
        :h ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
    :s {:name "String"
-       :s [":Telescope grep_string<CR>" "grep string"]}
+       :s [":lua require'telescope.builtin'.grep_string{}<CR>" "grep string"]}
    :g {:name "git"
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":CHADopen<CR>" "files tree"]
-       :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]
+       :f [":lua require'telescope.builtin'.find_files{}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
+   :m {:name "Editor"
+       :r [":lua require'renamer'.rename{}<CR>" "rename"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
 
-;; search ;;
+;; Search ;;
 ;;;;;;;;;;;;
 (noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
 
@@ -151,6 +152,11 @@
 ;;;;;;;;;;
 ;; (noremap-silent :n "<leader>pf" ":CHADopen<CR>")
 
+;; Substitute ;;
+;;;;;;;;;;;;;;;;
+(noremap-silent :n "s" ":lua require('substitute.range').operator()<CR>")
+(noremap-silent :n "ss" ":lua require('substitute.range').word()<CR>")
+(noremap-silent :x "s" ":lua require('substitute.range').visual()<CR>")
 
 ;; Buffer ;;
 ;;;;;;;;;;;;

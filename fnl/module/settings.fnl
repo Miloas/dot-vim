@@ -2,6 +2,9 @@
   {require {core aniseed.core
             telescope telescope
             project project_nvim
+            subs substitute
+            hop hop
+            renamer renamer
             util util}})
 
 (vim.cmd "filetype plugin indent on")
@@ -12,6 +15,13 @@
 
 ;; Projects
 (project.setup {})
+
+;; Renamer
+(renamer.setup {})
+
+;; Motion
+(subs.setup {})
+(hop.setup {})
 
 ;; Airline
 (set vim.g.airline_powerline_fonts 1)
