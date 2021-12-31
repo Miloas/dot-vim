@@ -47,3 +47,7 @@
 (paq "tpope/vim-commentary")
 (paq "tpope/vim-surround")
 (paq "folke/which-key.nvim")
+
+;; Project
+(paq "ahmedkhalf/project.nvim")
+

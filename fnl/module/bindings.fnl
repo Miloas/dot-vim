@@ -137,7 +137,8 @@
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":CHADopen<CR>" "files tree"]
-       :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]}
+       :f [":lua require('telescope.builtin').file_browser({cwd = vim.fn.expand('%:p:h')})<CR>" "current dir"]
+       :r [":Telescope projects<CR>" "recent projects"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
@@ -154,7 +155,7 @@
 ;; Buffer ;;
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
-(noremap-silent :n "<leader><Tab>" ":bprevious<CR>")
+(noremap-silent :n "<leader><Tab>" "<C-^>")
 (noremap-silent :n "<leader>1" ":BufferGoto 1<CR>")
 (noremap-silent :n "<leader>2" ":BufferGoto 2<CR>")
 (noremap-silent :n "<leader>3" ":BufferGoto 3<CR>")

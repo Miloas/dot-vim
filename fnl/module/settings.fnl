@@ -1,9 +1,17 @@
 (module module.settings
   {require {core aniseed.core
+            telescope telescope
+            project project_nvim
             util util}})
 
 (vim.cmd "filetype plugin indent on")
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
+
+;; Telescope
+(telescope.load_extension "projects")
+
+;; Projects
+(project.setup {})
 
 ;; Airline
 (set vim.g.airline_powerline_fonts 1)
