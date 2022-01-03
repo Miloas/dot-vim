@@ -23,7 +23,8 @@
 (paq "windwp/nvim-autopairs")
 
 ;; File Management
-(paq "ms-jpq/chadtree")
+(paq "ms-jpq/chadtree" :branch "chad" :do "python3 -m chadtree deps")
+(paq "nvim-telescope/telescope-file-browser.nvim")
 (paq "filipdutescu/renamer.nvim" :branch "master")
 
 ;; LSP

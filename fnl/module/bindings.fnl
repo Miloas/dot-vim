@@ -6,7 +6,6 @@
 
 ;; Utils ;;
 ;;;;;;;;;;;
-
 (defn- map [mode from to]
   "Sets a mapping"
   (nvim.set_keymap mode from to {}))
@@ -87,7 +86,6 @@
 
 ;; LEADER ;;
 ;;;;;;;;;;;;
-
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
@@ -96,22 +94,13 @@
        :i [":luafile $MYVIMRC<CR>:PaqInstall<CR>" "install"]
        :u [":luafile $MYVIMRC<CR>:PaqUpdate<CR>" "update"]
        :c [":luafile $MYVIMRC<CR>:PaqClean<CR>" "clean unused"]}
-      ;;  :e {:name "Edit"
-      ;;      :I [":e $MYVIMRC<CR>" "init.lua (bootstrap)"]
-      ;;      :i [":e $MYVIMRC/../fnl/init.fnl<CR>" "init.fnl"]
-      ;;      :b [":e $MYVIMRC/../fnl/module/bindings.fnl<CR>" "bindings.fnl"]
-      ;;      :p [":e $MYVIMRC/../fnl/module/plugins.fnl<CR>" "plugins.fnl"]
-      ;;      :s [":e $MYVIMRC/../fnl/module/settings.fnl<CR>" "settings.fnl"]
-      ;;      :l [":e $MYVIMRC/../fnl/module/lsp.fnl<CR>" "lsp.fnl"]}}
-   :q {:name "Quit"
-       :q [":wqall<CR>" "quit and save everything"]
-       :r [":Obsession ~/session.vim<CR>:!start neovide -S ~/session.vim<CR><CR>:wqall<CR>" "quit and reload"]}
   ;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
    :w {:name "Windows"
        :h ["<C-w>h" "jump left"]
        :j ["<C-w>j" "jump down"]
        :k ["<C-w>k" "jump up"]
        :l ["<C-w>l" "jump right"]
+       :q ["<C-w>q" "close current"]
       ;;  :y [":vsplit<CR><ESC>" "split left"]
        :- [":split<CR><C-w>j<ESC>" "split down"]
       ;;  :i [":split<CR><ESC>" "split up"]
@@ -131,9 +120,9 @@
        :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "find recent files"]}
    :t {:name "Terminal"
        :t ["<ESC>:call v:lua.g.toggle_terminal()<CR>" "Open Terminal"]
-       :n ["<ESC>:call v:lua.g.new_terminal()<CR>" "New Terminal"]
-       :l ["<ESC>:call v:lua.g.next_terminal()<CR>" "Next Terminal"]
-       :h ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
+       :a ["<ESC>:call v:lua.g.new_terminal()<CR>" "New Terminal"]
+       :n ["<ESC>:call v:lua.g.next_terminal()<CR>" "Next Terminal"]
+       :p ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
    :s {:name "String"
        :s [":lua require'telescope.builtin'.grep_string{}<CR>" "grep string"]}
    :g {:name "git"
@@ -177,6 +166,10 @@
 ;;;;;;;;;;;
 (noremap-silent :n "gh" ":lua vim.lsp.buf.hover()<CR>")
 (noremap-silent :n "gd" ":lua vim.lsp.buf.definition()<CR>")
+(noremap-silent :n "gr" ":require'telescope.builtin'.lsp_references{}<CR>")
+(noremap-silent :n "gt" ":require'telescope.builtin'.lsp_type_definitions{}<CR>")
+(noremap-silent :n "gi" ":require'telescope.builtin'.lsp_implementations{}<CR>")
+(noremap-silent :n "ga" ":require'telescope.builtin'.lsp_document_symbols{}<CR>")
 (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 (map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 
