@@ -92,7 +92,7 @@
 (set nvim.g.maplocalleader ",")
 
 (whichkey.register
-  {:v {:name "Vim"
+  {:. {:name "Paq"
        :i [":luafile $MYVIMRC<CR>:PaqInstall<CR>" "install"]
        :u [":luafile $MYVIMRC<CR>:PaqUpdate<CR>" "update"]
        :c [":luafile $MYVIMRC<CR>:PaqClean<CR>" "clean unused"]}
@@ -196,7 +196,6 @@
 
 ;; TERMINAL ;;
 ;;;;;;;;;;;;;;
-
 (noremap-silent :t "<ESC>" "<C-\\><C-n>")
 
 ;; SCROLLING ;;

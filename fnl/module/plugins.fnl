@@ -54,6 +54,9 @@
 ;; Project
 (paq "ahmedkhalf/project.nvim")
 
-;; motion
+;; Motion
 (paq "gbprod/substitute.nvim")
 (paq "phaazon/hop.nvim")
+
+;; Text object
+(paq "michaeljsmith/vim-indent-object")
