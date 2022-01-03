@@ -207,6 +207,10 @@
 ;;;;;;;;;;;;;
 (noremap-silent :n "-" ":Balsamic<CR>")
 (map-silent :n "<ESC>" ":noh<CR>:call v:lua.g.hide_terminal()<CR>")
+(noremap-silent :i "<C-A>" "<Home>")
+(noremap-silent :i "<C-B>" "<Left>")
+(noremap-silent :i "<C-E>" "<End>")
+(noremap-silent :i "<C-F>" "<Right>")
 
 ;; AUTOPAIRS ;;
 ;;;;;;;;;;;;;;;
