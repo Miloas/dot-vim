@@ -27,6 +27,10 @@
   "Sets a mapping with {:noremap true :silent true :expr true}"
   (nvim.set_keymap mode from to {:noremap true :silent true :expr true}))
 
+(defn- noremap-expr [mode from to]
+  "Sets a mapping with {:noremap true :expr true}"
+  (nvim.set_keymap mode from to {:noremap true :expr true}))
+
 (defn- declare-command [body]
   (nvim.command (.. "command! " body)))
 
@@ -148,10 +152,6 @@
 ;;;;;;;;;;;;
 (noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
 
-;; File ;;
-;;;;;;;;;;
-;; (noremap-silent :n "<leader>pf" ":CHADopen<CR>")
-
 ;; Substitute ;;
 ;;;;;;;;;;;;;;;;
 (noremap-silent :n "s" ":lua require('substitute.range').operator()<CR>")
@@ -175,7 +175,6 @@
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-
 (noremap-silent :n "gh" ":lua vim.lsp.buf.hover()<CR>")
 (noremap-silent :n "gd" ":lua vim.lsp.buf.definition()<CR>")
 (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
@@ -190,7 +189,6 @@
 
 ;; VISUAL ;;
 ;;;;;;;;;;;;
-
 (noremap-silent :v "<" "<gv")
 (noremap-silent :v ">" ">gv")
 (noremap-silent :v ";" ":Commentary<CR>")
@@ -203,12 +201,15 @@
 
 ;; SCROLLING ;;
 ;;;;;;;;;;;;;;;
-
 (noremap-silent :n "<down>" ":call comfortable_motion#flick(100)<CR>")
 (noremap-silent :n "<up>" ":call comfortable_motion#flick(-100)<CR>")
 
 ;; GENERAL ;;
 ;;;;;;;;;;;;;
-
 (noremap-silent :n "-" ":Balsamic<CR>")
 (map-silent :n "<ESC>" ":noh<CR>:call v:lua.g.hide_terminal()<CR>")
+
+;; AUTOPAIRS ;;
+;;;;;;;;;;;;;;;
+(noremap-expr :i "<CR>" "v:lua.MUtils.CR()")
+(noremap-expr :i "<BS>" "v:lua.MUtils.BS()")

@@ -20,6 +20,7 @@
 (paq "voldikss/vim-floaterm")
 (paq "yuttie/comfortable-motion.vim")
 (paq "nvim-treesitter/nvim-treesitter")
+(paq "windwp/nvim-autopairs")
 
 ;; File Management
 (paq "ms-jpq/chadtree")
