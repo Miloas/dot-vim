@@ -19,7 +19,7 @@
 (paq "qpkorr/vim-bufkill")
 (paq "voldikss/vim-floaterm")
 (paq "yuttie/comfortable-motion.vim")
-(paq "nvim-treesitter/nvim-treesitter")
+(paq "nvim-treesitter/nvim-treesitter" :do ":TSUpdate")
 (paq "windwp/nvim-autopairs")
 
 ;; File Management
