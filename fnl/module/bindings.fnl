@@ -116,7 +116,7 @@
        :d [":BD<CR>" "delete"]}
    :f {:name "Files"
        :f [":lua require'telescope.builtin'.find_files{}<CR>" "find files"]
-       :b [":require'telescope.builtin'.buffers{}<CR>" "find buffers"]
+       :b [":lua require'telescope.builtin'.buffers{}<CR>" "find buffers"]
        :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "find recent files"]}
    :t {:name "Terminal"
        :t ["<ESC>:call v:lua.g.toggle_terminal()<CR>" "Open Terminal"]
@@ -166,10 +166,10 @@
 ;;;;;;;;;;;
 (noremap-silent :n "gh" ":lua vim.lsp.buf.hover()<CR>")
 (noremap-silent :n "gd" ":lua vim.lsp.buf.definition()<CR>")
-(noremap-silent :n "gr" ":require'telescope.builtin'.lsp_references{}<CR>")
-(noremap-silent :n "gt" ":require'telescope.builtin'.lsp_type_definitions{}<CR>")
-(noremap-silent :n "gi" ":require'telescope.builtin'.lsp_implementations{}<CR>")
-(noremap-silent :n "ga" ":require'telescope.builtin'.lsp_document_symbols{}<CR>")
+(noremap-silent :n "gr" ":lua require'telescope.builtin'.lsp_references{}<CR>")
+(noremap-silent :n "gt" ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>")
+(noremap-silent :n "gi" ":lua require'telescope.builtin'.lsp_implementations{}<CR>")
+(noremap-silent :n "ga" ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>")
 (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 (map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 
