@@ -178,7 +178,6 @@
 (noremap-silent-expr :i "<Esc>" "pumvisible() ? '<C-e><Esc>' : '<Esc>'")
 (noremap-silent-expr :i "<C-c>" "pumvisible() ? '<C-e><C-c>' : '<C-c>'")
 (noremap-silent-expr :i "<BS>" "pumvisible() ? '<C-e><BS>' : '<BS>'")
-(noremap-silent-expr :i "<Tab>" "pumvisible() ? '<cr>' : '<Tab>'")
 
 ;; VISUAL ;;
 ;;;;;;;;;;;;
