@@ -129,7 +129,7 @@
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":CHADopen<CR>" "files tree"]
-       :f [":lua require'telescope.builtin'.find_files{}<CR>" "find files"]
+       :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
        :r [":lua require'renamer'.rename{}<CR>" "rename"]}
