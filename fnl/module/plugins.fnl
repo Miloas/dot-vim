@@ -36,8 +36,11 @@
 (paq "nvim-lua/plenary.nvim")
 (paq "nvim-telescope/telescope.nvim")
 (paq "Olical/conjure")
-(paq "ms-jpq/coq_nvim")
 (paq "github/copilot.vim")
+(paq "hrsh7th/nvim-cmp")
+(paq "hrsh7th/cmp-nvim-lsp")
+(paq "saadparwaiz1/cmp_luasnip")
+(paq "L3MON4D3/LuaSnip")
 
 ;; Debugging 
 (paq "mfussenegger/nvim-dap")

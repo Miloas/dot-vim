@@ -173,12 +173,6 @@
 (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 (map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 
-;; COQ ;;
-;;;;;;;;;
-(noremap-silent-expr :i "<Esc>" "pumvisible() ? '<C-e><Esc>' : '<Esc>'")
-(noremap-silent-expr :i "<C-c>" "pumvisible() ? '<C-e><C-c>' : '<C-c>'")
-(noremap-silent-expr :i "<BS>" "pumvisible() ? '<C-e><BS>' : '<BS>'")
-
 ;; VISUAL ;;
 ;;;;;;;;;;;;
 (noremap-silent :v "<" "<gv")
