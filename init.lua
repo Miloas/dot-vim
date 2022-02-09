@@ -16,7 +16,6 @@ paq 'savq/paq-nvim'
 
 
 
-
 -- auto paris config: https://github.com/windwp/nvim-autopairs
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
