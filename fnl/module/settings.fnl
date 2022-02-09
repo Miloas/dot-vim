@@ -5,14 +5,51 @@
             subs substitute
             hop hop
             renamer renamer
+            npairs nvim-autopairs
+            cmp_autopairs nvim-autopairs.completion.cmp
+            cmp cmp
+            ncmp_lsp cmp_nvim_lsp
+            lsp lspconfig
+            luasnip luasnip
+            treesitter-config nvim-treesitter.configs
             util util}})
 
 (vim.cmd "filetype plugin indent on")
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
 
+;; nvim-cmp
+(let [capabilities (vim.lsp.protocol.make_client_capabilities {})]
+  (ncmp_lsp.update_capabilities capabilities)
+  (lsp.gopls.setup {:capabilities capabilities})
+  (lsp.rust_analyzer.setup {:capabilities capabilities})
+  (lsp.pyright.setup {:capabilities capabilities})
+  (lsp.tsserver.setup {:capabilities capabilities}))
+
+(cmp.setup {:snippet {:expand (fn [args] (luasnip.lsp_expand args.body))}
+            :mapping {:<C-K> (cmp.mapping.select_prev_item {})
+                      :<C-J> (cmp.mapping.select_next_item {})
+                      :<C-D> (cmp.mapping.scroll_docs -4)
+                      :<C-F> (cmp.mapping.scroll_docs 4)
+                      :<C-Space> (cmp.mapping.complete {})
+                      :<C-E> (cmp.mapping.close {})
+                      :<Tab> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
+                                                   :select true})}
+            :sources [{:name "nvim_lsp"} {:name "luasnip"}]})
+
+;; autopairs
+(npairs.setup {})
+(cmp.event:on "confirm_done" (cmp_autopairs.on_confirm_done {:map_char {:tex ""}}))
+
 ;; Telescope
 (telescope.load_extension "projects")
 (telescope.load_extension "file_browser")
+
+;; treesitter
+(treesitter-config.setup 
+  {:ensure_installed "maintained"
+   :sync_install false
+   :highlight {:enable true
+               :additional_vim_regex_highlighting false}})
 
 ;; Projects
 (project.setup {})
