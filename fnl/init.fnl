@@ -1,8 +1,5 @@
-(module init
-  {require {util util}})
+(module init)
 
-(def req util.safe-require)
-
-(req "module.plugins")
-(req "module.settings")
-(req "module.bindings")
+(require :module.plugin)
+(require :module.setting)
+(require :module.binding)

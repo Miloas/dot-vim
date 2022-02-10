@@ -1,5 +1,5 @@
-(module module.settings
-  {require {core aniseed.core
+(module module.setting
+  {autoload {core aniseed.core
             telescope telescope
             project project_nvim
             subs substitute
