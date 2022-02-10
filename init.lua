@@ -3,13 +3,22 @@ vim.g['aniseed#env'] = true
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/savq/paq-nvim', install_path})
+local pack_path = fn.stdpath("data") .. "/site/pack"
+local fmt = string.format
+
+function ensure (user, repo)
+  -- Ensures a given github.com/USER/REPO is cloned in the pack/packer/start directory.
+  local install_path = fmt("%s/packer/start/%s", pack_path, repo)
+  if fn.empty(fn.glob(install_path)) > 0 then
+    execute(fmt("!git clone https://github.com/%s/%s %s", user, repo, install_path))
+    execute(fmt("packadd %s", repo))
+  end
 end
 
-execute 'packadd paq-nvim'
+-- Bootstrap essential plugins required for installing and loading the rest.
+ensure("wbthomason", "packer.nvim")
+ensure("Olical", "aniseed")
+ensure("lewis6991", "impatient.nvim")
 
-local paq = require'paq'.paq
-paq 'Olical/aniseed'
-paq 'savq/paq-nvim'
+-- Load impatient which pre-compiles and caches Lua modules.
+require("impatient")

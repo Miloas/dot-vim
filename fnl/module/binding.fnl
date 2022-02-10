@@ -1,8 +1,8 @@
-(module module.bindings
-  {require {nvim     aniseed.nvim
-            core     aniseed.core
-            util     util
-            whichkey "which-key"}})
+(module module.binding
+  {autoload {nvim     aniseed.nvim
+             core     aniseed.core
+             util     util
+             whichkey "which-key"}})
 
 ;; Utils ;;
 ;;;;;;;;;;;
@@ -90,10 +90,8 @@
 (set nvim.g.maplocalleader ",")
 
 (whichkey.register
-  {:. {:name "Paq"
-       :i [":luafile $MYVIMRC<CR>:PaqInstall<CR>" "install"]
-       :u [":luafile $MYVIMRC<CR>:PaqUpdate<CR>" "update"]
-       :c [":luafile $MYVIMRC<CR>:PaqClean<CR>" "clean unused"]}
+  {:. {:name "Packer"
+       :s [":luafile $MYVIMRC<CR>:PackerSync<CR>" "sync plugins"]}
   ;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
    :w {:name "Windows"
        :h ["<C-w>h" "jump left"]
