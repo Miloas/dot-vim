@@ -126,7 +126,7 @@
    :g {:name "git"
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
-       :t [":CHADopen<CR>" "files tree"]
+       :t [":NvimTreeToggle<CR>" "files tree"]
        :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
