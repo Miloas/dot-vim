@@ -33,6 +33,10 @@
   :romgrk/barbar.nvim {}
 
   ;; General Settings
+  :HerringtonDarkholme/yats.vim {}
+  :lewis6991/impatient.nvim {}
+  :PeterRincker/vim-argumentative {}
+  :hashivim/vim-terraform {}
   :tpope/vim-sleuth {}     
   :tpope/vim-obsession {}  
   :qpkorr/vim-bufkill {}   
@@ -42,13 +46,14 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
 
   ;; File Management
-  :ms-jpq/chadtree {:branch :chad :run "python3 -m chadtree deps"}
+  :kyazdani42/nvim-tree.lua {:mod :nvim-tree}
   :nvim-telescope/telescope-file-browser.nvim {}
   :filipdutescu/renamer.nvim {:branch :master :mod :renamer}
 
   ;; LSP
   :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp]]}
   :nvim-lua/plenary.nvim {}
+  :w0rp/ale {:mod :ale}
 
   ;; Completion
   :nvim-lua/popup.nvim {}
