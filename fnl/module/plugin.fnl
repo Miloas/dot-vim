@@ -38,25 +38,25 @@
   :qpkorr/vim-bufkill {}   
   :voldikss/vim-floaterm {}
   :yuttie/comfortable-motion.vim {}
-  :windwp/nvim-autopairs {}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"}
+  :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
 
   ;; File Management
   :ms-jpq/chadtree {:branch :chad :run "python3 -m chadtree deps"}
   :nvim-telescope/telescope-file-browser.nvim {}
-  :filipdutescu/renamer.nvim {:branch :master}
+  :filipdutescu/renamer.nvim {:branch :master :mod :renamer}
 
   ;; LSP
-  :neovim/nvim-lspconfig {}
+  :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp]]}
   :nvim-lua/plenary.nvim {}
 
   ;; Completion
   :nvim-lua/popup.nvim {}
   :nvim-lua/plenary.nvim {}
-  :nvim-telescope/telescope.nvim {}
+  :nvim-telescope/telescope.nvim {:mod :telescope}
   :Olical/conjure {}
   :github/copilot.vim {}
-  :hrsh7th/nvim-cmp {}
+  :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip]]}
   :hrsh7th/cmp-nvim-lsp {}
   :saadparwaiz1/cmp_luasnip {}
   :L3MON4D3/LuaSnip {}
@@ -75,11 +75,11 @@
   :folke/which-key.nvim {}
 
   ;; Project
-  :ahmedkhalf/project.nvim {}
+  :ahmedkhalf/project.nvim {:mod :project}
 
   ;; Motion
-  :gbprod/substitute.nvim {}
-  :phaazon/hop.nvim {}
+  :gbprod/substitute.nvim {:mod :substitute}
+  :phaazon/hop.nvim {:mod :hop}
 
   ;; Text object
   :michaeljsmith/vim-indent-object {}
