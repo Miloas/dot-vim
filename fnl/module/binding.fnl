@@ -139,12 +139,6 @@
 ;;;;;;;;;;;;
 (noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
 
-;; Substitute ;;
-;;;;;;;;;;;;;;;;
-(noremap-silent :n "s" ":lua require('substitute.range').operator()<CR>")
-(noremap-silent :n "ss" ":lua require('substitute.range').word()<CR>")
-(noremap-silent :x "s" ":lua require('substitute.range').visual()<CR>")
-
 ;; Buffer ;;
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
