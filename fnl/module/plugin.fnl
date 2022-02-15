@@ -82,9 +82,9 @@
   ;; Project
   :ahmedkhalf/project.nvim {:mod :project}
 
-  ;; Motion
-  :gbprod/substitute.nvim {:mod :substitute}
-  :phaazon/hop.nvim {:mod :hop}
+  ;; S
+  :ggandor/lightspeed.nvim {}
+
 
   ;; Text object
   :michaeljsmith/vim-indent-object {}
