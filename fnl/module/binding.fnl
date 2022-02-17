@@ -26,6 +26,10 @@
   "Sets a mapping with {:noremap true :silent true :expr true}"
   (nvim.set_keymap mode from to {:noremap true :silent true :expr true}))
 
+(defn- noremap-silent-script-expr [mode from to]
+  "Sets a mapping with {:noremap true :silent true :expr true :script true}"
+  (nvim.set_keymap mode from to {:noremap true :silent true :expr true :script true}))
+
 (defn- noremap-expr [mode from to]
   "Sets a mapping with {:noremap true :expr true}"
   (nvim.set_keymap mode from to {:noremap true :expr true}))

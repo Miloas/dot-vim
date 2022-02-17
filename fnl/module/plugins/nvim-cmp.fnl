@@ -9,6 +9,11 @@
                       :<C-F> (cmp.mapping.scroll_docs 4)
                       :<C-Space> (cmp.mapping.complete {})
                       :<C-E> (cmp.mapping.close {})
+                      :<C-L> (lambda [fallback] 
+                                (let [copilot_keys (vim.fn.copilot#Accept {})]
+                                  (if (= copilot_keys "") 
+                                    (fallback {}) 
+                                    (vim.api.nvim_feedkeys copilot_keys "i" true))))
                       :<Tab> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
                                                    :select true})}
             :sources [{:name "nvim_lsp"} {:name "luasnip"}]})

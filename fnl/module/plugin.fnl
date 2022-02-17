@@ -60,7 +60,7 @@
   :nvim-lua/plenary.nvim {}
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :Olical/conjure {}
-  :github/copilot.vim {}
+  :github/copilot.vim {:mod :copilot}
   :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip]]}
   :hrsh7th/cmp-nvim-lsp {}
   :saadparwaiz1/cmp_luasnip {}
