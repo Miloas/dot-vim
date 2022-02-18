@@ -195,3 +195,8 @@
 ;; may conflict with lsp automation cancel
 (noremap-silent :i "<C-E>" "<End>")
 (noremap-silent :i "<C-F>" "<Right>")
+
+;; ALE
+(noremap-silent :n "]q" ":ALENext<CR>")
+(noremap-silent :n "[q" ":ALEPrevious<CR>")
+(noremap-silent :n "ge" ":ALEDetail<CR>")
