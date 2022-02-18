@@ -8,8 +8,7 @@
                       :<C-D> (cmp.mapping.scroll_docs -4)
                       :<C-F> (cmp.mapping.scroll_docs 4)
                       :<C-Space> (cmp.mapping.complete {})
-                      :<C-E> (cmp.mapping.close {})
-                      :<C-L> (lambda [fallback] 
+                      :<C-E> (lambda [fallback] 
                                 (let [copilot_keys (vim.fn.copilot#Accept {})]
                                   (if (= copilot_keys "") 
                                     (fallback {}) 
