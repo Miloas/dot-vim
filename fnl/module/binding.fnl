@@ -147,6 +147,7 @@
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
 (noremap-silent :n "<leader><Tab>" "<C-^>")
+(noremap-silent :n "<leader>0" ":NvimTreeFocus<CR>")
 (noremap-silent :n "<leader>1" ":BufferGoto 1<CR>")
 (noremap-silent :n "<leader>2" ":BufferGoto 2<CR>")
 (noremap-silent :n "<leader>3" ":BufferGoto 3<CR>")
