@@ -33,6 +33,7 @@
   :romgrk/barbar.nvim {}
 
   ;; General Settings
+  :tpope/vim-abolish {}
   :HerringtonDarkholme/yats.vim {}
   :lewis6991/impatient.nvim {}
   :PeterRincker/vim-argumentative {}
@@ -85,7 +86,9 @@
   ;; S
   :ggandor/lightspeed.nvim {}
 
-
   ;; Text object
   :michaeljsmith/vim-indent-object {}
+
+  ;; Formatter
+  :sbdchd/neoformat {}
 )

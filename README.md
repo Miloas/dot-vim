@@ -14,3 +14,9 @@ brew install fennel rg
 brew install gopls rust-analyzer pyright
 yarn global add typescript typescript-language-server @tailwindcss/language-server
 ```
+
+```
+# install formatter for proto (clang-format)
+# https://github.com/sbdchd/neoformat
+brew install clang-format
+```

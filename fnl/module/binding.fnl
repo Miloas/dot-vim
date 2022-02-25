@@ -134,6 +134,7 @@
        :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
+       :f [":Neoformat<CR>" "format"]
        :r [":lua require'renamer'.rename{}<CR>" "rename"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
