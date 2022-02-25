@@ -20,3 +20,9 @@ yarn global add typescript typescript-language-server @tailwindcss/language-serv
 # https://github.com/sbdchd/neoformat
 brew install clang-format
 ```
+
+```
+# protofile lint
+brew tap yoheimuta/protolint
+brew install protolint
+```
