@@ -4,4 +4,10 @@
 (set nvim.g.ale_linters
   {:javascript [:standard]
 	 :typescript ["tsserver"]
-   :go ["gopls"]})
+   :go ["gopls"]
+   :proto ["protolint"]})
+
+(set nvim.g.ale_fixers
+  {:javascript ["eslint"]
+   :typescript ["eslint"]
+   :proto ["protolint"]})

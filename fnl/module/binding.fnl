@@ -136,6 +136,8 @@
    :m {:name "Editor"
        :f [":Neoformat<CR>" "format"]
        :r [":lua require'renamer'.rename{}<CR>" "rename"]}
+   :a {:name "Ale" 
+       :f [":ALEFix<CR>" "fixer"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
