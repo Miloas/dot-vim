@@ -1,8 +1,10 @@
 (module module.plugins.hop
 	{autoload {cmp cmp
-						 luasnip luasnip}})
+                   lspkind lspkind
+                   luasnip luasnip}})
 
 (cmp.setup {:snippet {:expand (fn [args] (luasnip.lsp_expand args.body))}
+            :formatting {:format (lspkind.cmp_format {:mode "symbol" :maxwidth 50})}
             :mapping {:<C-K> (cmp.mapping.select_prev_item {})
                       :<C-J> (cmp.mapping.select_next_item {})
                       :<C-D> (cmp.mapping.scroll_docs -4)

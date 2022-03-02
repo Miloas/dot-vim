@@ -25,6 +25,10 @@
 ;; Plugins to be managed by packer.
 (use
   ;; Appearance
+  :mhinz/vim-startify {}
+  :weilbith/nvim-code-action-menu {}
+  :p00f/nvim-ts-rainbow {}
+  :onsails/lspkind-nvim {}
   :folke/lsp-colors.nvim {}
   :vim-airline/vim-airline {}
   :vim-airline/vim-airline-themes {}
@@ -33,6 +37,9 @@
   :romgrk/barbar.nvim {}
 
   ;; General Settings
+  :karb94/neoscroll.nvim {:mod :neoscroll}
+  :folke/trouble.nvim {:mod :trouble}
+  :RRethy/vim-illuminate {}
   :tpope/vim-abolish {}
   :HerringtonDarkholme/yats.vim {}
   :lewis6991/impatient.nvim {}
