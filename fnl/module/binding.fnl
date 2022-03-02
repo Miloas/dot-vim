@@ -138,6 +138,12 @@
        :r [":lua require'renamer'.rename{}<CR>" "rename"]}
    :a {:name "Ale" 
        :f [":ALEFix<CR>" "fixer"]}
+   :x {:name "Trouble" 
+       :x [":TroubleToggle<CR>" "toggle"]
+       :w [":TroubleToggle workspace_diagnostics<CR>" "toggle workspace"]
+       :d [":TroubleToggle document_diagnostics<CR>" "toggle document"]
+       :q [":TroubleToggle quickfix<CR>" "toggle quickfix"]
+       :l [":TroubleToggle loclist<CR>" "toggle loclist"]}
    ";" {:name "Comments"
        ";" [":Commentary<CR>" "current line"]}}
   {:prefix "<leader>"})
@@ -167,11 +173,14 @@
 (noremap-silent :n "gh" ":lua vim.lsp.buf.hover()<CR>")
 (noremap-silent :n "gd" ":lua vim.lsp.buf.definition()<CR>")
 (noremap-silent :n "gr" ":lua require'telescope.builtin'.lsp_references{}<CR>")
+(noremap-silent :n "gR" ":TroubleToggle lsp_references<CR>")
 (noremap-silent :n "gt" ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>")
 (noremap-silent :n "gi" ":lua require'telescope.builtin'.lsp_implementations{}<CR>")
 (noremap-silent :n "ga" ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>")
-(map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
-(map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
+(map-silent :n "<C-.>" ":CodeActionMenu<CR>")
+(map-silent :v "<C-.>" ":CodeActionMenu<CR>")
+; (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
+; (map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 
 ;; VISUAL ;;
 ;;;;;;;;;;;;

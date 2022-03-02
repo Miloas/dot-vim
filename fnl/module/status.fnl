@@ -1,6 +1,6 @@
 (module module.status
   {autoload {bl bufferline
-            gl galaxyline}})
+             gl galaxyline}})
 
 (bl.setup)
 
