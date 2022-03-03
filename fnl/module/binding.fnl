@@ -130,7 +130,7 @@
    :g {:name "git"
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
-       :t [":NvimTreeToggle<CR>" "files tree"]
+       :t [":NvimTreeFindFileToggle<CR>" "files tree"]
        :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
@@ -156,7 +156,7 @@
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
 (noremap-silent :n "<leader><Tab>" "<C-^>")
-(noremap-silent :n "<leader>0" ":NvimTreeFocus<CR>")
+(noremap-silent :n "<leader>0" ":NvimTreeFindFile<CR>")
 (noremap-silent :n "<leader>1" ":BufferGoto 1<CR>")
 (noremap-silent :n "<leader>2" ":BufferGoto 2<CR>")
 (noremap-silent :n "<leader>3" ":BufferGoto 3<CR>")
