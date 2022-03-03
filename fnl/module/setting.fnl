@@ -43,6 +43,7 @@
 
 ;; (set-option :nonumber)
 (set-option :number)
+(set-option :cursorline)
 (set-option :termguicolors)
 (set-option :expandtab)
 (set-option :hlsearch)
