@@ -41,7 +41,8 @@
 (defn set-option [option]
   (vim.cmd (.. "set " option)))
 
-(set-option :nonumber)
+;; (set-option :nonumber)
+(set-option :number)
 (set-option :termguicolors)
 (set-option :expandtab)
 (set-option :hlsearch)
