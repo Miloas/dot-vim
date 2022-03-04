@@ -12,7 +12,7 @@ brew install fennel rg
 ```
 # install ls
 brew install gopls rust-analyzer pyright
-yarn global add typescript typescript-language-server @tailwindcss/language-server
+yarn global add typescript typescript-language-server @tailwindcss/language-server graphql-language-service-cli
 ```
 
 ```
