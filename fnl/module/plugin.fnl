@@ -37,6 +37,7 @@
   :romgrk/barbar.nvim {}
 
   ;; General Settings
+  :vim-test/vim-test {}
   :karb94/neoscroll.nvim {:mod :neoscroll}
   :folke/trouble.nvim {:mod :trouble}
   :RRethy/vim-illuminate {}
