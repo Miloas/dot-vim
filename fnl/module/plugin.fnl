@@ -100,6 +100,6 @@
   ;; Formatter
   :sbdchd/neoformat {}
   
-  ;; Org
-  :nvim-neorg/neorg {:mod :neorg :requires [[:nvim-lua/plenary.nvim]]}
+  ;; Zen
+  :Pocco81/TrueZen.nvim {}
 )
