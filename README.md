@@ -26,3 +26,8 @@ brew install clang-format
 brew tap yoheimuta/protolint
 brew install protolint
 ```
+
+```
+# setup neorg
+:TSInstall norg norg_meta norg_table
+```

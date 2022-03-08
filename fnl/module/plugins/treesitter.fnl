@@ -1,5 +1,14 @@
 (module module.plugins.treesitter
-  {autoload {treesitter-config nvim-treesitter.configs}})
+  {autoload {treesitter-config nvim-treesitter.configs
+             treesitter-parsers nvim-treesitter.parsers}})
+
+(let [parser_configs (treesitter-parsers.get_parser_configs {})]
+  (set parser_configs.norg_meta {:install_info {:url "https://github.com/nvim-neorg/tree-sitter-norg-meta"
+                                                :files [ "src/parser.c" ]
+                                                :branch "main"}})
+  (set parser_configs.norg_table {:install_info {:url "https://github.com/nvim-neorg/tree-sitter-norg-table"
+                                                :files [ "src/parser.c" ]
+                                                :branch "main"}}))
 
 (treesitter-config.setup 
   {:ensure_installed "maintained"

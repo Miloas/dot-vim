@@ -61,7 +61,6 @@
 
   ;; LSP
   :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp]]}
-  :nvim-lua/plenary.nvim {}
   :w0rp/ale {:mod :ale}
 
   ;; Completion
@@ -100,4 +99,7 @@
 
   ;; Formatter
   :sbdchd/neoformat {}
+  
+  ;; Org
+  :nvim-neorg/neorg {:mod :neorg :requires [[:nvim-lua/plenary.nvim]]}
 )
