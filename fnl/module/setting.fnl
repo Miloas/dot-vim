@@ -6,6 +6,9 @@
 (vim.cmd "filetype plugin indent on")
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
 
+;; https://github.com/f-person/git-blame.nvim
+(set vim.g.gitblame_enabled 0)
+
 ;; Airline
 (set vim.g.airline_powerline_fonts 1)
 (set vim.g.airline_section_z "%3l/%L:%3v")
