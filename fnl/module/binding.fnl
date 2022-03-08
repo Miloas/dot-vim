@@ -128,7 +128,8 @@
    :s {:name "String"
        :s [":lua require'telescope.builtin'.grep_string{}<CR>" "grep string"]}
    :g {:name "git"
-       :s [":LazyGit<CR>" "lazygit"]}
+       :s [":LazyGit<CR>" "lazygit"]
+       :b [":GitBlameToggle<CR>" "blame"]}
    :p {:name "Project"
        :t [":NvimTreeFindFileToggle<CR>" "files tree"]
        :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]

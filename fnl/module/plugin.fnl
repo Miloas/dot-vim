@@ -82,6 +82,7 @@
   ;; Git
   :airblade/vim-gitgutter {}
   :kdheepak/lazygit.nvim {}
+  :f-person/git-blame.nvim {}
 
   ;; Key Bindings
   :tpope/vim-commentary {}
