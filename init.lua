@@ -22,3 +22,4 @@ ensure("lewis6991", "impatient.nvim")
 
 -- Load impatient which pre-compiles and caches Lua modules.
 require("impatient")
+
