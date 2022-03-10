@@ -25,6 +25,7 @@
 ;; Plugins to be managed by packer.
 (use
   ;; Appearance
+  :mvllow/modes.nvim {:mod :modes} ;; line decorations (color)
   :mhinz/vim-startify {}
   :weilbith/nvim-code-action-menu {}
   :p00f/nvim-ts-rainbow {}
@@ -86,7 +87,7 @@
   ;; Key Bindings
   :tpope/vim-commentary {}
   :tpope/vim-surround {}
-  :folke/which-key.nvim {}
+  :folke/which-key.nvim {:mod :which-key}
 
   ;; Project
   :ahmedkhalf/project.nvim {:mod :project}
