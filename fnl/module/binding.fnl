@@ -211,3 +211,6 @@
 (noremap-silent :n "]q" ":ALENext<CR>")
 (noremap-silent :n "[q" ":ALEPrevious<CR>")
 (noremap-silent :n "ge" ":ALEDetail<CR>")
+
+;; Copilot
+(noremap-silent-script-expr :i "<C-E>" "copilot#Accept(\"<CR>\")")
