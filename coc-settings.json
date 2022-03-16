@@ -2,19 +2,6 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "suggest.noselect": false,
   "languageserver": {
-    "graphql": {
-      "command": "graphql-lsp",
-      "args": [
-        "server",
-        "-m",
-        "stream"
-      ],
-      "filetypes": [
-        "typescript",
-        "typescriptreact",
-        "graphql"
-      ]
-    },
     "tailwind-lsp": {
       "command": "tailwindcss-language-server",
       "args": [
