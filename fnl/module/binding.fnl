@@ -136,7 +136,7 @@
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
        :f [":Neoformat<CR>" "format"]
-       :r [":lua require'renamer'.rename{}<CR>" "rename"]}
+       :r ["<Plug>(coc-rename)" "rename"]}
    :a {:name "Ale" 
        :f [":ALEFix<CR>" "fixer"]}
    :x {:name "Trouble" 
@@ -171,17 +171,14 @@
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-(noremap-silent :n "gh" ":lua vim.lsp.buf.hover()<CR>")
-(noremap-silent :n "gd" ":lua vim.lsp.buf.definition()<CR>")
-(noremap-silent :n "gr" ":lua require'telescope.builtin'.lsp_references{}<CR>")
-(noremap-silent :n "gR" ":TroubleToggle lsp_references<CR>")
-(noremap-silent :n "gt" ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>")
-(noremap-silent :n "gi" ":lua require'telescope.builtin'.lsp_implementations{}<CR>")
-(noremap-silent :n "ga" ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>")
+(noremap-silent :i "<Tab>" (if (fn [] vim.fn.pumvisible) "<C-y>" "<C-g>u<CR>"))
+(noremap-silent :i "<C-J>" (if (fn [] vim.fn.pumvisible) "<C-N>" "<C-J>"))
+(noremap-silent :i "<C-K>" (if (fn [] vim.fn.pumvisible) "<C-P>" "<C-K>"))
+(noremap-silent :n "gr" "<Plug>(coc-references)")
+(noremap-silent :n "gi" "<Plug>(coc-implementation)")
+(noremap-silent :n "gt" "<Plug>(coc-type-definition)")
 (map-silent :n "<C-.>" ":CodeActionMenu<CR>")
 (map-silent :v "<C-.>" ":CodeActionMenu<CR>")
-; (map-silent :n "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
-; (map-silent :v "<C-.>" ":lua vim.lsp.buf.code_action()<CR>")
 
 ;; VISUAL ;;
 ;;;;;;;;;;;;

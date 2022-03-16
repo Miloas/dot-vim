@@ -1,6 +1,5 @@
 (module module.setting
   {autoload {core aniseed.core
-             cmp cmp
              util util}})
 
 (vim.cmd "filetype plugin indent on")

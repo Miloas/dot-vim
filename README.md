@@ -26,3 +26,10 @@ brew install clang-format
 brew tap yoheimuta/protolint
 brew install protolint
 ```
+
+```
+# NOTICE: this branch only for frontend dev
+# https://github.com/neoclide/coc-tsserver
+# https://github.com/iamcco/coc-tailwindcss
+:CocInstall coc-json coc-tsserver
+```

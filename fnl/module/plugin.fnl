@@ -61,8 +61,8 @@
   :filipdutescu/renamer.nvim {:branch :master :mod :renamer}
 
   ;; LSP
-  :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp]]}
   :w0rp/ale {:mod :ale}
+  :neoclide/coc.nvim {:branch :release}
 
   ;; Completion
   :nvim-lua/popup.nvim {}
@@ -70,10 +70,6 @@
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :Olical/conjure {}
   :github/copilot.vim {:mod :copilot}
-  :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip]]}
-  :hrsh7th/cmp-nvim-lsp {}
-  :saadparwaiz1/cmp_luasnip {}
-  :L3MON4D3/LuaSnip {}
 
   ;; Debugging 
   :mfussenegger/nvim-dap {}
