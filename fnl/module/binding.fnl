@@ -4,60 +4,18 @@
              util     util
              whichkey "which-key"}})
 
+(import-macros {: defmap } :macros)
+
 ;; Utils ;;
 ;;;;;;;;;;;
-(defn- map [mode from to]
-  "Sets a mapping"
-  (nvim.set_keymap mode from to {}))
-
-(defn- map-silent [mode from to]
-  "Sets a mapping with {:silent true}"
-  (nvim.set_keymap mode from to {:silent true}))
-
-(defn- noremap [mode from to]
-  "Sets a mapping with {:noremap true}"
-  (nvim.set_keymap mode from to {:noremap true}))
-
-(defn- noremap-silent [mode from to]
-  "Sets a mapping with {:noremap true :silent true}"
-  (nvim.set_keymap mode from to {:noremap true :silent true}))
-
-(defn- noremap-silent-expr [mode from to]
-  "Sets a mapping with {:noremap true :silent true :expr true}"
-  (nvim.set_keymap mode from to {:noremap true :silent true :expr true}))
-
-(defn- noremap-silent-script-expr [mode from to]
-  "Sets a mapping with {:noremap true :silent true :expr true :script true}"
-  (nvim.set_keymap mode from to {:noremap true :silent true :expr true :script true}))
-
-(defn- noremap-expr [mode from to]
-  "Sets a mapping with {:noremap true :expr true}"
-  (nvim.set_keymap mode from to {:noremap true :expr true}))
-
 (defn- declare-command [body]
   (nvim.command (.. "command! " body)))
 
 (defn- declare-command-with-args [body]
   (nvim.command (.. "command! -nargs=+ " body)))
 
-(defn- is-terminal-buffer [bufnumber]
-  (and (= (. nvim.bo bufnumber "buftype") "terminal") 
-       (= (. nvim.b bufnumber "floaterm_window") 1)))
-
-(defn- is-terminal-window [winnr]
-  (is-terminal-buffer (nvim.fn.winbufnr winnr)))
-
-(defn- find-terminal-window []
-  (core.first 
-    (core.filter 
-      is-terminal-window
-      (nvim.fn.range 1 (nvim.fn.winnr "$")))))
-(util.export :find_terminal_window find-terminal-window)
-
 (defn hide-terminal []
-  (let [winnr (find-terminal-window)]
-    (if (not (core.nil? winnr))
-      (nvim.command (.. winnr " wincmd q")))))
+  (nvim.ex.FloatermHide))
 (util.export :hide_terminal hide-terminal)
 
 (defn setup-terminal []
@@ -66,7 +24,6 @@
 
 (defn toggle-terminal []
   (setup-terminal)
-  (set nvim.o.shell "zsh")
   (nvim.ex.FloatermToggle)
   (set nvim.o.shell "zsh"))
 (util.export :toggle_terminal toggle-terminal)
@@ -151,66 +108,59 @@
 
 ;; Search ;;
 ;;;;;;;;;;;;
-(noremap-silent :n "<leader>/" ":Telescope live_grep<CR>")
+(defmap [n] :<leader>/ ":Telescope live_grep<CR>" {:silent true})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
-(noremap-silent :n "<leader><Tab>" "<C-^>")
-(noremap-silent :n "<leader>0" ":NvimTreeFindFile<CR>")
-(noremap-silent :n "<leader>1" ":BufferGoto 1<CR>")
-(noremap-silent :n "<leader>2" ":BufferGoto 2<CR>")
-(noremap-silent :n "<leader>3" ":BufferGoto 3<CR>")
-(noremap-silent :n "<leader>4" ":BufferGoto 4<CR>")
-(noremap-silent :n "<leader>5" ":BufferGoto 5<CR>")
-(noremap-silent :n "<leader>6" ":BufferGoto 6<CR>")
-(noremap-silent :n "<leader>7" ":BufferGoto 7<CR>")
-(noremap-silent :n "<leader>8" ":BufferGoto 8<CR>")
-(noremap-silent :n "<leader>9" ":BufferGoto 9<CR>")
-(noremap-silent :n "<C-x>1" "<C-w>o")
+(defmap [n] :<leader><Tab> "<C-^>" {:silent true})
+(defmap [n] :<leader>0 ":NvimTreeFindFile<CR>" {:silent true})
+(defmap [n] :<leader>1 ":BufferGoto 1<CR>" {:silent true})
+(defmap [n] :<leader>2 ":BufferGoto 2<CR>" {:silent true})
+(defmap [n] :<leader>3 ":BufferGoto 3<CR>" {:silent true})
+(defmap [n] :<leader>4 ":BufferGoto 4<CR>" {:silent true})
+(defmap [n] :<leader>5 ":BufferGoto 5<CR>" {:silent true})
+(defmap [n] :<leader>6 ":BufferGoto 6<CR>" {:silent true})
+(defmap [n] :<leader>7 ":BufferGoto 7<CR>" {:silent true})
+(defmap [n] :<leader>8 ":BufferGoto 8<CR>" {:silent true})
+(defmap [n] :<leader>9 ":BufferGoto 9<CR>" {:silent true})
+(defmap [n] :<C-X>1 "<C-w>o" {:silent true})
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-(noremap-silent :i "<Tab>" (if (fn [] vim.fn.pumvisible) "<C-y>" "<C-g>u<CR>"))
-(noremap-silent :i "<C-J>" (if (fn [] vim.fn.pumvisible) "<C-N>" "<C-J>"))
-(noremap-silent :i "<C-K>" (if (fn [] vim.fn.pumvisible) "<C-P>" "<C-K>"))
-(noremap-silent :n "gr" "<Plug>(coc-references)")
-(noremap-silent :n "gi" "<Plug>(coc-implementation)")
-(noremap-silent :n "gt" "<Plug>(coc-type-definition)")
-(map-silent :n "<C-.>" ":CodeActionMenu<CR>")
-(map-silent :v "<C-.>" ":CodeActionMenu<CR>")
-
-;; VISUAL ;;
-;;;;;;;;;;;;
-(noremap-silent :v "<" "<gv")
-(noremap-silent :v ">" ">gv")
-(noremap-silent :v ";" ":Commentary<CR>")
-(noremap-silent :v "<M-q>" "gq")
+(defmap [i] :<C-J>
+            "pumvisible() ? \"\\<C-N>\" : \"\\<C-J>\""
+            {:noremap true :expr true :silent true})
+(defmap [i] :<C-K>
+            "pumvisible() ? \"\\<C-P>\" : \"\\<C-K>\""
+            {:noremap true :expr true :silent true})
+(defmap [i] :<TAB>
+            "pumvisible() ? \"\\<C-Y>\" : \"\\<Tab>\""
+            {:noremap true :expr true :silent true})
+(defmap [n] :gd "<Plug>(coc-definition)" {:silent true})
+(defmap [n] :gD "<Plug>(coc-type-definition)" {:silent true})
+(defmap [n] :gi "<Plug>(coc-implementation)" {:silent true})
+(defmap [n] :gr "<Plug>(coc-references)" {:silent true})
+(defmap [n] :<C-.> ":CodeActionMenu<CR>" {:silent true})
+(defmap [v] :<C-.> ":CodeActionMenu<CR>" {:silent true})
 
 ;; TERMINAL ;;
 ;;;;;;;;;;;;;;
-(noremap-silent :t "<ESC>" "<C-\\><C-n>")
-
-;; SCROLLING ;;
-;;;;;;;;;;;;;;;
-(noremap-silent :n "<down>" ":call comfortable_motion#flick(100)<CR>")
-(noremap-silent :n "<up>" ":call comfortable_motion#flick(-100)<CR>")
+(defmap [t] :<ESC> "<C-\\><C-n>" {:silent true})
+(defmap [n] :<ESC> ":call v:lua.g.hide_terminal()<CR>" {:silent true})
 
 ;; GENERAL ;;
 ;;;;;;;;;;;;;
-(noremap-silent :n "-" ":Balsamic<CR>")
-(map-silent :n "<ESC>" ":noh<CR>:call v:lua.g.hide_terminal()<CR>")
-(noremap-silent :i "<C-A>" "<Home>")
-(noremap-silent :i "<C-B>" "<Left>")
-
-;; may conflict with lsp automation cancel
-(noremap-silent :i "<C-E>" "<End>")
-(noremap-silent :i "<C-F>" "<Right>")
+(defmap [i] :<C-A> "<Home>" {:silent true})
+(defmap [i] :<C-B> "<Left>" {:silent true})
+;; conflict with copilot
+(defmap [i] :<C-E> "<End>" {:silent true})
+(defmap [i] :<C-F> "<Right>" {:silent true})
 
 ;; ALE
-(noremap-silent :n "]q" ":ALENext<CR>")
-(noremap-silent :n "[q" ":ALEPrevious<CR>")
-(noremap-silent :n "ge" ":ALEDetail<CR>")
+(defmap [n] "]q" ":ALENext<CR>" {:silent true})
+(defmap [n] "[q" ":ALEPrevious<CR>" {:silent true})
+(defmap [n] :ge ":ALEDetail<CR>" {:silent true})
 
 ;; Copilot
-(noremap-silent-script-expr :i "<C-E>" "copilot#Accept(\"<CR>\")")
+(defmap [n] :<C-E> "copilot#Accept(\"<CR>\")" {:silent true :script true :expr true})
