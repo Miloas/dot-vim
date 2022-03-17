@@ -155,3 +155,6 @@
 (defmap [n] "]q" ":ALENext<CR>" {:silent true})
 (defmap [n] "[q" ":ALEPrevious<CR>" {:silent true})
 (defmap [n] :ge ":ALEDetail<CR>" {:silent true})
+
+;; V
+(defmap [v] ";" ":Commentary<CR>" {:silent true})
