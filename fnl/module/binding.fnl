@@ -162,5 +162,9 @@
 (defmap [n] "[q" ":ALEPrevious<CR>" {:silent true})
 (defmap [n] :ge ":ALEDetail<CR>" {:silent true})
 
+;; V
+(defmap [v] ";" ":Commentary<CR>" {:silent true})
+
+
 ;; Copilot
-(defmap [n] :<C-E> "copilot#Accept(\"<CR>\")" {:silent true :script true :expr true})
+(defmap [i] :<C-E> "copilot#Accept(\"<CR>\")" {:silent true :script true :expr true})
