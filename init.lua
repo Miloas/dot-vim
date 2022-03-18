@@ -23,3 +23,5 @@ ensure("lewis6991", "impatient.nvim")
 -- Load impatient which pre-compiles and caches Lua modules.
 require("impatient")
 
+vim.g.gruvbox_invert_selection = 0
+

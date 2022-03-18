@@ -20,7 +20,6 @@
 
 ;; Colors
 (vim.cmd "colorscheme gruvbox")
-(set vim.g.gruvbox_invert_selection 1)
 
 ;; Terminal
 (set vim.g.floaterm_winblend 20)
