@@ -31,11 +31,10 @@
   :p00f/nvim-ts-rainbow {}
   :onsails/lspkind-nvim {}
   :folke/lsp-colors.nvim {}
-  :vim-airline/vim-airline {}
-  :vim-airline/vim-airline-themes {}
   :morhetz/gruvbox {}
   :kyazdani42/nvim-web-devicons {}
   :romgrk/barbar.nvim {}
+  :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]}
 
   ;; General Settings
   :vim-test/vim-test {}
