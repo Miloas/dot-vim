@@ -8,15 +8,6 @@
 ;; https://github.com/f-person/git-blame.nvim
 (set vim.g.gitblame_enabled 0)
 
-;; Airline
-(set vim.g.airline_powerline_fonts 1)
-(set vim.g.airline_section_z "%3l/%L:%3v")
-(set vim.g.airline_left_sep "")
-(set vim.g.airline_right_sep "")
-(set vim.g.airline#extensions#coc#enabled 1)
-(set vim.g.airline_section_warning "")
-(set vim.g.airline_section_error "")
-
 ;; Colors
 (vim.cmd "colorscheme gruvbox")
 
@@ -57,4 +48,4 @@
 (set vim.o.smartindent true)
 (set vim.o.expandtab true)
 (set vim.o.shiftwidth 2)
-(set vim.o.tabstop 2)
+(set vim.o.tabstop 2) t

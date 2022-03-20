@@ -1,5 +1,12 @@
 # neovide
 
+
+```
+# install nvim 0.7 
+brew install nvim --HEAD
+# https://github.com/neovim/neovim/issues/16217
+```
+
 ```
 brew install fennel rg
 # install jetbrains mono nerd font
