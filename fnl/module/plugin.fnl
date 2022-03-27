@@ -79,9 +79,8 @@
   :rcarriga/nvim-dap-ui {}
 
   ;; Git
-  :airblade/vim-gitgutter {}
   :kdheepak/lazygit.nvim {}
-  :f-person/git-blame.nvim {}
+  :lewis6991/gitsigns.nvim {:mod :gitsigns}
 
   ;; Key Bindings
   :tpope/vim-commentary {}

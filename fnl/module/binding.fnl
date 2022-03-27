@@ -65,9 +65,6 @@
       ;;  :i [":split<CR><ESC>" "split up"]
        :/ [":vsplit<CR><C-w>l<ESC>" "split right"]
        := ["<C-w>=" "auto resize"]}
-   :j {:name "Hop"
-       :w [":HopWord<CR>" "jump word"]
-       :j [":HopLine<CR>" "jump line"]}
    :b {:name "Buffers"
        :o [":BufferOrderByBufferNumber<CR>" "order buffers"]
        :p [":bprevious<CR>" "previous"]
@@ -85,8 +82,7 @@
    :s {:name "String"
        :s [":lua require'telescope.builtin'.grep_string{}<CR>" "grep string"]}
    :g {:name "git"
-       :s [":LazyGit<CR>" "lazygit"]
-       :b [":GitBlameToggle<CR>" "blame"]}
+       :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":NvimTreeFindFileToggle<CR>" "files tree"]
        :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]

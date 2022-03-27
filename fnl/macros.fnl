@@ -146,13 +146,10 @@
  (fn [modes lhs rhs opts]
    (let [opts- (or opts {:noremap true})
          out []
-         rhs- (match (type rhs)
-                :string rhs
-                :table (let [fn-id (gensym)]
-                         `(tset (require :bistro) :functions ,fn-id ,rhs)
-                         (.. "lua require('bistro').functions." fn-id "()")))]
-     (each [_ mode (ipairs modes)]
-       (table.insert out `(vim.api.nvim_set_keymap ,(tostring mode) ,lhs ,rhs- ,opts-)))
+         modes- (match (length modes)
+                1 (tostring (. modes 1))
+                _ (icollect [_ mode (ipairs modes)] (tostring mode)))]
+      (table.insert out `(vim.keymap.set ,modes- ,lhs ,rhs ,opts-))
      `,(unpack out)))
 
  :defsign
