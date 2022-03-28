@@ -67,6 +67,7 @@
   :nvim-lua/popup.nvim {}
   :nvim-lua/plenary.nvim {}
   :nvim-telescope/telescope.nvim {:mod :telescope}
+  :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
   :Olical/conjure {}
   :github/copilot.vim {:mod :copilot}
 
