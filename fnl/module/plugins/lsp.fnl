@@ -12,6 +12,4 @@
                       :python {:analysis {:extraPaths [(.. (vim.fn.system "pdm info --packages") "/lib")]}
                                :pythonPath (vim.fn.system "pdm info --python")}})
   ;; (lsp.jdtls.setup {:capabilities capabilities})
-  (lsp.tailwindcss.setup {:capabilities capabilities})
-  (lsp.graphql.setup {:capabilities capabilities})
-  (lsp.tsserver.setup {:capabilities capabilities :on_attach illuminate.on_attach}))
+  (lsp.graphql.setup {:capabilities capabilities}))
