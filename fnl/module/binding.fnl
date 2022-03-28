@@ -71,7 +71,7 @@
        :n [":bnext<CR>" "next"]
        :d [":BD<CR>" "delete"]}
    :f {:name "Files"
-       :f [":lua require'telescope.builtin'.find_files{}<CR>" "find files"]
+       :f [":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "find files"]
        :b [":lua require'telescope.builtin'.buffers{}<CR>" "find buffers"]
        :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "find recent files"]}
    :t {:name "Terminal"
@@ -80,7 +80,7 @@
        :n ["<ESC>:call v:lua.g.next_terminal()<CR>" "Next Terminal"]
        :p ["<ESC>:call v:lua.g.previous_terminal()<CR>" "Previous Terminal"]}
    :s {:name "String"
-       :s [":lua require'telescope.builtin'.grep_string{}<CR>" "grep string"]}
+       :s [":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "grep string"]}
    :g {:name "git"
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
@@ -104,7 +104,7 @@
 
 ;; Search ;;
 ;;;;;;;;;;;;
-(defmap [n] :<leader>/ ":Telescope live_grep<CR>" {:silent true})
+(defmap [n] :<leader>/ ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" {:silent true})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;
