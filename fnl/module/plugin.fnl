@@ -55,7 +55,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
 
   ;; File Management
-  :kyazdani42/nvim-tree.lua {:mod :nvim-tree}
+  :kyazdani42/nvim-tree.lua {:mod :nvim-tree :branch :master}
   :nvim-telescope/telescope-file-browser.nvim {}
   :filipdutescu/renamer.nvim {:branch :master :mod :renamer}
 
