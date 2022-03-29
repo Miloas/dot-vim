@@ -85,7 +85,7 @@
        :s [":LazyGit<CR>" "lazygit"]}
    :p {:name "Project"
        :t [":NvimTreeFindFileToggle<CR>" "files tree"]
-       :f [":lua require'telescope.builtin'.find_files{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" "find files"]
+       :f [":lua require'telescope.builtin'.git_files{}<CR>" "find files"]
        :r [":Telescope projects<CR>" "recent projects"]}
    :m {:name "Editor"
        :f [":Neoformat<CR>" "format"]
@@ -104,7 +104,7 @@
 
 ;; Search ;;
 ;;;;;;;;;;;;
-(defmap [n] :<leader>/ ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }}<CR>" {:silent true})
+(defmap [n] :<leader>/ ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" {:silent true})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;
