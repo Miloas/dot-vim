@@ -25,5 +25,4 @@
 (gitsigns.setup {:on_attach on_attach
 								 :current_line_blame_formatter_opts {:relative_time true}
 								 :current_line_blame_opts {:delay 0}
-								 :word_diff true
 								 :preview_config {:border "rounded"}})
