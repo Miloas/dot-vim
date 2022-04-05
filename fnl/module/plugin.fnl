@@ -55,6 +55,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :mrjones2014/legendary.nvim {:mod :legendary}
   :stevearc/dressing.nvim {}
+  :fedepujol/move.nvim {}
 
   ;; File Management
   :kyazdani42/nvim-tree.lua {:mod :nvim-tree :branch :master}
