@@ -160,15 +160,31 @@
 (defmap [i] :<C-E> "<End>" {:silent true})
 (defmap [i] :<C-F> "<Right>" {:silent true})
 
-;; ALE
+;; ALE ;;
+;;;;;;;;;
 (defmap [n] "]q" ":ALENext<CR>" {:silent true})
 (defmap [n] "[q" ":ALEPrevious<CR>" {:silent true})
 (defmap [n] :ge ":ALEDetail<CR>" {:silent true})
 (defmap [n] :<leader>af ":ALEFix<CR>" {:silent true})
 
-;; V
+;; V ;;
+;;;;;;;
 (defmap [v] ";" ":Commentary<CR>" {:silent true})
 (defmap [n] "<leader>;;" ":Commentary<CR>" {:silent true})
 
-;; Copilot
+;; Copilot ;;
+;;;;;;;;;;;;;
 (defmap [i] :<C-E> "copilot#Accept(\"<CR>\")" {:silent true :script true :expr true})
+
+;; NATIVE COPY/PASTE ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+;; https://github.com/neovide/neovide/issues/295
+(defmap [n] :+y "\"+y" {:noremap true})
+(defmap [n] :+p "\"+p" {:noremap true})
+(defmap [n] :+d "\"+d" {:noremap true})
+(defmap [n] :*y "\"*y" {:noremap true})
+(defmap [n] :*p "\"*p" {:noremap true})
+(defmap [n] :*d "\"*d" {:noremap true})
+(defmap [n] :<C-C> "\"+y")
+(defmap [n] :<C-V> "\"+p")
+(defmap [c] :<C-V> "<C-R>+")
