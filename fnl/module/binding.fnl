@@ -159,6 +159,7 @@
 ;; conflict with copilot
 (defmap [i] :<C-E> "<End>" {:silent true})
 (defmap [i] :<C-F> "<Right>" {:silent true})
+(defmap [n] :<leader><leader> ":lua require('legendary').find('commands')<CR>" {:silent true})
 
 ;; ALE ;;
 ;;;;;;;;;
