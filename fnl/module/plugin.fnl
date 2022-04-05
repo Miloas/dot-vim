@@ -82,7 +82,6 @@
   ;; Key Bindings
   :tpope/vim-commentary {}
   :tpope/vim-surround {}
-  :folke/which-key.nvim {:mod :which-key}
 
   ;; Project
   :ahmedkhalf/project.nvim {:mod :project}
