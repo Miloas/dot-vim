@@ -53,6 +53,8 @@
   :yuttie/comfortable-motion.vim {}
   :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
+  :mrjones2014/legendary.nvim {:mod :legendary}
+  :stevearc/dressing.nvim {}
 
   ;; File Management
   :kyazdani42/nvim-tree.lua {:mod :nvim-tree :branch :master}
