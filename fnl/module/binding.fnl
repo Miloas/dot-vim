@@ -186,8 +186,8 @@
 (defmap [n] :*y "\"*y" {:noremap true})
 (defmap [n] :*p "\"*p" {:noremap true})
 (defmap [n] :*d "\"*d" {:noremap true})
-(defmap [n] :<C-C> "\"+y")
-(defmap [n] :<C-V> "\"+p")
+;; (defmap [n] :<C-C> "\"+y")
+;; (defmap [n] :<C-V> "\"+p")
 (defmap [c] :<C-V> "<C-R>+")
 
 ;; MOVE ;;
