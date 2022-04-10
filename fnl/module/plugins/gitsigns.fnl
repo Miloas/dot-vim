@@ -3,6 +3,7 @@
 
 (import-macros {: defmap } :macros)
 
+; https://github.com/lewis6991/gitsigns.nvim
 (fn on_attach [bufnr]
 	(defmap [n] "]c" "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" {:buffer bufnr :expr true})
 	(defmap [n] "[c" "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'" {:buffer bufnr :expr true})
