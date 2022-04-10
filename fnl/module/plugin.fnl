@@ -85,6 +85,7 @@
   ;; Git
   :kdheepak/lazygit.nvim {}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
+  :akinsho/git-conflict.nvim {:mod :git-conflict}
 
   ;; Key Bindings
   :tpope/vim-commentary {}
