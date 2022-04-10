@@ -24,6 +24,6 @@
 	(defmap [o x] :ih ":<C-U>Gitsigns select_hunk<CR>" {:buffer bufnr}))
 
 (gitsigns.setup {:on_attach on_attach
-								 :current_line_blame_formatter_opts {:relative_time true}
-								 :current_line_blame_opts {:delay 0}
-								 :preview_config {:border "rounded"}})
+		 :current_line_blame_formatter_opts {:relative_time true}
+		 :current_line_blame_opts {:delay 0}
+		 :preview_config {:border "rounded"}})
