@@ -42,7 +42,7 @@
   :folke/trouble.nvim {:mod :trouble}
   :RRethy/vim-illuminate {}
   :tpope/vim-abolish {}
-  :HerringtonDarkholme/yats.vim {}
+  ; :HerringtonDarkholme/yats.vim {}
   :lewis6991/impatient.nvim {}
   :PeterRincker/vim-argumentative {}
   :hashivim/vim-terraform {}
