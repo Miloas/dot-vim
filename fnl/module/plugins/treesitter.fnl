@@ -2,7 +2,7 @@
   {autoload {treesitter-config nvim-treesitter.configs}})
 
 (treesitter-config.setup 
-  {:ensure_installed ["typescript"]
+  {:ensure_installed ["rust" "go" "python"]
    :sync_install false
    :rainbow {:enable true :extended_mode true :max_file_lines nil}
    :indent {:enable false}
