@@ -138,8 +138,7 @@
 (defmap [n] :gt ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>" {:silent true})
 (defmap [n] :gi ":lua require'telescope.builtin'.lsp_implementations{}<CR>" {:silent true})
 (defmap [n] :ga ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>" {:silent true})
-(map-silent :n "<C-.>" ":CodeActionMenu<CR>")
-(map-silent :v "<C-.>" ":CodeActionMenu<CR>")
+(defmap [n v] :<C-.> ":CodeActionMenu<CR>")
 
 ;; TERMINAL ;;
 ;;;;;;;;;;;;;;
