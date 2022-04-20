@@ -5,6 +5,6 @@
   {:ensure_installed ["rust" "go" "python"]
    :sync_install false
    :rainbow {:enable true :extended_mode true :max_file_lines nil}
-   :indent {:enable false}
+   :indent {:enable true}
    :highlight {:enable true
                :additional_vim_regex_highlighting true}})
