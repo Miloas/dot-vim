@@ -22,3 +22,10 @@ ensure("lewis6991", "impatient.nvim")
 
 -- Load impatient which pre-compiles and caches Lua modules.
 require("impatient")
+
+vim.g.neovide_input_use_logo = 1
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('c', '<D-v>', '<C-R>+', { noremap = true})
