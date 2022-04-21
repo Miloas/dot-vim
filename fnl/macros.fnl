@@ -147,6 +147,7 @@
    (let [opts- (or opts {:noremap true})
          out []
          modes- (match (length modes)
+                0 ""
                 1 (tostring (. modes 1))
                 _ (icollect [_ mode (ipairs modes)] (tostring mode)))]
       (table.insert out `(vim.keymap.set ,modes- ,lhs ,rhs ,opts-))
