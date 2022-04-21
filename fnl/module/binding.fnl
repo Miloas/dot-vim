@@ -193,7 +193,7 @@
 ;; MOVE ;;
 ;;;;;;;;;;
 ;; https://github.com/neovide/neovide/issues
-(defmap [n] :<C-J> ":MoveLine(1)<CR>" {:noremap true :silent true})
-(defmap [n] :<C-K> ":MoveLine(-1)<CR>" {:noremap true :silent true})
-(defmap [v] :<C-J> ":MoveBlock(1)<CR>" {:noremap true :silent true})
-(defmap [v] :<C-K> ":MoveBlock(-1)<CR>" {:noremap true :silent true})
+(defmap [n] :∆ ":MoveLine(1)<CR>" {:noremap true :silent true})
+(defmap [n] :˚ ":MoveLine(-1)<CR>" {:noremap true :silent true})
+(defmap [v] :∆ ":MoveBlock(1)<CR>" {:noremap true :silent true})
+(defmap [v] :˚ ":MoveBlock(-1)<CR>" {:noremap true :silent true})
