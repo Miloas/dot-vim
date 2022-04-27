@@ -144,7 +144,7 @@
 (defmap [n] :gD "<Plug>(coc-type-definition)" {:silent true})
 (defmap [n] :gi "<Plug>(coc-implementation)" {:silent true})
 (defmap [n] :gr "<Plug>(coc-references)" {:silent true})
-(defmap [n] :gh ":call CocActionAsync(\'doHover\')<CR>" {:silent true})
+(defmap [n] :K ":call CocActionAsync(\'doHover\')<CR>" {:silent true})
 (defmap [n v] :<C-.> ":CodeActionMenu<CR>" {:silent true})
 
 ;; TERMINAL ;;
