@@ -131,7 +131,7 @@
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-(defmap [n] :gh ":lua vim.lsp.buf.hover()<CR>" {:silent true})
+(defmap [n] :K ":lua vim.lsp.buf.hover()<CR>" {:silent true})
 (defmap [n] :gd ":lua vim.lsp.buf.definition()<CR>" {:silent true})
 (defmap [n] :gr ":lua require'telescope.builtin'.lsp_references{}<CR>" {:silent true})
 (defmap [n] :gR ":TroubleToggle lsp_references<CR>" {:silent true})
