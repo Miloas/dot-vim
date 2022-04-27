@@ -25,7 +25,7 @@
 ;; Plugins to be managed by packer.
 (use
   ;; Appearance
-  :mvllow/modes.nvim {:mod :modes} ;; line decorations (color)
+  :miloas/modes.nvim {:branch :main :mod :modes} ;; line decorations (color)
   :mhinz/vim-startify {}
   :weilbith/nvim-code-action-menu {}
   :p00f/nvim-ts-rainbow {}
