@@ -1,4 +1,4 @@
 (module module.plugins.modes
 	{autoload {modes modes}})
 
-(modes.setup {})
+(modes.setup {:set_number false})
