@@ -85,7 +85,7 @@
 
   ;; Key Bindings
   :tpope/vim-commentary {}
-  :tpope/vim-surround {}
+  :kylechui/nvim-surround {:mod :nvim-surround}
 
   ;; Project
   :ahmedkhalf/project.nvim {:mod :project}
