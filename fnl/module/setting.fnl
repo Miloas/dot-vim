@@ -53,3 +53,5 @@
 (set vim.o.tabstop 2)
 
 (vim.api.nvim_set_hl 0 "CursorLineNr" {:bg "none"})
+
+(set vim.opt.signcolumn "yes")
