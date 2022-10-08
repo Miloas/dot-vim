@@ -55,5 +55,3 @@
 (vim.api.nvim_set_hl 0 "CursorLineNr" {:bg "none"})
 
 (set vim.opt.signcolumn "yes")
-
-(vim.diagnostic.config {:virtual_text false})

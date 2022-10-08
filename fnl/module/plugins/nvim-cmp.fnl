@@ -1,4 +1,4 @@
-(module module.plugins.nvim-cmp
+(module module.plugins.hop
 	{autoload {cmp cmp
                    lspkind lspkind
                    luasnip luasnip}})

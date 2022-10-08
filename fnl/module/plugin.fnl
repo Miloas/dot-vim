@@ -40,7 +40,6 @@
   :vim-test/vim-test {}
   :karb94/neoscroll.nvim {:mod :neoscroll}
   :folke/trouble.nvim {:mod :trouble}
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim" {:mod :lsp-lines}
   :RRethy/vim-illuminate {}
   :tpope/vim-abolish {}
   ; :HerringtonDarkholme/yats.vim {}
