@@ -4,7 +4,7 @@
              lsp lspconfig}})
 
 (let [capabilities (vim.lsp.protocol.make_client_capabilities {})]
-  (ncmp_lsp.update_capabilities capabilities)
+  (ncmp_lsp.default_capabilities capabilities)
   (lsp.gopls.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (lsp.rust_analyzer.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (lsp.pyright.setup {:capabilities capabilities 
