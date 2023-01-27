@@ -31,7 +31,7 @@
   :p00f/nvim-ts-rainbow {}
   :onsails/lspkind-nvim {}
   :folke/lsp-colors.nvim {}
-  :ellisonleao/gruvbox.nvim {}
+  :miloas/gruvbox.nvim {}
   :kyazdani42/nvim-web-devicons {}
   :romgrk/barbar.nvim {}
   :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]}
