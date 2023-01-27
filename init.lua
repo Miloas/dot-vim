@@ -29,3 +29,6 @@ vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('c', '<D-v>', '<C-R>+', { noremap = true})
+
+vim.g.copilot_node_command = "/opt/homebrew/opt/node@16/bin/node"
+

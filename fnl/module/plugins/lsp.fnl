@@ -7,9 +7,10 @@
   (ncmp_lsp.default_capabilities capabilities)
   (lsp.gopls.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (lsp.rust_analyzer.setup {:capabilities capabilities :on_attach illuminate.on_attach})
+  (lsp.tsserver.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (lsp.pyright.setup {:capabilities capabilities 
                       :on_attach illuminate.on_attach
                       :python {:analysis {:extraPaths [(.. (vim.fn.system "pdm info --packages") "/lib")]}
-                               :pythonPath (vim.fn.system "pdm info --python")}})
+                               :pythonPath (vim.fn.system "pdm info --python")}}))
   ;; (lsp.jdtls.setup {:capabilities capabilities})
-  (lsp.graphql.setup {:capabilities capabilities}))
+  ;; (lsp.graphql.setup {:capabilities capabilities})

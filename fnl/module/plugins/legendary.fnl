@@ -10,4 +10,5 @@
 	{1 ":GitBranches" 2 ":lua require'telescope.builtin'.git_branches{}<CR>" :description "Show buffer's git commits" :opts []}
 	{1 ":GitStash" 2 ":lua require'telescope.builtin'.git_stash{}<CR>" :description "Show buffer's git commits" :opts []}
 	{1 ":PackerSync" :description "Sync plugins" :opts []}]
-	:include_builtin false})
+	:include_builtin false
+	:include_legendary_cmds false})
