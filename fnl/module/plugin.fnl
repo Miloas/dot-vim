@@ -106,4 +106,7 @@
   
   ;; Zen
   :Pocco81/TrueZen.nvim {}
+
+  ;; which-key
+  :folke/which-key.nvim {:mod :which-key}
 )

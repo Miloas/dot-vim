@@ -2,7 +2,7 @@
   {autoload {nvim     aniseed.nvim
              core     aniseed.core
              util     util
-             whichkey "which-key"}})
+             wk       "which-key"}})
 
 (import-macros {: defmap } :macros)
 
@@ -50,68 +50,64 @@
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
-;; Terminal ;;
-;;;;;;;;;;;;;;
-(defmap [n] :<leader>tt "<ESC>:call v:lua.g.toggle_terminal()<CR>" {:silent true})
-(defmap [n] :<leader>ta "<ESC>:call v:lua.g.new_terminal()<CR>" {:silent true})
-(defmap [n] :<leader>tp "<ESC>:call v:lua.g.previous_terminal()<CR>" {:silent true})
-(defmap [n] :<leader>tn "<ESC>:call v:lua.g.next_terminal()<CR>" {:silent true})
+(wk.register {:f {:name "file"
+                 :f {1 ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "find file"}
+                 :r {1 ":lua require'telescope.builtin'.oldfiles{}<CR>" 2 "recent files"}}
+              :b {:name "buffer"
+                  :f {1 ":lua require'telescope.builtin'.buffers{}<CR>" 2 "find buffer"}
+                  :o {1 ":BufferOrderByBufferNumber<CR>" 2 "order by buffer number"}
+                  :p {1 ":bprevious<CR>" 2 "previous buffer"}
+                  :n {1 ":bnext<CR>" 2 "next buffer"}
+                  :d {1 ":BD<CR>" 2 "delete buffer"}}
+              :w {:name "window"
+                  :h {1 "<C-W>h" 2 "move left"}
+                  :j {1 "<C-W>j" 2 "move down"}
+                  :k {1 "<C-W>k" 2 "move up"}
+                  :l {1 "<C-W>l" 2 "move right"}
+                  :q {1 "<C-W>q" 2 "close window"} ;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
+                  :- {1 ":split<CR><C-w>j<ESC>" 2 "split horizontal"}
+                  :/ {1 ":vsplit<CR><C-w>l<ESC>" 2 "split vertical"}
+                  := {1 "<C-w>=" 2 "equalize window sizes"}}
+              :t {:name "terminal"
+                  :t {1 ":call v:lua.g.toggle_terminal()<CR>" 2 "toggle terminal"}
+                  :a {1 ":call v:lua.g.new_terminal()<CR>" 2 "new terminal"}
+                  :p {1 ":call v:lua.g.previous_terminal()<CR>" 2 "previous terminal"}
+                  :n {1 ":call v:lua.g.next_terminal()<CR>" 2 "next terminal"}}
+              :g {:name "git"
+                  :s {1 ":LazyGit<CR>" 2 "status"}}
+              :p {:name "project"
+                  :t {1 ":NvimTreeFindFileToggle<CR>" 2 "toggle tree"}
+                  :f {1 ":lua require'telescope.builtin'.git_files{}<CR>" 2 "find file"}
+                  :r {1 ":Telescope projects<CR>" 2 "recent project files"}}
+              :m {:name "misc"
+                  :a {:name "ALE" :f {1 ":ALEFix<CR>" 2 "auto fix"}}
+                  :f {1 ":Neoformat<CR>" 2 "format"}
+                  :r {1 ":lua require'renamer'.rename{}<CR>" 2 "rename"}}
+              :x {:name "trouble"
+                  :x {1 ":TroubleToggle<CR>" 2 "toggle"}
+                  :w {1 ":TroubleToggle workspace_diagnostics<CR>" 2 "workspace"}
+                  :d {1 ":TroubleToggle document_diagnostics<CR>" 2 "document"}
+                  :q {1 ":TroubleToggle quickfix<CR>" 2 "quickfix"}
+                  :l {1 ":TroubleToggle loclist<CR>" 2 "loclist"}}
+              "." {:name "packer"
+                   :s {1 ":luafile $MYVIMRC<CR>:PackerSync<CR>" 2 "sync"}}
+              "s" {:name "text"
+                   :s {1 ":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "search"}}
 
-;; Window ;;
-;;;;;;;;;;;;
-(defmap [n] :<leader>wh "<C-W>h" {:silent true})
-(defmap [n] :<leader>wj "<C-W>j" {:silent true})
-(defmap [n] :<leader>wk "<C-W>k" {:silent true})
-(defmap [n] :<leader>wl "<C-W>l" {:silent true})
-;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
-(defmap [n] :<leader>wq "<C-W>q" {:silent true})
-(defmap [n] :<leader>w- ":split<CR><C-w>j<ESC>" {:silent true})
-(defmap [n] :<leader>w/ ":vsplit<CR><C-w>l<ESC>" {:silent true})
-(defmap [n] :<leader>w= "<C-w>=" {:silent true})
+              "/" {1 ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "search"}
+              "<leader>" {1 ":lua require('legendary').find('commands')<CR>" 2 "commands"}
+              } {:prefix "<leader>"})
 
-;; Buffer ;;
-;;;;;;;;;;;;
-(defmap [n] :<leader>bo ":BufferOrderByBufferNumber<CR>" {:silent true})
-(defmap [n] :<leader>bp ":bprevious<CR>" {:silent true})
-(defmap [n] :<leader>bn ":bnext<CR>" {:silent true})
-(defmap [n] :<leader>bd ":BD<CR>" {:silent true})
+(wk.register {:gd {1 ":lua vim.lsp.buf.definition()<CR>" 2 "goto definition"} 
+              :gr {1 ":lua require'telescope.builtin'.lsp_references{}<CR>" 2 "list references"}
+              :gR {1 ":TroubleToggle lsp_references<CR>" 2 "troubleToggle references"}
+              :gt {1 ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>" 2 "list type definitions"}
+              :gi {1 ":lua require'telescope.builtin'.lsp_implementations{}<CR>" 2 "list implementations"}
+              :ga {1 ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>" 2 "list document symbols"}
 
-;; Find ;;
-;;;;;;;;;;
-(defmap [n] :<leader>ff ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" {:silent true})
-(defmap [n] :<leader>fb ":lua require'telescope.builtin'.buffers{}<CR>" {:silent true})
-(defmap [n] :<leader>fr ":lua require'telescope.builtin'.oldfiles{}<CR>" {:silent true})
-
-;; Git ;;
-;;;;;;;;;
-(defmap [n] :<leader>gs ":LazyGit<CR>" {:silent true})
-
-;; Project ;;
-;;;;;;;;;;;;;
-(defmap [n] :<leader>pt ":NvimTreeFindFileToggle<CR>" {:silent true})
-(defmap [n] :<leader>pf ":lua require'telescope.builtin'.git_files{}<CR>" {:silent true})
-(defmap [n] :<leader>pr ":Telescope projects<CR>" {:silent true})
-
-;; General ;;
-(defmap [n] :<leader>mf ":Neoformat<CR>" {:silent true})
-(defmap [n] :<leader>mr ":lua require'renamer'.rename{}<CR>" {:silent true})
-
-;; Trouble ;;
-;;;;;;;;;;;;;
-(defmap [n] :<leader>xx ":TroubleToggle<CR>" {:silent true})
-(defmap [n] :<leader>xw ":TroubleToggle workspace_diagnostics<CR>" {:silent true})
-(defmap [n] :<leader>xd ":TroubleToggle document_diagnostics<CR>" {:silent true})
-(defmap [n] :<leader>xq ":TroubleToggle quickfix<CR>" {:silent true})
-(defmap [n] :<leader>xl ":TroubleToggle loclist<CR>" {:silent true})
-
-;; Packer ;;
-;;;;;;;;;;;;
-(defmap [n] :<leader>.s ":luafile $MYVIMRC<CR>:PackerSync<CR>" {:silent true})
-
-;; Search ;;
-;;;;;;;;;;;;
-(defmap [n] :<leader>/ ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" {:silent true})
-(defmap [n] :<leader>ss ":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" {:silent true})
+              :ge {1 ":ALEDetail<CR>" 2 "detail err"}
+              "]q" {1 ":ALENext<CR>" 2 "next err"}
+              "[q" {1 ":ALEPrevious<CR>" 2 "previous err"}})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;
@@ -131,13 +127,6 @@
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-(defmap [n] :K ":lua vim.lsp.buf.hover()<CR>" {:silent true})
-(defmap [n] :gd ":lua vim.lsp.buf.definition()<CR>" {:silent true})
-(defmap [n] :gr ":lua require'telescope.builtin'.lsp_references{}<CR>" {:silent true})
-(defmap [n] :gR ":TroubleToggle lsp_references<CR>" {:silent true})
-(defmap [n] :gt ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>" {:silent true})
-(defmap [n] :gi ":lua require'telescope.builtin'.lsp_implementations{}<CR>" {:silent true})
-(defmap [n] :ga ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>" {:silent true})
 (defmap [n v] :<C-.> ":CodeActionMenu<CR>")
 
 ;; TERMINAL ;;
@@ -152,14 +141,6 @@
 ;; conflict with copilot
 (defmap [i] :<C-E> "<End>" {:silent true})
 (defmap [i] :<C-F> "<Right>" {:silent true})
-(defmap [n] :<leader><leader> ":lua require('legendary').find('commands')<CR>" {:silent true})
-
-;; ALE ;;
-;;;;;;;;;
-(defmap [n] "]q" ":ALENext<CR>" {:silent true})
-(defmap [n] "[q" ":ALEPrevious<CR>" {:silent true})
-(defmap [n] :ge ":ALEDetail<CR>" {:silent true})
-(defmap [n] :<leader>af ":ALEFix<CR>" {:silent true})
 
 ;; V ;;
 ;;;;;;;
