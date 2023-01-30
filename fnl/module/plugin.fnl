@@ -28,7 +28,7 @@
   :mvllow/modes.nvim {:mod :modes} ;; line decorations (color)
   :mhinz/vim-startify {} ;; fancy start screen
   :weilbith/nvim-code-action-menu {} ;; code action menu <C-.>
-  :p00f/nvim-ts-rainbow {} ;; rainbow parentheses
+  :mrjones2014/nvim-ts-rainbow {} ;; rainbow parentheses
   :onsails/lspkind-nvim {} ;; vscode-like completion icons
   :folke/lsp-colors.nvim {} ;; error/hint/warning colors
   :miloas/gruvbox.nvim {} ;; theme
