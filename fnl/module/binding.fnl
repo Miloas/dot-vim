@@ -107,7 +107,14 @@
 
               :ge {1 ":ALEDetail<CR>" 2 "detail err"}
               "]q" {1 ":ALENext<CR>" 2 "next err"}
-              "[q" {1 ":ALEPrevious<CR>" 2 "previous err"}})
+              "[q" {1 ":ALEPrevious<CR>" 2 "previous err"}
+              
+              :co {1 ":GitConflictChooseOurs<CR>" 2 "conflict choose ours"}
+              :ct {1 ":GitConflictChooseTheirs<CR>" 2 "conflict choose theirs"}
+              :cb {1 ":GitConflictChooseBoth<CR>" 2 "conflict choose both"}
+              :c0 {1 ":GitConflictChooseNone<CR>" 2 "conflict choose none"}
+              "]x" {1 ":GitConflictNextConflict<CR>" 2 "next conflict"}
+              "[x" {1 ":GitConflictPrevConflict<CR>" 2 "previous conflict"}})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;

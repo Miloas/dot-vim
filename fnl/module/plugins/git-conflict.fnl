@@ -2,5 +2,5 @@
 	{autoload {git-conflict git-conflict}})
 
 ; https://github.com/akinsho/git-conflict.nvim
-(git-conflict.setup {})
+(git-conflict.setup {:default_mappings false})
 

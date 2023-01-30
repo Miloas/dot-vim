@@ -1,4 +1,4 @@
 (module module.plugins.neoscroll
-  {autoload {neoscroll trouble}})
+  {autoload {neoscroll neoscroll}})
 
 (neoscroll.setup {})

@@ -26,37 +26,36 @@
 (use
   ;; Appearance
   :mvllow/modes.nvim {:mod :modes} ;; line decorations (color)
-  :mhinz/vim-startify {}
-  :weilbith/nvim-code-action-menu {}
-  :p00f/nvim-ts-rainbow {}
-  :onsails/lspkind-nvim {}
-  :folke/lsp-colors.nvim {}
-  :miloas/gruvbox.nvim {}
-  :kyazdani42/nvim-web-devicons {}
-  :romgrk/barbar.nvim {}
-  :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]}
+  :mhinz/vim-startify {} ;; fancy start screen
+  :weilbith/nvim-code-action-menu {} ;; code action menu <C-.>
+  :p00f/nvim-ts-rainbow {} ;; rainbow parentheses
+  :onsails/lspkind-nvim {} ;; vscode-like completion icons
+  :folke/lsp-colors.nvim {} ;; error/hint/warning colors
+  :miloas/gruvbox.nvim {} ;; theme
+  :kyazdani42/nvim-web-devicons {} ;; icons
+  :romgrk/barbar.nvim {} ;; tabs
+  :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]} ;; status line
 
   ;; General Settings
-  :vim-test/vim-test {}
-  :karb94/neoscroll.nvim {:mod :neoscroll}
-  :folke/trouble.nvim {:mod :trouble}
-  :RRethy/vim-illuminate {}
+  :karb94/neoscroll.nvim {:mod :neoscroll} ;; zz,zt,zb
+  :folke/trouble.nvim {:mod :trouble} ;; diagnostics <leader>x
+  :RRethy/vim-illuminate {} ;; highlight other uses of the word under the cursor
+  ;; :Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or}  {despe,sepa}rat{}
+  ;; :Subvert/di{e,ce}/spinner{,s}/g
   :tpope/vim-abolish {}
   ; :HerringtonDarkholme/yats.vim {}
-  :lewis6991/impatient.nvim {}
-  :PeterRincker/vim-argumentative {}
-  :hashivim/vim-terraform {}
+  :lewis6991/impatient.nvim {} ;; speed up loading lua modules in neovim to improve startup time
+  ; :hashivim/vim-terraform {}
   :tpope/vim-sleuth {}     
-  :tpope/vim-obsession {}  
-  :qpkorr/vim-bufkill {}   
-  :voldikss/vim-floaterm {}
-  :yuttie/comfortable-motion.vim {}
+  :qpkorr/vim-bufkill {} ;; kill buffers but doesn't close the window
+  :voldikss/vim-floaterm {} ;; float window terminal
+  ; :yuttie/comfortable-motion.vim {}
   :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
-  :mrjones2014/legendary.nvim {:mod :legendary :branch :master}
-  :stevearc/dressing.nvim {}
-  :fedepujol/move.nvim {}
+  :mrjones2014/legendary.nvim {:mod :legendary :branch :master} ;; cmd
+  :stevearc/dressing.nvim {} ;; improve ui
+  :fedepujol/move.nvim {} ;; move line/char/block
 
   ;; File Management
   :kyazdani42/nvim-tree.lua {:mod :nvim-tree :branch :master}
@@ -65,14 +64,14 @@
 
   ;; LSP
   :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp]]}
-  :w0rp/ale {:mod :ale}
+  :w0rp/ale {:mod :ale} ;; async lint
 
   ;; Completion
-  :nvim-lua/popup.nvim {}
-  :nvim-lua/plenary.nvim {}
+  ; :nvim-lua/popup.nvim {}
+  :nvim-lua/plenary.nvim {} ;; utils for lua script
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
-  :Olical/conjure {}
+  ; :Olical/conjure {} ;; interative environment for evaluating code
   :github/copilot.vim {:mod :copilot}
   :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip]]}
   :hrsh7th/cmp-nvim-lsp {}
