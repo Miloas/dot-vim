@@ -33,7 +33,6 @@
   :folke/lsp-colors.nvim {} ;; error/hint/warning colors
   :miloas/gruvbox.nvim {} ;; theme
   :kyazdani42/nvim-web-devicons {} ;; icons
-  :romgrk/barbar.nvim {} ;; tabs
   :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]} ;; status line
 
   ;; General Settings

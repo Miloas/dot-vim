@@ -121,15 +121,6 @@
 ;; https://github.com/romgrk/barbar.nvim
 (defmap [n] :<leader><Tab> "<C-^>" {:silent true})
 (defmap [n] :<leader>0 ":NvimTreeFindFile<CR>" {:silent true})
-(defmap [n] :<leader>1 ":BufferGoto 1<CR>" {:silent true})
-(defmap [n] :<leader>2 ":BufferGoto 2<CR>" {:silent true})
-(defmap [n] :<leader>3 ":BufferGoto 3<CR>" {:silent true})
-(defmap [n] :<leader>4 ":BufferGoto 4<CR>" {:silent true})
-(defmap [n] :<leader>5 ":BufferGoto 5<CR>" {:silent true})
-(defmap [n] :<leader>6 ":BufferGoto 6<CR>" {:silent true})
-(defmap [n] :<leader>7 ":BufferGoto 7<CR>" {:silent true})
-(defmap [n] :<leader>8 ":BufferGoto 8<CR>" {:silent true})
-(defmap [n] :<leader>9 ":BufferGoto 9<CR>" {:silent true})
 (defmap [n] :<C-X>1 "<C-w>o" {:silent true})
 
 ;;  LSP  ;;
