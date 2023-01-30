@@ -2,4 +2,4 @@
   {autoload {lualine lualine}})
 
 (lualine.setup {:options {:theme "gruvbox" 
-													:globalstatus true}})
+			  :globalstatus true}})
