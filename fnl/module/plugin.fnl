@@ -34,6 +34,7 @@
   :miloas/gruvbox.nvim {} ;; theme
   :kyazdani42/nvim-web-devicons {} ;; icons
   :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]} ;; status line
+  :akinsho/bufferline.nvim {:mod :bufferline :requires [[:nvim-tree/nvim-web-devicons]]} ;; tab
 
   ;; General Settings
   :karb94/neoscroll.nvim {:mod :neoscroll} ;; zz,zt,zb

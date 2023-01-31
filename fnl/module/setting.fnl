@@ -31,6 +31,7 @@
 (set vim.o.textwidth 120)
 (set vim.o.conceallevel 3)
 (set vim.o.background "dark")
+(set vim.o.fillchars "vert:▏")
 
 (defn set-option [option]
   (vim.cmd (.. "set " option)))
