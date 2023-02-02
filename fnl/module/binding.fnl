@@ -91,10 +91,10 @@
                   :l [":TroubleToggle loclist<CR>" "loclist"]}
               "." {:name "packer"
                    :s [":luafile $MYVIMRC<CR>:PackerSync<CR>" "sync"]}
-              "s" {:name "text"
+              :s {:name "text"
                    :s [":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "search"]}
 
-              "/" [":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "search"]
+              "/" [":lua require'telescope.builtin'.live_grep{layout_strategy='vertical',find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "search"]
               "<leader>" [":lua require('legendary').find('commands')<CR>" "commands"]
               } {:prefix "<leader>"})
 

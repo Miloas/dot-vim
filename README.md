@@ -33,3 +33,8 @@ brew install clang-format
 brew tap yoheimuta/protolint
 brew install protolint
 ```
+
+```
+# search and replace
+# https://elanmed.dev/blog/global-find-and-replace-in-neovim
+```

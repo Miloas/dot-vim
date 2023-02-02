@@ -7,7 +7,7 @@
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
 
 ;; Colors
-(vim.cmd "colorscheme gruvbox")
+(vim.cmd "colorscheme tokyonight")
 
 ;; Terminal
 (set vim.g.floaterm_winblend 20)
@@ -28,7 +28,7 @@
 (set vim.o.textwidth 120)
 (set vim.o.conceallevel 3)
 (set vim.o.background "dark")
-(set vim.o.fillchars "vert:▏")
+; (set vim.o.fillchars "vert:▏")
 
 (defn set-option [option]
   (vim.cmd (.. "set " option)))
