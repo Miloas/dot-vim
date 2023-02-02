@@ -6,9 +6,6 @@
 (vim.cmd "filetype plugin indent on")
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
 
-;; https://github.com/f-person/git-blame.nvim
-(set vim.g.gitblame_enabled 0)
-
 ;; Colors
 (vim.cmd "colorscheme gruvbox")
 
