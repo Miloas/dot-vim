@@ -6,26 +6,26 @@
 
 ; https://github.com/lewis6991/gitsigns.nvim
 (fn on_attach [bufnr]
-	(wk.register {"]c" {1 "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" 2 "next hunk"}
-		      "[q" {1 "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'" 2 "prev hunk"}}
+	(wk.register {"]c" ["&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" "next hunk"]
+		      "[q" ["&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'" "prev hunk"]}
 		     {:buffer bufnr :expr true})
 
         (wk.register {:h {:name "gitsigns"
-			  :b {1 gitsigns.toggle_current_line_blame 2 "toggle blame"}
-			  :S {1 gitsigns.stage_buffer 2 "stage buffer"}
-			  :u {1 gitsigns.undo_stage_buffer 2 "undo stage hunk"}
-			  :R {1 gitsigns.reset_buffer 2 "reset buffer"}
-			  :p {1 gitsigns.preview_hunk 2 "preview hunk"}
-			  :d {1 gitsigns.diffthis 2 "diff this"}
-			  :D {1 (lambda [] (gitsigns.diffthis "~")) 2 "diff HEAD"}
-			  :q {1 gitsigns.setqflist 2 "set qflist"}
-			  :Q {1 (lambda [] (gitsigns.setqflist "all")) 2 "set qflist all"}}}
+			  :b [gitsigns.toggle_current_line_blame "toggle blame"]
+			  :S [gitsigns.stage_buffer "stage buffer"]
+			  :u [gitsigns.undo_stage_buffer "undo stage hunk"]
+			  :R [gitsigns.reset_buffer "reset buffer"]
+			  :p [gitsigns.preview_hunk "preview hunk"]
+			  :d [gitsigns.diffthis "diff this"]
+			  :D [(lambda [] (gitsigns.diffthis "~")) "diff HEAD"]
+			  :q [gitsigns.setqflist "set qflist"]
+			  :Q [(lambda [] (gitsigns.setqflist "all")) "set qflist all"]}}
 		      {:prefix "<leader>" :buffer bufnr})
 
         (wk.register {:h {:name "gitsigns"
-			  :s {1 gitsigns.stage_hunk 2 "stage hunk"}
-			  :r {1 gitsigns.reset_hunk 2 "reset hunk"}}}
-		      {:prefix "<leader>" :mode {1 "n" 2 "v"} :buffer bufnr})
+			  :s [gitsigns.stage_hunk "stage hunk"]
+			  :r [gitsigns.reset_hunk "reset hunk"]}}
+		      {:prefix "<leader>" :mode ["n" "v"] :buffer bufnr})
 
 	(defmap [o x] :ih ":<C-U>Gitsigns select_hunk<CR>" {:buffer bufnr}))
 

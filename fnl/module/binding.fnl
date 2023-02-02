@@ -51,70 +51,70 @@
 (set nvim.g.maplocalleader ",")
 
 (wk.register {:f {:name "file"
-                 :f {1 ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "find file"}
-                 :r {1 ":lua require'telescope.builtin'.oldfiles{}<CR>" 2 "recent files"}}
+                 :f [":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "find file"]
+                 :r [":lua require'telescope.builtin'.oldfiles{}<CR>" "recent files"]}
               :b {:name "buffer"
-                  :f {1 ":lua require'telescope.builtin'.buffers{}<CR>" 2 "find buffer"}
-                  :o {1 ":BufferOrderByBufferNumber<CR>" 2 "order by buffer number"}
-                  :p {1 ":bprevious<CR>" 2 "previous buffer"}
-                  :n {1 ":bnext<CR>" 2 "next buffer"}
-                  :d {1 ":BD<CR>" 2 "delete buffer"}}
+                  :f [":lua require'telescope.builtin'.buffers{}<CR>" "find buffer"]
+                  :o [":BufferOrderByBufferNumber<CR>" "order by buffer number"]
+                  :p [":bprevious<CR>" "previous buffer"]
+                  :n [":bnext<CR>" "next buffer"]
+                  :d [":BD<CR>" "delete buffer"]}
               :w {:name "window"
-                  :h {1 "<C-W>h" 2 "move left"}
-                  :j {1 "<C-W>j" 2 "move down"}
-                  :k {1 "<C-W>k" 2 "move up"}
-                  :l {1 "<C-W>l" 2 "move right"}
-                  :q {1 "<C-W>q" 2 "close window"} ;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
-                  :- {1 ":split<CR><C-w>j<ESC>" 2 "split horizontal"}
-                  :/ {1 ":vsplit<CR><C-w>l<ESC>" 2 "split vertical"}
-                  := {1 "<C-w>=" 2 "equalize window sizes"}}
+                  :h ["<C-W>h" "move left"]
+                  :j ["<C-W>j" "move down"]
+                  :k ["<C-W>k" "move up"]
+                  :l ["<C-W>l" "move right"]
+                  :q ["<C-W>q" "close window"] ;; window https://www.xsprogram.com/content/vim-close-window-without-closing-buffer.html
+                  :- [":split<CR><C-w>j<ESC>" "split horizontal"]
+                  :/ [":vsplit<CR><C-w>l<ESC>" "split vertical"]
+                  := ["<C-w>=" "equalize window sizes"]}
               :t {:name "terminal"
-                  :t {1 ":call v:lua.g.toggle_terminal()<CR>" 2 "toggle terminal"}
-                  :a {1 ":call v:lua.g.new_terminal()<CR>" 2 "new terminal"}
-                  :p {1 ":call v:lua.g.previous_terminal()<CR>" 2 "previous terminal"}
-                  :n {1 ":call v:lua.g.next_terminal()<CR>" 2 "next terminal"}}
+                  :t [":call v:lua.g.toggle_terminal()<CR>" "toggle terminal"]
+                  :a [":call v:lua.g.new_terminal()<CR>" "new terminal"]
+                  :p [":call v:lua.g.previous_terminal()<CR>" "previous terminal"]
+                  :n [":call v:lua.g.next_terminal()<CR>" "next terminal"]}
               :g {:name "git"
-                  :s {1 ":LazyGit<CR>" 2 "status"}}
+                  :s [":LazyGit<CR>" "status"]}
               :p {:name "project"
-                  :t {1 ":NvimTreeFindFileToggle<CR>" 2 "toggle tree"}
-                  :f {1 ":lua require'telescope.builtin'.git_files{}<CR>" 2 "find file"}
-                  :r {1 ":Telescope projects<CR>" 2 "recent project files"}}
+                  :t [":NvimTreeFindFileToggle<CR>" "toggle tree"]
+                  :f [":lua require'telescope.builtin'.git_files{}<CR>" "find file"]
+                  :r [":Telescope projects<CR>" "recent project files"]}
               :m {:name "misc"
-                  :a {:name "ALE" :f {1 ":ALEFix<CR>" 2 "auto fix"}}
-                  :f {1 ":Neoformat<CR>" 2 "format"}
-                  :r {1 ":lua require'renamer'.rename{}<CR>" 2 "rename"}}
+                  :a {:name "ALE" :f [":ALEFix<CR>" "auto fix"]}
+                  :f [":Neoformat<CR>" "format"]
+                  :r [":lua require'renamer'.rename{}<CR>" "rename"]}
               :x {:name "trouble"
-                  :x {1 ":TroubleToggle<CR>" 2 "toggle"}
-                  :w {1 ":TroubleToggle workspace_diagnostics<CR>" 2 "workspace"}
-                  :d {1 ":TroubleToggle document_diagnostics<CR>" 2 "document"}
-                  :q {1 ":TroubleToggle quickfix<CR>" 2 "quickfix"}
-                  :l {1 ":TroubleToggle loclist<CR>" 2 "loclist"}}
+                  :x [":TroubleToggle<CR>" "toggle"]
+                  :w [":TroubleToggle workspace_diagnostics<CR>" "workspace"]
+                  :d [":TroubleToggle document_diagnostics<CR>" "document"]
+                  :q [":TroubleToggle quickfix<CR>" "quickfix"]
+                  :l [":TroubleToggle loclist<CR>" "loclist"]}
               "." {:name "packer"
-                   :s {1 ":luafile $MYVIMRC<CR>:PackerSync<CR>" 2 "sync"}}
+                   :s [":luafile $MYVIMRC<CR>:PackerSync<CR>" "sync"]}
               "s" {:name "text"
-                   :s {1 ":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "search"}}
+                   :s [":lua require'telescope.builtin'.grep_string{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "search"]}
 
-              "/" {1 ":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" 2 "search"}
-              "<leader>" {1 ":lua require('legendary').find('commands')<CR>" 2 "commands"}
+              "/" [":lua require'telescope.builtin'.live_grep{ find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>" "search"]
+              "<leader>" [":lua require('legendary').find('commands')<CR>" "commands"]
               } {:prefix "<leader>"})
 
-(wk.register {:gd {1 ":lua vim.lsp.buf.definition()<CR>" 2 "goto definition"} 
-              :gr {1 ":lua require'telescope.builtin'.lsp_references{}<CR>" 2 "list references"}
-              :gR {1 ":TroubleToggle lsp_references<CR>" 2 "troubleToggle references"}
-              :gt {1 ":lua require'telescope.builtin'.lsp_type_definitions{}<CR>" 2 "list type definitions"}
-              :gi {1 ":lua require'telescope.builtin'.lsp_implementations{}<CR>" 2 "list implementations"}
-              :ga {1 ":lua require'telescope.builtin'.lsp_document_symbols{}<CR>" 2 "list document symbols"}
+(wk.register {:gd [":lua vim.lsp.buf.definition()<CR>" "goto definition"] 
+              :gr [":lua require'telescope.builtin'.lsp_references{}<CR>" "list references"]
+              :gR [":TroubleToggle lsp_references<CR>" "troubleToggle references"]
+              :gt [":lua require'telescope.builtin'.lsp_type_definitions{}<CR>" "list type definitions"]
+              :gi [":lua require'telescope.builtin'.lsp_implementations{}<CR>" "list implementations"]
+              :ga [":lua require'telescope.builtin'.lsp_document_symbols{}<CR>" "list document symbols"]
 
-              :ge {1 ":ALEDetail<CR>" 2 "detail err"}
-              "]q" {1 ":ALENext<CR>" 2 "next err"}
-              "[q" {1 ":ALEPrevious<CR>" 2 "previous err"}
+              :ge [":ALEDetail<CR>" "detail err"]
+              "]q" [":ALENext<CR>" "next err"]
+              "[q" [":ALEPrevious<CR>" "previous err"]
               
-              :co {1 ":GitConflictChooseOurs<CR>" 2 "conflict choose ours"}
-              :ct {1 ":GitConflictChooseTheirs<CR>" 2 "conflict choose theirs"}
-              :cb {1 ":GitConflictChooseBoth<CR>" 2 "conflict choose both"}
-              :c0 {1 ":GitConflictChooseNone<CR>" 2 "conflict choose none"}
-              "]x" {1 ":GitConflictNextConflict<CR>" 2 "next conflict"}
-              "[x" {1 ":GitConflictPrevConflict<CR>" 2 "previous conflict"}})
+              :co [":GitConflictChooseOurs<CR>" "conflict choose ours"]
+              :ct [":GitConflictChooseTheirs<CR>" "conflict choose theirs"]
+              :cb [":GitConflictChooseBoth<CR>" "conflict choose both"]
+              :c0 [":GitConflictChooseNone<CR>" "conflict choose none"]
+              "]x" [":GitConflictNextConflict<CR>" "next conflict"]
+              "[x" [":GitConflictPrevConflict<CR>" "previous conflict"]})
 
 ;; Buffer ;;
 ;;;;;;;;;;;;
