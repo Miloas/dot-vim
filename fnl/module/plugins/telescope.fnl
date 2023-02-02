@@ -9,6 +9,7 @@
 									{:mappings 
 									 {:i {:<C-j> "move_selection_next"
 												:<C-k> "move_selection_previous"
+												:œ (+ actions.send_selected_to_qflist  actions.open_qflist)
 												:<C-d> actions.delete_buffer}}}
 									:extensions {:fzf {:fuzzy true
 																		 :override_generic_sorter true

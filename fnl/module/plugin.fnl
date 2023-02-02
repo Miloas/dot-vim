@@ -109,4 +109,7 @@
 
   ;; which-key
   :folke/which-key.nvim {:mod :which-key}
+
+  ;; quickfix-list
+  :kevinhwang91/nvim-bqf {:mod :bqf}
 )

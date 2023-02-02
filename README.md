@@ -37,4 +37,9 @@ brew install protolint
 ```
 # search and replace
 # https://elanmed.dev/blog/global-find-and-replace-in-neovim
+# cdo s/foo/bar/i
+# cfdo update
+
+# cdo undo
+# cfdo update
 ```
