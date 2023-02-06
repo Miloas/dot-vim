@@ -145,19 +145,8 @@
 (defmap [v] ";" ":Commentary<CR>" {:silent true})
 (defmap [n] "<leader>;;" ":Commentary<CR>" {:silent true})
 
-;; NATIVE COPY/PASTE ;;
-;;;;;;;;;;;;;;;;;;;;;;;
-;; https://github.com/neovide/neovide/issues/295
-(defmap [n] :+y "\"+y" {:noremap true})
-(defmap [n] :+p "\"+p" {:noremap true})
-(defmap [n] :+d "\"+d" {:noremap true})
-(defmap [n] :*y "\"*y" {:noremap true})
-(defmap [n] :*p "\"*p" {:noremap true})
-(defmap [n] :*d "\"*d" {:noremap true})
-
 ;; MOVE ;;
 ;;;;;;;;;;
-;; https://github.com/neovide/neovide/issues
 (defmap [n] :∆ ":MoveLine(1)<CR>" {:noremap true :silent true})
 (defmap [n] :˚ ":MoveLine(-1)<CR>" {:noremap true :silent true})
 (defmap [v] :∆ ":MoveBlock(1)<CR>" {:noremap true :silent true})
