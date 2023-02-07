@@ -4,7 +4,7 @@
              util     util
              wk       "which-key"}})
 
-(import-macros {: defmap } :macros)
+(import-macros {: map!} :macros)
 
 ;; Utils ;;
 ;;;;;;;;;;;
@@ -119,47 +119,47 @@
 ;; Buffer ;;
 ;;;;;;;;;;;;
 ;; https://github.com/romgrk/barbar.nvim
-(defmap [n] :<leader><Tab> "<C-^>" {:silent true})
-(defmap [n] :<leader>0 ":NvimTreeFindFile<CR>" {:silent true})
-(defmap [n] :<C-X>1 "<C-w>o" {:silent true})
+(map! [n] :<leader><Tab> "<C-^>" {:silent true})
+(map! [n] :<leader>0 ":NvimTreeFindFile<CR>" {:silent true})
+(map! [n] :<C-X>1 "<C-w>o" {:silent true})
 
 ;;  LSP  ;;
 ;;;;;;;;;;;
-(defmap [n v] :<C-.> ":CodeActionMenu<CR>")
+(map! [n v] :<C-.> ":CodeActionMenu<CR>")
 
 ;; TERMINAL ;;
 ;;;;;;;;;;;;;;
-(defmap [t] :<ESC> "<C-\\><C-n>" {:silent true})
-(defmap [n] :<ESC> ":call v:lua.g.hide_terminal()<CR>" {:silent true})
+(map! [t] :<ESC> "<C-\\><C-n>" {:silent true})
+(map! [n] :<ESC> ":call v:lua.g.hide_terminal()<CR>" {:silent true})
 
 ;; GENERAL ;;
 ;;;;;;;;;;;;;
-(defmap [i] :<C-A> "<Home>" {:silent true})
-(defmap [i] :<C-B> "<Left>" {:silent true})
+(map! [i] :<C-A> "<Home>" {:silent true})
+(map! [i] :<C-B> "<Left>" {:silent true})
 ;; conflict with copilot
-(defmap [i] :<C-E> "<End>" {:silent true})
-(defmap [i] :<C-F> "<Right>" {:silent true})
+(map! [i] :<C-E> "<End>" {:silent true})
+(map! [i] :<C-F> "<Right>" {:silent true})
 
 ;; V ;;
 ;;;;;;;
-(defmap [v] ";" ":Commentary<CR>" {:silent true})
-(defmap [n] "<leader>;;" ":Commentary<CR>" {:silent true})
+(map! [v] ";" ":Commentary<CR>" {:silent true})
+(map! [n] "<leader>;;" ":Commentary<CR>" {:silent true})
 
 ;; MOVE ;;
 ;;;;;;;;;;
-(defmap [n] :∆ ":MoveLine(1)<CR>" {:noremap true :silent true})
-(defmap [n] :˚ ":MoveLine(-1)<CR>" {:noremap true :silent true})
-(defmap [v] :∆ ":MoveBlock(1)<CR>" {:noremap true :silent true})
-(defmap [v] :˚ ":MoveBlock(-1)<CR>" {:noremap true :silent true})
+(map! [n] :∆ ":MoveLine(1)<CR>" {:noremap true :silent true})
+(map! [n] :˚ ":MoveLine(-1)<CR>" {:noremap true :silent true})
+(map! [v] :∆ ":MoveBlock(1)<CR>" {:noremap true :silent true})
+(map! [v] :˚ ":MoveBlock(-1)<CR>" {:noremap true :silent true})
 
 ;; BUFFER ;;
 ;;;;;;;;;;;;
-(defmap [n] :<leader>1 ":BufferLineGoToBuffer 1<CR>" {:silent true})
-(defmap [n] :<leader>2 ":BufferLineGoToBuffer 2<CR>" {:silent true})
-(defmap [n] :<leader>3 ":BufferLineGoToBuffer 3<CR>" {:silent true})
-(defmap [n] :<leader>4 ":BufferLineGoToBuffer 4<CR>" {:silent true})
-(defmap [n] :<leader>5 ":BufferLineGoToBuffer 5<CR>" {:silent true})
-(defmap [n] :<leader>6 ":BufferLineGoToBuffer 6<CR>" {:silent true})
-(defmap [n] :<leader>7 ":BufferLineGoToBuffer 7<CR>" {:silent true})
-(defmap [n] :<leader>8 ":BufferLineGoToBuffer 8<CR>" {:silent true})
-(defmap [n] :<leader>9 ":BufferLineGoToBuffer 9<CR>" {:silent true})
+(map! [n] :<leader>1 ":BufferLineGoToBuffer 1<CR>" {:silent true})
+(map! [n] :<leader>2 ":BufferLineGoToBuffer 2<CR>" {:silent true})
+(map! [n] :<leader>3 ":BufferLineGoToBuffer 3<CR>" {:silent true})
+(map! [n] :<leader>4 ":BufferLineGoToBuffer 4<CR>" {:silent true})
+(map! [n] :<leader>5 ":BufferLineGoToBuffer 5<CR>" {:silent true})
+(map! [n] :<leader>6 ":BufferLineGoToBuffer 6<CR>" {:silent true})
+(map! [n] :<leader>7 ":BufferLineGoToBuffer 7<CR>" {:silent true})
+(map! [n] :<leader>8 ":BufferLineGoToBuffer 8<CR>" {:silent true})
+(map! [n] :<leader>9 ":BufferLineGoToBuffer 9<CR>" {:silent true})

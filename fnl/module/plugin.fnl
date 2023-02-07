@@ -31,7 +31,6 @@
   :mrjones2014/nvim-ts-rainbow {} ;; rainbow parentheses
   :onsails/lspkind-nvim {} ;; vscode-like completion icons
   :folke/lsp-colors.nvim {} ;; error/hint/warning colors
-  :miloas/gruvbox.nvim {} ;; theme
   :folke/tokyonight.nvim {:mod :tokyonight} ;; theme
   :kyazdani42/nvim-web-devicons {} ;; icons
   :nvim-lualine/lualine.nvim {:mod :lualine :requires [[:kyazdani42/nvim-web-devicons]]} ;; status line

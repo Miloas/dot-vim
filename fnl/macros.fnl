@@ -142,7 +142,7 @@
          cmd (.. hi " " flds)]
      `(vim.cmd ,cmd)))
 
- :defmap
+ :map!
  (fn [modes lhs rhs opts]
    (let [opts- (or opts {:noremap true})
          out []
@@ -166,8 +166,8 @@
          lua-fn `(fn ,args ,...)]
      `(global ,name ,lua-fn)))
 
- :let-g
- (fn let-g [key value]
+ :let!
+ (fn [key value]
    `(tset vim.g ,(tostring key) ,value))
 
  :set!

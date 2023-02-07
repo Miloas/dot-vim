@@ -3,6 +3,9 @@
              cmp cmp
              util util}})
 
+(import-macros {: let!
+                : set!} :macros)
+
 (vim.cmd "filetype plugin indent on")
 (vim.cmd "autocmd BufEnter * silent! lcd &:p:h")
 
@@ -10,24 +13,29 @@
 (vim.cmd "colorscheme tokyonight")
 
 ;; Terminal
-(set vim.g.floaterm_winblend 20)
-(set vim.g.floaterm_position "center")
+(let! floaterm_winblend 20)
+(let! floaterm_position "center")
 
 ;; Neovide
-(set vim.g.neovide_refresh_rate 150)
-(set vim.g.neovide_cursor_animate_in_insert_mode 0)
+(let! neovide_refresh_rate 150)
+(let! neovide_cursor_animate_in_insert_mode 0)
 
 ;; Options
-(set vim.o.guifont "JetBrainsMono Nerd Font:h15")
-(set vim.o.winblend 20)
-(set vim.o.pumblend 20)
-(set vim.o.ve "block")
-(set vim.o.mouse "a")
-(set vim.o.clipboard "unnamed")
-(set vim.o.timeoutlen 500)
-(set vim.o.textwidth 120)
-(set vim.o.conceallevel 3)
-(set vim.o.background "dark")
+(set! :guifont "JetBrainsMono Nerd Font:h15")
+(set! :winblend 20)
+(set! :pumblend 20)
+(set! :ve "block")
+(set! :mouse "a")
+(set! :clipboard "unnamed")
+(set! :timeoutlen 500)
+(set! :textwidth 120)
+(set! :conceallevel 3)
+(set! :background "dark")
+(set! :smartindent true)
+(set! :expandtab true)
+(set! :shiftwidth 2)
+(set! :tabstop 2)
+(set! :signcolumn "yes")
 ; (set vim.o.fillchars "vert:▏")
 
 (defn set-option [option]
@@ -45,11 +53,4 @@
 (set-option :hidden)
 (set-option :nowrap)
 
-(set vim.o.smartindent true)
-(set vim.o.expandtab true)
-(set vim.o.shiftwidth 2)
-(set vim.o.tabstop 2)
-
 (vim.api.nvim_set_hl 0 "CursorLineNr" {:bg "none"})
-
-(set vim.opt.signcolumn "yes")

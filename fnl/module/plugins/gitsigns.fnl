@@ -2,7 +2,7 @@
   {autoload {gitsigns gitsigns
 	     wk which-key}})
 
-(import-macros {: defmap } :macros)
+(import-macros {: map!} :macros)
 
 ; https://github.com/lewis6991/gitsigns.nvim
 (fn on_attach [bufnr]
@@ -27,7 +27,7 @@
 			  :r [gitsigns.reset_hunk "reset hunk"]}}
 		      {:prefix "<leader>" :mode ["n" "v"] :buffer bufnr})
 
-	(defmap [o x] :ih ":<C-U>Gitsigns select_hunk<CR>" {:buffer bufnr}))
+	(map! [o x] :ih ":<C-U>Gitsigns select_hunk<CR>" {:buffer bufnr}))
 
 (gitsigns.setup {:on_attach on_attach
 		 :signs {:untracked {:text "│"}}
