@@ -112,4 +112,8 @@
 
   ;; quickfix-list
   :kevinhwang91/nvim-bqf {:mod :bqf}
+
+  ;; lsp based navi
+  :utilyre/barbecue.nvim {:mod :barbecue
+                          :requires [["SmiteshP/nvim-navic" "nvim-tree/nvim-web-devicons"]]}
 )
