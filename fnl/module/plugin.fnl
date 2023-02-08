@@ -32,7 +32,6 @@
   :onsails/lspkind-nvim {} ;; vscode-like completion icons
   :folke/lsp-colors.nvim {} ;; error/hint/warning colors
   :folke/tokyonight.nvim {:mod :tokyonight} ;; theme
-  :nvim-tree/nvim-web-devicons {} ;; icons
   :nvim-lualine/lualine.nvim {:mod :lualine} ;; status line
   :akinsho/bufferline.nvim {:mod :bufferline :requires [[:nvim-tree/nvim-web-devicons]]} ;; tab
 
@@ -51,9 +50,10 @@
   :voldikss/vim-floaterm {} ;; float window terminal
   ; :yuttie/comfortable-motion.vim {}
   :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
-  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter :requires [[:yioneko/nvim-yati :andymass/vim-matchup :nvim-treesitter/nvim-treesitter-textobjects]]}
   :nvim-treesitter/nvim-treesitter-textobjects {}
-  :yioneko/nvim-yati {:requires [[:nvim-treesitter/nvim-treesitter]]} ;; treesitter indent
+  :yioneko/nvim-yati {} ;; treesitter indent
+  :andymass/vim-matchup {} ;; treesitter indent
   :mrjones2014/legendary.nvim {:mod :legendary :branch :master} ;; cmd
   :stevearc/dressing.nvim {} ;; improve ui
   :fedepujol/move.nvim {} ;; move line/char/block
@@ -89,6 +89,7 @@
   :kdheepak/lazygit.nvim {}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/git-conflict.nvim {:mod :git-conflict}
+  :TimUntersberger/neogit {:mod :neogit :requires [[:nvim-lua/plenary.nvim]]}
 
   ;; Key Bindings
   :tpope/vim-commentary {}
@@ -117,5 +118,5 @@
 
   ;; lsp based navi
   :utilyre/barbecue.nvim {:mod :barbecue
-                          :requires [["SmiteshP/nvim-navic" "nvim-tree/nvim-web-devicons"]]}
+                          :requires [["SmiteshP/nvim-navic"]]}
 )

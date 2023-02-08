@@ -12,6 +12,8 @@
 	{1 ":GitBranches" 2 ":lua require'telescope.builtin'.git_branches{}<CR>" :description "Show buffer's git commits" :opts []}
 	{1 ":GitStash" 2 ":lua require'telescope.builtin'.git_stash{}<CR>" :description "Show buffer's git commits" :opts []}
 
+	{1 ":Neogit" :description "[Neogit] open magit pannel"}
+
 	{1 ":TypescriptAddMissingImports" :description "[TS] Add missing imports"}
 	{1 ":TypescriptOrganizeImports" :description "[TS] Organize imports"}
 	{1 ":TypescriptRenameFile" :description "[TS] Rename file"}

@@ -26,6 +26,7 @@
    :sync_install false
    :rainbow {:enable true :extended_mode true :max_file_lines nil}
    :yati {:enable true}
+   :matchup {:enable true}
    ; :indent {:enable true :disable ["javascript" "typescript" "python" "yaml"]}
    :highlight {:enable true
                :additional_vim_regex_highlighting true}})
