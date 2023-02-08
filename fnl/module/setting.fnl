@@ -27,7 +27,7 @@
 (set! :ve "block")
 (set! :mouse "a")
 (set! :clipboard "unnamed")
-(set! :timeoutlen 500)
+(set! :timeoutlen 300)
 (set! :textwidth 120)
 (set! :conceallevel 3)
 (set! :background "dark")
