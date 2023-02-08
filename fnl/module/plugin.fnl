@@ -72,9 +72,10 @@
   :nvim-lua/plenary.nvim {} ;; utils for lua script
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
-  ; :Olical/conjure {} ;; interative environment for evaluating code
+  :Olical/conjure {} ;; interative environment for fennel
+  :PaterJason/cmp-conjure {}
   :github/copilot.vim {:mod :copilot}
-  :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip]]}
+  :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip :PaterJason/cmp-conjure]]}
   :hrsh7th/cmp-nvim-lsp {}
   :saadparwaiz1/cmp_luasnip {}
   :L3MON4D3/LuaSnip {}

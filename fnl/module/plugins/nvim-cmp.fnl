@@ -17,4 +17,4 @@
                                     (vim.api.nvim_feedkeys copilot_keys "i" true))))
                       :<Tab> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
                                                    :select true})}
-            :sources [{:name "nvim_lsp"} {:name "luasnip"}]})
+            :sources [{:name "nvim_lsp"} {:name "luasnip"} {:name "conjure"}]})
