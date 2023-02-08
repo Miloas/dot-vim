@@ -53,6 +53,7 @@
   :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
+  :yioneko/nvim-yati {:requires [[:nvim-treesitter/nvim-treesitter]]} ;; treesitter indent
   :mrjones2014/legendary.nvim {:mod :legendary :branch :master} ;; cmd
   :stevearc/dressing.nvim {} ;; improve ui
   :fedepujol/move.nvim {} ;; move line/char/block
