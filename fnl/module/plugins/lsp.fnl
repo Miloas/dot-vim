@@ -8,6 +8,7 @@
   (ncmp_lsp.default_capabilities capabilities)
   (lsp.gopls.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (lsp.rust_analyzer.setup {:capabilities capabilities :on_attach illuminate.on_attach})
+  (lsp.sourcekit.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   ; (lsp.tsserver.setup {:capabilities capabilities :on_attach illuminate.on_attach})
   (typescript.setup {:server {:capabilities capabilities :on_attach illuminate.on_attach}})
   (lsp.pyright.setup {:capabilities capabilities 
