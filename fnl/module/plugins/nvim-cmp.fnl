@@ -1,7 +1,8 @@
 (module module.plugins.hop
 	{autoload {cmp cmp
                    lspkind lspkind
-                   luasnip luasnip}})
+                   luasnip luasnip
+                   lsvs luasnip.loaders.from_vscode}})
 
 (cmp.setup {:snippet {:expand (fn [args] (luasnip.lsp_expand args.body))}
             :formatting {:format (lspkind.cmp_format {:mode "symbol" :maxwidth 50})}
@@ -18,3 +19,6 @@
                       :<Tab> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
                                                    :select true})}
             :sources [{:name "nvim_lsp"} {:name "luasnip"} {:name "conjure"}]})
+
+(lsvs.lazy_load {})
+(luasnip.filetype_extend "go")

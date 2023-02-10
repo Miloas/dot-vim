@@ -51,9 +51,6 @@
   ; :yuttie/comfortable-motion.vim {}
   :windwp/nvim-autopairs {:mod :autopairs :requires [[:hrsh7th/nvim-cmp]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter :requires [[:yioneko/nvim-yati :andymass/vim-matchup :nvim-treesitter/nvim-treesitter-textobjects]]}
-  :nvim-treesitter/nvim-treesitter-textobjects {}
-  :yioneko/nvim-yati {} ;; treesitter indent
-  :andymass/vim-matchup {} ;; treesitter indent
   :mrjones2014/legendary.nvim {:mod :legendary :branch :master} ;; cmd
   :stevearc/dressing.nvim {} ;; improve ui
   :fedepujol/move.nvim {} ;; move line/char/block
@@ -66,7 +63,6 @@
   ;; LSP
   :neovim/nvim-lspconfig {:mod :lsp :requires [[:hrsh7th/cmp-nvim-lsp :jose-elias-alvarez/typescript.nvim]]}
   :w0rp/ale {:mod :ale} ;; async lint
-  :jose-elias-alvarez/typescript.nvim {}
 
   ;; Completion
   ; :nvim-lua/popup.nvim {}
@@ -74,12 +70,10 @@
   :nvim-telescope/telescope.nvim {:mod :telescope}
   :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
   :Olical/conjure {} ;; interative environment for fennel
-  :PaterJason/cmp-conjure {}
   :github/copilot.vim {:mod :copilot}
   :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip :PaterJason/cmp-conjure]]}
-  :hrsh7th/cmp-nvim-lsp {}
   :saadparwaiz1/cmp_luasnip {}
-  :L3MON4D3/LuaSnip {}
+  :rafamadriz/friendly-snippets {}
 
   ;; Debugging 
   :mfussenegger/nvim-dap {}
