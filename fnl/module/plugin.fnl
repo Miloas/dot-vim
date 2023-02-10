@@ -73,7 +73,7 @@
   :github/copilot.vim {:mod :copilot}
   :hrsh7th/nvim-cmp {:mod :nvim-cmp :requires [[:L3MON4D3/LuaSnip :PaterJason/cmp-conjure]]}
   :saadparwaiz1/cmp_luasnip {}
-  :rafamadriz/friendly-snippets {}
+  :Miloas/miloas.snippets {}
 
   ;; Debugging 
   :mfussenegger/nvim-dap {}

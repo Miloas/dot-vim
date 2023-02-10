@@ -2,7 +2,10 @@
 	{autoload {cmp cmp
                    lspkind lspkind
                    luasnip luasnip
-                   lsvs luasnip.loaders.from_vscode}})
+                   ft_func luasnip.extras.filetype_functions
+                   snippets snippets}})
+
+(import-macros {: map!} :macros)
 
 (cmp.setup {:snippet {:expand (fn [args] (luasnip.lsp_expand args.body))}
             :formatting {:format (lspkind.cmp_format {:mode "symbol" :maxwidth 50})}
@@ -20,5 +23,11 @@
                                                    :select true})}
             :sources [{:name "nvim_lsp"} {:name "luasnip"} {:name "conjure"}]})
 
-(lsvs.lazy_load {})
-(luasnip.filetype_extend "go")
+(luasnip.add_snippets "go" snippets.go)
+(luasnip.config.set_config {:updateevents "TextChanged,TextChangedI"
+                            :ft_func ft_func.from_pos_or_filetype})
+
+;; LUASNIP ;;
+;; https://github.com/arsham/shark/blob/master/lua/plugins/luasnip/init.lua
+(map! [i s] :<C-l> (lambda [] (luasnip.jump 1)) {:silent true})
+(map! [i s] :<C-h> (lambda [] (luasnip.jump -1)) {:silent true})

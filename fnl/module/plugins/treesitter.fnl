@@ -2,7 +2,7 @@
   {autoload {treesitter-config nvim-treesitter.configs}})
 
 (treesitter-config.setup 
-  {:ensure_installed ["rust" "go" "python" "lua" "zig" "typescript" "fennel" "swift"]
+  {:ensure_installed :all
    :textobjects {:select {:enable true
                           :lookahead true
                           :keymaps {:af "@function.outer"
