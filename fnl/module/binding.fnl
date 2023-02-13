@@ -126,6 +126,7 @@
 ;;  LSP  ;;
 ;;;;;;;;;;;
 (map! [n v] :<C-.> ":CodeActionMenu<CR>")
+(map! [n] :K ":lua vim.lsp.buf.hover()<CR>" {:silent true})
 
 ;; TERMINAL ;;
 ;;;;;;;;;;;;;;
