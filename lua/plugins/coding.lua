@@ -88,6 +88,8 @@ return {
           format = lspkind.cmp_format({
             mode = "symbol",
             maxwidth = 50,
+            ellipsis_char = '...',
+            preset = 'codicons',
           }),
         },
         sources = cmp.config.sources({
@@ -95,7 +97,7 @@ return {
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
-        }), 
+        }),
         mapping = {
           ["<C-K>"] = cmp.mapping.select_prev_item(),
           ["<C-J>"] = cmp.mapping.select_next_item(),
