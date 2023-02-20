@@ -52,6 +52,3 @@ map("n", "<leader>wq", "<C-w>q", { desc = "close window" })
 map("n", "<leader>w-", ":split<CR><C-w>j<ESC>", { desc = "split horizontal" })
 map("n", "<leader>w/", ":vsplit<CR><C-w>l<ESC>", { desc = "split vertical" })
 map("n", "<C-x>1", "<C-w>o", { desc = "close all other windows" })
-
--- comment
-map("n", "<leader>;;", "gcc", { desc = "comment line" })

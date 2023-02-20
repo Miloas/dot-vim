@@ -92,7 +92,7 @@ return {
             mode = "symbol",
             maxwidth = 50,
             ellipsis_char = '...',
-            preset = 'codicons',
+            -- preset = 'codicons',
           }),
         },
         sources = cmp.config.sources({
