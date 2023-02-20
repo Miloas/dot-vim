@@ -84,6 +84,9 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
+        window = {
+          documentation = false,
+        },
         formatting = {
           format = lspkind.cmp_format({
             mode = "symbol",
@@ -125,11 +128,6 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
-        },
-        experimental = {
-          ghost_text = {
-            hl_group = "LspCodeLens",
-          },
         },
       }
     end

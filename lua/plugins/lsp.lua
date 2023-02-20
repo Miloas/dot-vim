@@ -38,7 +38,10 @@ return {
       local servers = opts.servers
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      ---@param on_attach fun(client, buffer)
+      -- https://github.com/matsui54/dotfiles/blob/master/nvim/lua/lsp_rc.lua#L64
+      capabilities.textDocument.completion.completionItem.labelDetailsSupport = false
+
+      ---@param on_attach_f fun(client, buffer)
       local function on_attach(on_attach_f)
         vim.api.nvim_create_autocmd("LspAttach", {
           callback = function(args)
