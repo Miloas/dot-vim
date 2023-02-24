@@ -75,6 +75,7 @@ return {
   -- line decorations (color)
   {
     "mvllow/modes.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function(_, opts)
       require("modes").setup(opts)
     end,
