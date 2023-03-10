@@ -44,8 +44,9 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind-nvim",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
     },
     opts = function()
       local cmp = require("cmp")
@@ -54,6 +55,10 @@ return {
 
       local function tab_func(fallback)
         if cmp.visible() then
+          local entry = cmp.get_selected_entry()
+          if not entry then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          end
           cmp.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
