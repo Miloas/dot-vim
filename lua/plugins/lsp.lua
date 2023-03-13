@@ -8,7 +8,13 @@ return {
     autoformat = true,
     opts = {
       servers = {
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              semanticTokens = true,
+            },
+          },
+        },
         rust_analyzer = {},
         sourcekit = {},
         zls = {},
@@ -52,13 +58,22 @@ return {
         })
       end
 
-      on_attach(function(_, buffer)
+      on_attach(function(client, buffer)
         local function diagnostic_goto(next, severity)
           local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
           severity = severity and vim.diagnostic.severity[severity] or nil
           return function()
             go({ severity = severity })
           end
+        end
+
+        if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
+          local semantic = client.config.capabilities.textDocument.semanticTokens
+          client.server_capabilities.semanticTokensProvider = {
+            full = true,
+            legend = {tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes},
+            range = true,
+          }
         end
 
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = buffer, silent = true, desc = "goto definition" })
