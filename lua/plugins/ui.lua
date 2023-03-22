@@ -72,6 +72,7 @@ return {
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
+
   -- line decorations (color)
   {
     "mvllow/modes.nvim",
@@ -82,7 +83,6 @@ return {
   },
 
   "mhinz/vim-startify",
-  "folke/lsp-colors.nvim",
   {
     "kevinhwang91/nvim-bqf",
     opts = {

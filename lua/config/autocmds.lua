@@ -1,5 +1,5 @@
 -- Autocmds are automatically loaded on the VeryLazy event
-local function startup() 
+local function startup()
   require("nvim-tree.api").tree.open()
 end
 

@@ -1,12 +1,19 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/typescript.nvim",
     },
-    autoformat = true,
     opts = {
+      autoformat = true,
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = { spacing = 4, prefix = "●" },
+        severity_sort = true,
+      },
       servers = {
         gopls = {
           settings = {
@@ -41,6 +48,9 @@ return {
       },
     },
     config = function(_, opts)
+      -- diagnostics
+      vim.diagnostic.config(opts.diagnostics)
+
       local servers = opts.servers
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -124,8 +134,8 @@ return {
     keys = {
       {"<leader>mr", '<cmd>lua require("renamer").rename()<cr>', desc = "lsp rename"},
     },
-    config = function()
-      require("renamer").setup()
+    config = function(_, opts)
+      require("renamer").setup(opts)
     end,
   }
 }
