@@ -8,6 +8,7 @@ return {
       require("legendary").setup({
         commands = {
           { ":Lazy", description = "plugins manager" },
+          { ":Format", description = "plugins manager" },
           { ":GitConflictListQf", description = "show all git conflict files" },
           { ":GitStatus", ":lua require'telescope.builtin'.git_status{}<CR>", description = "show git status" },
           { ":GitBufferCommits", ":lua require'telescope.builtin'.git_bcommits{}<CR>", description = "show buffer's git commits history" },
