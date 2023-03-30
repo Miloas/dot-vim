@@ -1,5 +1,4 @@
 return {
-
   -- file explorer
   {
     "kyazdani42/nvim-tree.lua",

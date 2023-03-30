@@ -1,12 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, 
+    version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "yioneko/nvim-yati",
       "andymass/vim-matchup",
       "mrjones2014/nvim-ts-rainbow",
     },
@@ -17,8 +16,8 @@ return {
     ---@type TSConfig
     opts = {
       highlight = { enable = true },
-      yati = { enable = true },
       matchup = { enable = true },
+      indent = { enable = true },
       rainbow = { enable = true, extended_mode = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = {
