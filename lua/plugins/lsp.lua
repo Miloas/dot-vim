@@ -15,6 +15,7 @@ return {
         severity_sort = true,
       },
       servers = {
+        relay_lsp = {},
         gopls = {
           settings = {
             gopls = {
