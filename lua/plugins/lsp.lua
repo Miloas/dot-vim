@@ -23,6 +23,7 @@ return {
             },
           },
         },
+        tailwindcss = {},
         rust_analyzer = {},
         sourcekit = {},
         zls = {},
