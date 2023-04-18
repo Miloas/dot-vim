@@ -15,6 +15,7 @@ local prettier = function()
 end
 
 return {
+  "prisma/vim-prisma",
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
