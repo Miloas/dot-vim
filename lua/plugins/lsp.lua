@@ -3,9 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "jose-elias-alvarez/typescript.nvim",
-      { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" },
+      "hrsh7th/cmp-nvim-lsp"
     },
     opts = {
       autoformat = true,
@@ -36,34 +34,6 @@ return {
         rust_analyzer = {},
         sourcekit = {},
         zls = {},
-        tsserver = {
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = 'all',
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              }
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = 'all',
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              }
-            }
-          }
-        },
         eslint = {
           settings = {
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
@@ -85,10 +55,6 @@ return {
         },
       },
       setup = {
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
         eslint = function()
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
@@ -120,7 +86,6 @@ return {
             local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
             on_attach_f(client, bufnr)
-            require("lsp-inlayhints").on_attach(client, bufnr)
           end,
         })
       end
@@ -183,6 +148,11 @@ return {
         end
       end
     end
+  },
+  {
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
   },
   {
     "filipdutescu/renamer.nvim",
