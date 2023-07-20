@@ -5,6 +5,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/typescript.nvim",
+      { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal" },
     },
     opts = {
       autoformat = true,
@@ -20,6 +21,14 @@ return {
           settings = {
             gopls = {
               semanticTokens = true,
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true
+              }
             },
           },
         },
@@ -27,7 +36,34 @@ return {
         rust_analyzer = {},
         sourcekit = {},
         zls = {},
-        tsserver = {},
+        tsserver = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              }
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              }
+            }
+          }
+        },
         eslint = {
           settings = {
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
@@ -78,9 +114,13 @@ return {
       local function on_attach(on_attach_f)
         vim.api.nvim_create_autocmd("LspAttach", {
           callback = function(args)
-            local buffer = args.buf
+            if not (args.data and args.data.client_id) then
+              return
+            end
+            local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
-            on_attach_f(client, buffer)
+            on_attach_f(client, bufnr)
+            require("lsp-inlayhints").on_attach(client, bufnr)
           end,
         })
       end
