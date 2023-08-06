@@ -6,8 +6,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "andymass/vim-matchup",
-      "mrjones2014/nvim-ts-rainbow",
+      "andymass/vim-matchup"
     },
     keys = {
       { "<leader>v", desc = "Increment selection" },
