@@ -19,7 +19,7 @@ return {
   },
   {
     "TimUntersberger/neogit",
-    confng = function()
+    config = function()
       require("neogit").setup()
     end
   },

@@ -49,12 +49,14 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    sections = {
-      lualine_b = { {'diff', source = diff_source}, },
-    },
     opts = {
-      theme = "tokyonight",
-      globastatus = true
+      options = {
+        theme = "tokyonight",
+        globastatus = true
+      },
+      sections = {
+        lualine_b = { {'diff', source = diff_source}, },
+      },
     }
   },
 
