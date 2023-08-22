@@ -15,6 +15,7 @@ return {
       },
       servers = {
         relay_lsp = {},
+        svelte = {},
         gopls = {
           settings = {
             gopls = {

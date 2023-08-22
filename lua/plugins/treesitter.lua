@@ -20,6 +20,7 @@ return {
       rainbow = { enable = true, extended_mode = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = {
+        "c",
         "go",
         "bash",
         "html",
@@ -34,6 +35,7 @@ return {
         "yaml",
         "zig",
         "rust",
+        "svelte",
         "swift"
       },
       incremental_selection = {
