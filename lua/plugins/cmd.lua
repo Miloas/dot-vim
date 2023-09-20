@@ -16,7 +16,6 @@ return {
           { ":GitCommits", ":lua require'telescope.builtin'.git_commits{}<CR>", description = "show git commits history" },
           { ":GitBranches", ":lua require'telescope.builtin'.git_branches{}<CR>", description = "show git branches" },
           { ":GitStash", ":lua require'telescope.builtin'.git_stash{}<CR>", description = "show stash stack" },
-          { ":Neogit", description = "[Neogit] open magit pannel" },
           { ":TypescriptAddMissingImports", description = "[TS] add missing imports" },
           { ":TypescriptOrganizeImports", description = "[TS] organize imports" },
           { ":TypescriptRenameFile", description = "[TS] rename file" },

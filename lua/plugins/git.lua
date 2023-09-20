@@ -18,12 +18,6 @@ return {
     end,
   },
   {
-    "TimUntersberger/neogit",
-    config = function()
-      require("neogit").setup()
-    end
-  },
-  {
     "kdheepak/lazygit.nvim",
     keys = {
       { "<leader>gs", ":LazyGit<CR>", { desc = "lazygit" } },
