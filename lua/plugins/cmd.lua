@@ -2,7 +2,14 @@ return {
   {
     "mrjones2014/legendary.nvim",
     keys = {
-      { "<leader><leader>", '<cmd>lua require("legendary").find("commands")<CR>', desc = "commands"}
+      {
+        "<leader><leader>",
+        function()
+          require("legendary").find()
+        end,
+        mode = { 'n', 'x', 'o' },
+        desc = "commands"
+      }
     },
     config = function()
       require("legendary").setup({
