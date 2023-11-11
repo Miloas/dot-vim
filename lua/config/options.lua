@@ -46,7 +46,7 @@ opt.winblend = 20 -- Float window transparency
 opt.pumblend = 20 -- Popup menu transparency
 opt.ve = "block" -- Enable block cursor 
 opt.hlsearch = true -- Highlight search results
-opt.guifont = "JetBrainsMono Nerd Font:h15"
+opt.guifont = "JetBrainsMono Nerd Font:h16"
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
