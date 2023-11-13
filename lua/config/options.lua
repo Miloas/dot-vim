@@ -72,7 +72,7 @@ vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 
-vim.g.copilot_node_command = "~/.nodenv/versions/16.20.2/bin/node"
+vim.g.copilot_node_command = "/opt/homebrew/bin/node"
 
 vim.g.neovide_refresh_rate = 144
 vim.g.neovide_cursor_animate_in_insert_mode = 0
