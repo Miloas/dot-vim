@@ -35,7 +35,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "tokyonight",
+        theme = "catppuccin",
         globastatus = true
       },
       sections = {
@@ -50,8 +50,10 @@ return {
     dependencies = {
       "SmiteshP/nvim-navic"
     },
-    config = function(_, opts)
-      require("barbecue").setup(opts)
+    config = function(_, _opts)
+      require("barbecue").setup {
+        theme = "catppuccino",
+      }
     end,
   },
 
