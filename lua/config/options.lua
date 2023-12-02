@@ -76,3 +76,5 @@ vim.g.copilot_node_command = "/opt/homebrew/bin/node"
 
 vim.g.neovide_refresh_rate = 144
 vim.g.neovide_cursor_animate_in_insert_mode = 0
+
+vim.g.neovide_padding_top=45

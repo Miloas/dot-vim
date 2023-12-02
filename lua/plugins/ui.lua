@@ -29,22 +29,6 @@ return {
     end,
   },
 
-  -- bufferline
-  {
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    opts = {
-      options = {
-        offsets = {
-          {
-            filetype = "NvimTree",
-            text = "File Explorer",
-          },
-        },
-      },
-    },
-  },
-
   -- status line
   {
     "nvim-lualine/lualine.nvim",

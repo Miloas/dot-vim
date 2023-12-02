@@ -32,16 +32,6 @@ map("n", "<leader>bn", ":bnext<CR>", { desc = "next buffer" })
 map("n", "<leader>bp", ":bprevious<CR>", { desc = "previous buffer" })
 map("n", "<leader>bd", ":bd<CR>", { desc = "delete buffer" })
 
-map("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { desc = "go to buffer 1" })
-map("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", { desc = "go to buffer 2" })
-map("n", "<leader>3", ":BufferLineGoToBuffer 3<CR>", { desc = "go to buffer 3" })
-map("n", "<leader>4", ":BufferLineGoToBuffer 4<CR>", { desc = "go to buffer 4" })
-map("n", "<leader>5", ":BufferLineGoToBuffer 5<CR>", { desc = "go to buffer 5" })
-map("n", "<leader>6", ":BufferLineGoToBuffer 6<CR>", { desc = "go to buffer 6" })
-map("n", "<leader>7", ":BufferLineGoToBuffer 7<CR>", { desc = "go to buffer 7" })
-map("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", { desc = "go to buffer 8" })
-map("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", { desc = "go to buffer 9" })
-
 -- window
 map("n", "<leader>wh", "<C-w>h", { desc = "move to left window" })
 map("n", "<leader>wj", "<C-w>j", { desc = "move to bottom window" })
