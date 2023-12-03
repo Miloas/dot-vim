@@ -44,19 +44,6 @@ return {
     }
   },
 
-  -- lsp symbol navigation
-  {
-    "utilyre/barbecue.nvim",
-    dependencies = {
-      "SmiteshP/nvim-navic"
-    },
-    config = function(_, _opts)
-      require("barbecue").setup {
-        theme = "catppuccino",
-      }
-    end,
-  },
-
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 

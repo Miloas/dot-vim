@@ -81,6 +81,9 @@ return {
       end
       return ret
     end,
+    dependencies = {
+      "ggandor/leap.nvim",
+    },
     opts = { labeled_modes = "nx" },
   },
 
