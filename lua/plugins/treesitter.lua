@@ -16,7 +16,9 @@ return {
     opts = {
       highlight = { enable = true },
       matchup = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = false
+      },
       rainbow = { enable = true, extended_mode = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = {
@@ -50,9 +52,29 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        ---@type table<string, boolean>
+        local added = {}
+        opts.ensure_installed = vim.tbl_filter(function(lang)
+          if added[lang] then
+            return false
+          end
+          added[lang] = true
+          return true
+        end, opts.ensure_installed)
+      end
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
+
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+
   {
 		"RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
