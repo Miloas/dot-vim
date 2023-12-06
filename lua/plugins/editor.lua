@@ -20,17 +20,6 @@ return {
     end,
   },
 
-  -- indent
-  {
-    "yioneko/vim-tmindent",
-    config = function()
-      require("tmindent").setup({
-        enabled = function() return true end,
-        default_rule = {}
-      })
-    end,
-  },
-
   -- search/replace in multiple files
   {
     "windwp/nvim-spectre",
