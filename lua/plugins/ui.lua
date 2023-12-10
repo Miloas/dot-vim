@@ -62,7 +62,15 @@ return {
   -- line decorations (color)
   {
     "mvllow/modes.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      line_opacity = 0.3,
+      colors = {
+        copy = "#f5c359",
+        delete = "#c75c6a",
+        insert = "#78ccc5",
+        visual = "#9745be",
+      },
+    },
     config = function(_, opts)
       require("modes").setup(opts)
     end,

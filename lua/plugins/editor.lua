@@ -91,8 +91,20 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
     opts = {
-      plugins = { spelling = true },
+      plugins = {
+        spelling = {
+          enabled = true,
+        },
+      },
+      -- hack for modes.nvim
+      triggers_blacklist = {
+        n = { "d", "y" }
+      }
     },
     config = function(_, opts)
       local wk = require("which-key")
@@ -111,6 +123,7 @@ return {
         ["<leader>w"] = { name = "+window" },
         ["<leader>m"] = { name = "+module" },
         ["<leader>x"] = { name = "+diagnostics/quickfix" },
+        ["d"] = "which_key_ignore",
       }
       wk.register(keymaps)
     end,
