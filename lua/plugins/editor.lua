@@ -47,7 +47,35 @@ return {
       telescope.load_extension("fzf")
       telescope.load_extension("file_browser")
       telescope.setup({
+        pickers = {
+          find_files = {
+            find_command = {
+              'rg',
+              '--files',
+              '--color=never',
+              '--line-number',
+              '--column',
+              '--smart-case',
+              '--hidden',
+              '--glob',
+              '!{**/.git/*,**/node_modules/*}',
+            }
+          }
+        },
         defaults = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+
+            '--hidden',
+            '--glob',
+            '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml}'
+          },
           mappings = {
             i = {
               ["<C-j>"] = "move_selection_next",
@@ -62,7 +90,7 @@ return {
     end,
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "switch buffer" },
-      { "<leader>/", ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical',find_command={ 'rg','--hidden','--files','--glob=!.git' }, cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>", desc = "find in files (Grep)"},
+      { "<leader>/", ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>", desc = "find in files (Grep)"},
       -- find
       { "<leader>ff", ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>", desc = "find files (root)"},
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "buffers" },
