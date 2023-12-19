@@ -33,7 +33,9 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
+    after = "catppuccin",
     opts = {
+      highlights = require("catppuccin.groups.integrations.bufferline").get(),
       options = {
         offsets = {
           {
@@ -43,6 +45,19 @@ return {
         },
       },
     },
+  },
+
+  -- lsp symbol navigation
+  {
+    "utilyre/barbecue.nvim",
+    dependencies = {
+      "SmiteshP/nvim-navic"
+    },
+    config = function()
+      require("barbecue").setup {
+        theme = "catppuccino",
+      }
+    end,
   },
 
   -- status line

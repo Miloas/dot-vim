@@ -74,7 +74,7 @@ return {
 
             '--hidden',
             '--glob',
-            '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml}'
+            '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml,**/lazy-lock.json}'
           },
           mappings = {
             i = {
