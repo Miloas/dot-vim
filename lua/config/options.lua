@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.neovide_unlink_border_highlights = true
+vim.g.neovide_scroll_animation_length = 0.20
+
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write

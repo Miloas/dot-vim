@@ -49,14 +49,21 @@ return {
 
   -- lsp symbol navigation
   {
-    "utilyre/barbecue.nvim",
+    'Bekaboo/dropbar.nvim',
+    -- optional, but required for fuzzy finder support
     dependencies = {
-      "SmiteshP/nvim-navic"
+      'nvim-telescope/telescope-fzf-native.nvim'
     },
     config = function()
-      require("barbecue").setup {
-        theme = "catppuccino",
-      }
+      require("dropbar").setup({
+        icons = {
+          ui = {
+            bar = {
+              separator = "  ",
+            }
+          }
+        }
+      })
     end,
   },
 
