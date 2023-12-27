@@ -28,7 +28,6 @@ return {
         },
       },
       integrations = {
-        which_key = false,
         illuminate = {
           enabled = true,
           lsp = false

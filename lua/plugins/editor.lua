@@ -127,46 +127,38 @@ return {
     opts = { labeled_modes = "nx" },
   },
 
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').opts.safe_labels = { "f", "n", "u", "t", "/", "F", "N", "L", "H", "M", "U", "G", "T", "?", "Z" }
+    end
+  },
+
   -- which-key
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      plugins = {
-        spelling = {
-          enabled = true,
-        },
-      },
-      -- hack for modes.nvim
-      triggers_blacklist = {
-        n = { "d", "y" }
-      }
-    },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      local keymaps = {
-        mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>f"] = { name = "+find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>h"] = { name = "+gitsigns" },
-        ["<leader>s"] = { name = "+text" },
-        ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+window" },
-        ["<leader>m"] = { name = "+module" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
-        ["d"] = "which_key_ignore",
-      }
-      wk.register(keymaps)
-    end,
+    "Cassin01/wf.nvim",
+    config = function()
+      require("wf").setup()
+      local which_key = require("wf.builtin.which_key")
+
+      if _G.__key_prefixes == nil then
+        _G.__key_prefixes = {
+          n = {},
+        }
+      end
+
+      _G.__key_prefixes["n"]["<leader>b"] = "+buffer"
+      _G.__key_prefixes["n"]["<leader>f"] = "+find"
+      _G.__key_prefixes["n"]["<leader>g"] = "+git"
+      _G.__key_prefixes["n"]["<leader>h"] = "+gitsigns"
+      _G.__key_prefixes["n"]["<leader>s"] = "+text"
+      _G.__key_prefixes["n"]["<leader>u"] = "+ui"
+      _G.__key_prefixes["n"]["<leader>w"] = "+window"
+      _G.__key_prefixes["n"]["<leader>m"] = "+module"
+      _G.__key_prefixes["n"]["<leader>x"] = "+diagnostics/quickfix"
+
+      vim.keymap.set("n", "<leader>", which_key({text_insert_in_advance = "<Leader>", key_group_dict = _G.__key_prefixes["n"]}))
+    end
   },
 
   -- git signs
