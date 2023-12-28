@@ -15,7 +15,6 @@ local prettier = function()
 end
 
 return {
-  "prisma/vim-prisma",
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
@@ -51,6 +50,23 @@ return {
       })
       ls.add_snippets("go", require("snippets").go)
     end,
+  },
+
+   -- Operators motions to quickly replace and exchange text
+  { "gbprod/substitute.nvim",
+    config = true,
+    keys = {
+      { "s", function() require("substitute.range").operator() end,
+        desc = "Substitute operator"
+      },
+      { "ss", function() require("substitute.range").word() end,
+        desc = "Substitute line"
+      },
+      { "s", function() require("substitute.range").visual() end,
+        mode = "x", desc = "Substitute visual"
+      },
+
+    },
   },
 
   -- format
@@ -253,6 +269,36 @@ return {
     config = function(_, opts)
       require("nvim-surround").setup(opts)
     end
+  },
+
+  -- indent object
+  {
+    "echasnovski/mini.indentscope",
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      symbol = '╎',
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "nvim-tree",
+          "Trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
   },
 
   -- comments
