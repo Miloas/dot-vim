@@ -20,17 +20,17 @@ return {
     end,
   },
 
-  -- auto save
-  {
-    '0x00-ketsu/autosave.nvim',
-    -- lazy-loading on events
-    event = { "InsertLeave", "TextChanged" },
-    config = function()
-      require('autosave').setup {
-        prompt_style = 'notify',
-      }
-    end
-  },
+  -- -- auto save
+  -- {
+  --   '0x00-ketsu/autosave.nvim',
+  --   -- lazy-loading on events
+  --   event = { "InsertLeave", "TextChanged" },
+  --   config = function()
+  --     require('autosave').setup {
+  --       prompt_style = 'notify',
+  --     }
+  --   end
+  -- },
 
   -- search/replace in multiple files
   {
