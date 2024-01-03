@@ -37,7 +37,6 @@ return {
         "yaml",
         "zig",
         "rust",
-        "svelte",
         "swift"
       },
       incremental_selection = {

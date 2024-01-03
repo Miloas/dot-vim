@@ -25,3 +25,11 @@ brew uninstall lpeg;
 brew install lpeg;
 brew install nvim --HEAD
 ```
+
+# Mason install formatter
+```
+:MasonInstall biome
+:MasonInstall ruff
+:MasonInstall lua
+:MasonInstall stylua
+```

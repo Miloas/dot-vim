@@ -15,7 +15,6 @@ return {
       },
       servers = {
         relay_lsp = {},
-        svelte = {},
         gopls = {
           settings = {
             gopls = {
@@ -30,6 +29,19 @@ return {
               }
             },
           },
+        },
+        quick_lint_js = {
+          filetypes = { 
+            "javascript", "javascriptreact",
+            "typescript", "typescriptreact",
+          },
+          handlers = {
+            ['textDocument/publishDiagnostics'] = vim.lsp.with(
+              vim.lsp.diagnostic.on_publish_diagnostics, {
+                update_in_insert = true
+              }
+            )
+          }
         },
         tailwindcss = {},
         rust_analyzer = {},
@@ -164,7 +176,8 @@ return {
           "tsserver",
           "tailwindcss",
           "eslint",
-          "svelte"
+          "quick_lint_js",
+          "lua_ls"
         },
       }
     end,

@@ -1,19 +1,3 @@
--- Prettier function for formatter
-local prettier = function()
-  return {
-    exe = "prettier",
-    args = {
-      "--config-precedence",
-      "prefer-file",
-      -- you can add more global setup here
-      "--stdin-filepath",
-      vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
-    },
-    stdin = true,
-    try_node_modules = true,
-  }
-end
-
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -69,87 +53,38 @@ return {
     },
   },
 
-  -- format
   {
-    "mhartington/formatter.nvim",
-    config = function()
-      -- Utilities for creating configurations
-      local util = require "formatter.util"
-
-      -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-      require("formatter").setup {
-        -- Enable or disable logging
-        logging = true,
-        -- Set the log level
-        log_level = vim.log.levels.WARN,
-        -- All formatter configurations are opt-in
-        filetype = {
-          typescriptreact = { prettier },
-          javascriptreact = { prettier },
-          javascript = { prettier },
-          typescript = { prettier },
-          json = { prettier },
-          jsonc = { prettier },
-          html = { prettier },
-          css = { prettier },
-          scss = { prettier },
-          graphql = { prettier },
-          markdown = { prettier },
-          vue = { prettier },
-          astro = { prettier },
-          yaml = { prettier },
-          -- Formatter configurations for filetype "lua" go here
-          -- and will be executed in order
-          lua = {
-            -- "formatter.filetypes.lua" defines default configurations for the
-            -- "lua" filetype
-            require("formatter.filetypes.lua").stylua,
-
-            -- You can also define your own configuration
-            function()
-              -- Supports conditional formatting
-              if util.get_current_buffer_file_name() == "special.lua" then
-                return nil
-              end
-
-              -- Full specification of configurations is down below and in Vim help
-              -- files
-              return {
-                exe = "stylua",
-                args = {
-                  "--search-parent-directories",
-                  "--stdin-filepath",
-                  util.escape_path(util.get_current_buffer_file_path()),
-                  "--",
-                  "-",
-                },
-                stdin = true,
-              }
-            end
-          },
-          swift = {
-            function()
-              return {
-                exe = "swiftformat",
-                args = {
-                  "--stdinpath",
-                  util.escape_path(util.get_current_buffer_file_path()),
-                },
-                stdin = true,
-              }
-            end
-          },
-
-          -- Use the special "*" filetype for defining formatter configurations on
-          -- any filetype
-          ["*"] = {
-            -- "formatter.filetypes.any" defines default configurations for any
-            -- filetype
-            require("formatter.filetypes.any").remove_trailing_whitespace
-          }
-        }
-      }
-    end
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      -- Define your formatters
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "ruff_format" },
+        json = { "biome" },
+        javascript = { "biome" },
+        typescript = { "biome" },
+        typescriptreact = { "biome" },
+        javascriptreact = { "biome" },
+        swift = { "swift_format" },
+        go = { "gofmt" },
+        rust = { "rustfmt" },
+        zig = { "zigfmt" }
+      },
+      -- Set up format-on-save
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      -- Customize formatters
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2" },
+        },
+      },
+    },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
 
   -- auto completion

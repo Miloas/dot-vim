@@ -15,7 +15,8 @@ return {
       require("legendary").setup({
         commands = {
           { ":Lazy", description = "plugins manager" },
-          { ":Format", description = "plugins manager" },
+          { ":Mason", description = "language server manager" },
+          { ":Format", ":lua require'conform'.format({ async = true, lsp_fallback = true })<CR>", description = "format buffer" },
           { ":LspRestart", description = "restart language server" },
           { ":GitConflictListQf", description = "show all git conflict files" },
           { ":GitStatus", ":lua require'telescope.builtin'.git_status{}<CR>", description = "show git status" },
