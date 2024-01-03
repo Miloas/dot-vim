@@ -30,6 +30,5 @@ brew install nvim --HEAD
 ```
 :MasonInstall biome
 :MasonInstall ruff
-:MasonInstall lua
 :MasonInstall stylua
 ```
