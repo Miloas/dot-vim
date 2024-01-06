@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp"
+      "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
       autoformat = true,
@@ -25,23 +25,23 @@ return {
                 constantValues = true,
                 functionTypeParameters = true,
                 parameterNames = true,
-                rangeVariableTypes = true
-              }
+                rangeVariableTypes = true,
+              },
             },
           },
         },
         quick_lint_js = {
-          filetypes = { 
-            "javascript", "javascriptreact",
-            "typescript", "typescriptreact",
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
           },
           handlers = {
-            ['textDocument/publishDiagnostics'] = vim.lsp.with(
-              vim.lsp.diagnostic.on_publish_diagnostics, {
-                update_in_insert = true
-              }
-            )
-          }
+            ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+              update_in_insert = true,
+            }),
+          },
         },
         tailwindcss = {},
         rust_analyzer = {},
@@ -112,29 +112,83 @@ return {
           end
         end
 
-        if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
+        if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
           local semantic = client.config.capabilities.textDocument.semanticTokens
           client.server_capabilities.semanticTokensProvider = {
             full = true,
-            legend = {tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes},
+            legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
             range = true,
           }
         end
 
-        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { buffer = buffer, silent = true, desc = "goto definition" })
-        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = buffer, silent = true, desc = "list references" })
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, silent = true, desc = "goto declaration" })
-        vim.keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<cr>", { buffer = buffer, silent = true, desc = "list implementations" })
-        vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", { buffer = buffer, silent = true, desc = "list type definitions" })
+        vim.keymap.set(
+          "n",
+          "gd",
+          "<cmd>Telescope lsp_definitions<cr>",
+          { buffer = buffer, silent = true, desc = "goto definition" }
+        )
+        vim.keymap.set(
+          "n",
+          "gr",
+          "<cmd>Telescope lsp_references<cr>",
+          { buffer = buffer, silent = true, desc = "list references" }
+        )
+        vim.keymap.set(
+          "n",
+          "gD",
+          vim.lsp.buf.declaration,
+          { buffer = buffer, silent = true, desc = "goto declaration" }
+        )
+        vim.keymap.set(
+          "n",
+          "gI",
+          "<cmd>Telescope lsp_implementations<cr>",
+          { buffer = buffer, silent = true, desc = "list implementations" }
+        )
+        vim.keymap.set(
+          "n",
+          "gt",
+          "<cmd>Telescope lsp_type_definitions<cr>",
+          { buffer = buffer, silent = true, desc = "list type definitions" }
+        )
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buffer, silent = true, desc = "show hover" })
-        vim.keymap.set({"n", "v"}, "<C-.>", vim.lsp.buf.code_action, { buffer = buffer, silent = true, desc = "code action" })
+        vim.keymap.set(
+          { "n", "v" },
+          "<C-.>",
+          vim.lsp.buf.code_action,
+          { buffer = buffer, silent = true, desc = "code action" }
+        )
         vim.keymap.set("n", "]d", diagnostic_goto(true), { buffer = buffer, silent = true, desc = "next diagnostic" })
-        vim.keymap.set("n", "[d", diagnostic_goto(false), { buffer = buffer, silent = true, desc = "previous diagnostic" })
-        vim.keymap.set("n", "]e", diagnostic_goto(true, "Error"), { buffer = buffer, silent = true, desc = "next error" })
-        vim.keymap.set("n", "[e", diagnostic_goto(false, "Error"), { buffer = buffer, silent = true, desc = "previous error" })
-        vim.keymap.set("n", "]w", diagnostic_goto(true, "Warning"), { buffer = buffer, silent = true, desc = "next warning" })
-        vim.keymap.set("n", "[w", diagnostic_goto(false, "Warning"), { buffer = buffer, silent = true, desc = "previous warning" })
-
+        vim.keymap.set(
+          "n",
+          "[d",
+          diagnostic_goto(false),
+          { buffer = buffer, silent = true, desc = "previous diagnostic" }
+        )
+        vim.keymap.set(
+          "n",
+          "]e",
+          diagnostic_goto(true, "Error"),
+          { buffer = buffer, silent = true, desc = "next error" }
+        )
+        vim.keymap.set(
+          "n",
+          "[e",
+          diagnostic_goto(false, "Error"),
+          { buffer = buffer, silent = true, desc = "previous error" }
+        )
+        vim.keymap.set(
+          "n",
+          "]w",
+          diagnostic_goto(true, "Warning"),
+          { buffer = buffer, silent = true, desc = "next warning" }
+        )
+        vim.keymap.set(
+          "n",
+          "[w",
+          diagnostic_goto(false, "Warning"),
+          { buffer = buffer, silent = true, desc = "previous warning" }
+        )
       end)
 
       local function setup(server)
@@ -160,7 +214,7 @@ return {
           setup(server)
         end
       end
-    end
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -171,15 +225,15 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup {
+      require("mason-lspconfig").setup({
         ensure_installed = {
           "tsserver",
           "tailwindcss",
           "eslint",
           "quick_lint_js",
-          "lua_ls"
+          "lua_ls",
         },
-      }
+      })
     end,
   },
   {
@@ -192,10 +246,10 @@ return {
     version = false,
     event = "VeryLazy",
     keys = {
-      {"<leader>mr", '<cmd>lua require("renamer").rename()<cr>', desc = "lsp rename"},
+      { "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', desc = "lsp rename" },
     },
     config = function(_, opts)
       require("renamer").setup(opts)
     end,
-  }
+  },
 }
