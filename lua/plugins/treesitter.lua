@@ -6,7 +6,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "andymass/vim-matchup"
+      "andymass/vim-matchup",
     },
     keys = {
       { "<leader>v", desc = "Increment selection" },
@@ -17,7 +17,7 @@ return {
       highlight = { enable = true },
       matchup = { enable = true },
       indent = {
-        enable = true
+        enable = true,
       },
       rainbow = { enable = true, extended_mode = true },
       context_commentstring = { enable = true, enable_autocmd = false },
@@ -37,7 +37,19 @@ return {
         "yaml",
         "zig",
         "rust",
-        "swift"
+        "swift",
+      },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ad"] = "@conditional.outer",
+            ["id"] = "@conditional.inner",
+          },
+        },
       },
       incremental_selection = {
         enable = true,
@@ -75,12 +87,12 @@ return {
   },
 
   {
-		"RRethy/vim-illuminate",
+    "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("illuminate").configure({
-        delay = 200
+    config = function()
+      require("illuminate").configure({
+        delay = 200,
       })
-		end,
-	},
+    end,
+  },
 }

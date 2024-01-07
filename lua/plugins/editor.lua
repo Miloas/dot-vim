@@ -5,7 +5,7 @@ return {
     version = false,
     keys = {
       { "<leader>pt", ":NvimTreeFindFileToggle<CR>", desc = "toggle filetree" },
-      { "<leader>0", ":NvimTreeFindFile<CR>"}
+      { "<leader>0", ":NvimTreeFindFile<CR>" },
     },
     config = function()
       require("nvim-tree").setup({
@@ -14,8 +14,8 @@ return {
           enable = true,
         },
         filters = {
-          custom = { ".git$" }
-        }
+          custom = { ".git$" },
+        },
       })
     end,
   },
@@ -47,11 +47,12 @@ return {
     cmd = "Telescope",
     version = false,
     dependencies = {
+      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make"
-      }
+        build = "make",
+      },
     },
     config = function()
       local telescope = require("telescope")
@@ -62,31 +63,31 @@ return {
         pickers = {
           find_files = {
             find_command = {
-              'rg',
-              '--files',
-              '--color=never',
-              '--line-number',
-              '--column',
-              '--smart-case',
-              '--hidden',
-              '--glob',
-              '!{**/.git/*,**/node_modules/*}',
-            }
-          }
+              "rg",
+              "--files",
+              "--color=never",
+              "--line-number",
+              "--column",
+              "--smart-case",
+              "--hidden",
+              "--glob",
+              "!{**/.git/*,**/node_modules/*}",
+            },
+          },
         },
         defaults = {
           vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--no-heading',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
 
-            '--hidden',
-            '--glob',
-            '!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml,**/lazy-lock.json}'
+            "--hidden",
+            "--glob",
+            "!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml,**/lazy-lock.json}",
           },
           mappings = {
             i = {
@@ -95,19 +96,27 @@ return {
               -- ALT + Q
               ["œ"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["<C-d>"] = actions.delete_buffer,
-            }
-          }
-        }
+            },
+          },
+        },
       })
     end,
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "switch buffer" },
-      { "<leader>/", ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>", desc = "find in files (Grep)"},
+      {
+        "<leader>/",
+        ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', cwd=vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>",
+        desc = "find in files (Grep)",
+      },
       -- find
-      { "<leader>ff", ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>", desc = "find files (root)"},
+      {
+        "<leader>ff",
+        ":lua require'telescope.builtin'.find_files{cwd = vim.fn.systemlist(\"git rev-parse --show-toplevel\")[1]}<CR>",
+        desc = "find files (root)",
+      },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "buffers" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-    }
+    },
   },
 
   -- easily jump to any location and enhanced f/t motions for Leap
@@ -128,10 +137,10 @@ return {
   },
 
   {
-    'ggandor/leap.nvim',
+    "ggandor/leap.nvim",
     config = function()
-      require('leap').opts.safe_labels = { "f", "n", "u", "t", "/", "F", "N", "L", "H", "M", "U", "G", "T", "?", "Z" }
-    end
+      require("leap").opts.safe_labels = { "f", "n", "u", "t", "/", "F", "N", "L", "H", "M", "U", "G", "T", "?", "Z" }
+    end,
   },
 
   -- which-key
@@ -157,8 +166,12 @@ return {
       _G.__key_prefixes["n"]["<leader>m"] = "+module"
       _G.__key_prefixes["n"]["<leader>x"] = "+diagnostics/quickfix"
 
-      vim.keymap.set("n", "<leader>", which_key({text_insert_in_advance = "<Leader>", key_group_dict = _G.__key_prefixes["n"]}))
-    end
+      vim.keymap.set(
+        "n",
+        "<leader>",
+        which_key({ text_insert_in_advance = "<Leader>", key_group_dict = _G.__key_prefixes["n"] })
+      )
+    end,
   },
 
   -- git signs
@@ -168,9 +181,9 @@ return {
     opts = {
       signs = {
         -- https://www.compart.com/en/unicode/block/U+2500
-        untracked    = { text = "┃" },
-        change       = { text = '┃' },
-        changedelete = { text = '┃' },
+        untracked = { text = "┃" },
+        change = { text = "┃" },
+        changedelete = { text = "┃" },
       },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
@@ -210,7 +223,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true, },
+    opts = { use_diagnostic_signs = true },
     keys = {
       { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
