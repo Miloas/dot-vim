@@ -1,3 +1,62 @@
+local function mappings(client, buffer)
+  local function diagnostic_goto(next, severity)
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+      go({ severity = severity })
+    end
+  end
+
+  vim.keymap.set(
+    "n",
+    "gd",
+    "<cmd>Telescope lsp_definitions<cr>",
+    { buffer = buffer, silent = true, desc = "goto definition" }
+  )
+  vim.keymap.set(
+    "n",
+    "gr",
+    "<cmd>Telescope lsp_references<cr>",
+    { buffer = buffer, silent = true, desc = "list references" }
+  )
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, silent = true, desc = "goto declaration" })
+  vim.keymap.set(
+    "n",
+    "gI",
+    "<cmd>Telescope lsp_implementations<cr>",
+    { buffer = buffer, silent = true, desc = "list implementations" }
+  )
+  vim.keymap.set(
+    "n",
+    "gt",
+    "<cmd>Telescope lsp_type_definitions<cr>",
+    { buffer = buffer, silent = true, desc = "list type definitions" }
+  )
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buffer, silent = true, desc = "show hover" })
+  vim.keymap.set(
+    { "n", "v" },
+    "<C-.>",
+    vim.lsp.buf.code_action,
+    { buffer = buffer, silent = true, desc = "code action" }
+  )
+  vim.keymap.set("n", "]d", diagnostic_goto(true), { buffer = buffer, silent = true, desc = "next diagnostic" })
+  vim.keymap.set("n", "[d", diagnostic_goto(false), { buffer = buffer, silent = true, desc = "previous diagnostic" })
+  vim.keymap.set("n", "]e", diagnostic_goto(true, "Error"), { buffer = buffer, silent = true, desc = "next error" })
+  vim.keymap.set(
+    "n",
+    "[e",
+    diagnostic_goto(false, "Error"),
+    { buffer = buffer, silent = true, desc = "previous error" }
+  )
+  vim.keymap.set("n", "]w", diagnostic_goto(true, "Warning"), { buffer = buffer, silent = true, desc = "next warning" })
+  vim.keymap.set(
+    "n",
+    "[w",
+    diagnostic_goto(false, "Warning"),
+    { buffer = buffer, silent = true, desc = "previous warning" }
+  )
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -44,7 +103,6 @@ return {
           },
         },
         tailwindcss = {},
-        rust_analyzer = {},
         sourcekit = {},
         zls = {},
         eslint = {
@@ -104,14 +162,6 @@ return {
       end
 
       on_attach(function(client, buffer)
-        local function diagnostic_goto(next, severity)
-          local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-          severity = severity and vim.diagnostic.severity[severity] or nil
-          return function()
-            go({ severity = severity })
-          end
-        end
-
         if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
           local semantic = client.config.capabilities.textDocument.semanticTokens
           client.server_capabilities.semanticTokensProvider = {
@@ -120,75 +170,7 @@ return {
             range = true,
           }
         end
-
-        vim.keymap.set(
-          "n",
-          "gd",
-          "<cmd>Telescope lsp_definitions<cr>",
-          { buffer = buffer, silent = true, desc = "goto definition" }
-        )
-        vim.keymap.set(
-          "n",
-          "gr",
-          "<cmd>Telescope lsp_references<cr>",
-          { buffer = buffer, silent = true, desc = "list references" }
-        )
-        vim.keymap.set(
-          "n",
-          "gD",
-          vim.lsp.buf.declaration,
-          { buffer = buffer, silent = true, desc = "goto declaration" }
-        )
-        vim.keymap.set(
-          "n",
-          "gI",
-          "<cmd>Telescope lsp_implementations<cr>",
-          { buffer = buffer, silent = true, desc = "list implementations" }
-        )
-        vim.keymap.set(
-          "n",
-          "gt",
-          "<cmd>Telescope lsp_type_definitions<cr>",
-          { buffer = buffer, silent = true, desc = "list type definitions" }
-        )
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buffer, silent = true, desc = "show hover" })
-        vim.keymap.set(
-          { "n", "v" },
-          "<C-.>",
-          vim.lsp.buf.code_action,
-          { buffer = buffer, silent = true, desc = "code action" }
-        )
-        vim.keymap.set("n", "]d", diagnostic_goto(true), { buffer = buffer, silent = true, desc = "next diagnostic" })
-        vim.keymap.set(
-          "n",
-          "[d",
-          diagnostic_goto(false),
-          { buffer = buffer, silent = true, desc = "previous diagnostic" }
-        )
-        vim.keymap.set(
-          "n",
-          "]e",
-          diagnostic_goto(true, "Error"),
-          { buffer = buffer, silent = true, desc = "next error" }
-        )
-        vim.keymap.set(
-          "n",
-          "[e",
-          diagnostic_goto(false, "Error"),
-          { buffer = buffer, silent = true, desc = "previous error" }
-        )
-        vim.keymap.set(
-          "n",
-          "]w",
-          diagnostic_goto(true, "Warning"),
-          { buffer = buffer, silent = true, desc = "next warning" }
-        )
-        vim.keymap.set(
-          "n",
-          "[w",
-          diagnostic_goto(false, "Warning"),
-          { buffer = buffer, silent = true, desc = "previous warning" }
-        )
+        mappings(client, buffer)
       end)
 
       local function setup(server)
@@ -214,6 +196,75 @@ return {
           setup(server)
         end
       end
+    end,
+  },
+  {
+    -- RUST LSP
+    "mrcjkb/rustaceanvim",
+    version = "^3",
+    ft = { "rust" },
+    config = function()
+      vim.g.rustaceanvim = {
+        -- Plugin configuration
+        tools = {
+          autoSetHints = true,
+          inlay_hints = {
+            show_parameter_hints = true,
+            parameter_hints_prefix = "<- ",
+            other_hints_prefix = "=> ",
+          },
+        },
+        -- LSP configuration
+        --
+        -- REFERENCE:
+        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+        -- https://rust-analyzer.github.io/manual.html#configuration
+        -- https://rust-analyzer.github.io/manual.html#features
+        --
+        -- NOTE: The configuration format is `rust-analyzer.<section>.<property>`.
+        --       <section> should be an object.
+        --       <property> should be a primitive.
+        server = {
+          on_attach = function(client, bufnr)
+            mappings(client, bufnr)
+            -- require("lsp-inlayhints").setup({
+            --   inlay_hints = { type_hints = { prefix = "=> " } },
+            -- })
+            -- require("lsp-inlayhints").on_attach(client, bufnr)
+            require("illuminate").on_attach(client)
+            -- local bufopts = {
+            --   noremap = true,
+            --   silent = true,
+            --   buffer = bufnr
+            -- }
+            -- vim.keymap.set('n', '<leader><leader>rr',
+            --   "<Cmd>RustLsp runnables<CR>", bufopts)
+            -- vim.keymap.set('n', 'K',
+            --   "<Cmd>RustLsp hover actions<CR>", bufopts)
+          end,
+          settings = {
+            -- rust-analyzer language server configuration
+            ["rust-analyzer"] = {
+              assist = {
+                importEnforceGranularity = true,
+                importPrefix = "create",
+              },
+              cargo = { allFeatures = true },
+              checkOnSave = {
+                -- default: `cargo check`
+                command = "clippy",
+                allFeatures = true,
+              },
+              inlayHints = {
+                lifetimeElisionHints = {
+                  enable = true,
+                  useParameterNames = true,
+                },
+              },
+            },
+          },
+        },
+      }
     end,
   },
   {
