@@ -5,7 +5,6 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
       "andymass/vim-matchup",
     },
     keys = {
@@ -38,18 +37,6 @@ return {
         "zig",
         "rust",
         "swift",
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ad"] = "@conditional.outer",
-            ["id"] = "@conditional.inner",
-          },
-        },
       },
       incremental_selection = {
         enable = true,
