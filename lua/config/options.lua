@@ -27,7 +27,7 @@ opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append { W = true, I = true, c = true }
+opt.shortmess:append({ W = true, I = true, c = true })
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
@@ -47,37 +47,35 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 opt.winblend = 20 -- Float window transparency
 opt.pumblend = 20 -- Popup menu transparency
-opt.ve = "block" -- Enable block cursor 
+opt.ve = "block" -- Enable block cursor
 opt.hlsearch = true -- Highlight search results
 opt.guifont = "JetBrainsMono Nerd Font:h16"
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
-  opt.shortmess:append { C = true }
+  opt.shortmess:append({ C = true })
 end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
+  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
+  vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 end
 
 -- Allow clipboard copy paste in neovim
 vim.g.neovide_input_use_logo = 1
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-
-vim.g.copilot_node_command = "/opt/homebrew/bin/node"
+vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 
 vim.g.neovide_refresh_rate = 144
 vim.g.neovide_cursor_animate_in_insert_mode = 0
 
-vim.g.neovide_padding_top=45
+vim.g.neovide_padding_top = 45
