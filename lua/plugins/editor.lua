@@ -84,7 +84,6 @@ return {
             "--line-number",
             "--column",
             "--smart-case",
-
             "--hidden",
             "--glob",
             "!{**/.git/*,**/node_modules/*,**/package-lock.json,**/yarn.lock,**/pnpm-lock.yaml,**/lazy-lock.json}",
