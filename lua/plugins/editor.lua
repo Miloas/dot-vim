@@ -168,7 +168,7 @@ return {
       vim.keymap.set(
         "n",
         "<leader>",
-        which_key({ text_insert_in_advance = "<Leader>", key_group_dict = _G.__key_prefixes["n"] })
+        which_key({ text_insert_in_advance = "<Space>", key_group_dict = _G.__key_prefixes["n"] })
       )
     end,
   },
