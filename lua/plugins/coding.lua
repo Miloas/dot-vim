@@ -226,6 +226,16 @@ return {
     end,
   },
 
+  -- entire buffer textobjects
+  {
+    "kana/vim-textobj-entire",
+    keys = {
+      { "ie", mode = { "o", "x" }, desc = "Select entire buffer (file)" },
+      { "ae", mode = { "o", "x" }, desc = "Select entire buffer (file)" },
+    },
+    dependencies = { "kana/vim-textobj-user" },
+  }, -- vie, vae to select entire buffer (file)
+
   -- surround
   {
     "kylechui/nvim-surround",
