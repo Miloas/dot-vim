@@ -118,28 +118,11 @@ return {
     },
   },
 
-  -- easily jump to any location and enhanced f/t motions for Leap
   {
-    "ggandor/flit.nvim",
-    keys = function()
-      ---@type LazyKeys[]
-      local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
-        ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
-      end
-      return ret
-    end,
-    dependencies = {
-      "ggandor/leap.nvim",
-    },
-    opts = { labeled_modes = "nx" },
-  },
-
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").opts.safe_labels = { "f", "n", "u", "t", "/", "F", "N", "L", "H", "M", "U", "G", "T", "?", "Z" }
-    end,
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
   },
 
   -- which-key
