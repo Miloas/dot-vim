@@ -288,7 +288,8 @@ return {
     end,
   },
   {
-    "pmizio/typescript-tools.nvim",
+    -- TODO: fork for latest nvim errors
+    "Miloas/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
