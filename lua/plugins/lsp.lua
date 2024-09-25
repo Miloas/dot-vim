@@ -293,15 +293,4 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
-  {
-    "filipdutescu/renamer.nvim",
-    version = false,
-    event = "VeryLazy",
-    keys = {
-      { "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', desc = "lsp rename" },
-    },
-    config = function(_, opts)
-      require("renamer").setup(opts)
-    end,
-  },
 }

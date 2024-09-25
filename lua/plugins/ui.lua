@@ -183,6 +183,8 @@ return {
   },
 
   -- icons
+  { 'echasnovski/mini.icons', version = false },
+
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
 

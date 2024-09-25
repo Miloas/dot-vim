@@ -2,7 +2,7 @@ return {
   -- file explorer
   {
     "kyazdani42/nvim-tree.lua",
-    tag = 'v1.6.1',
+    tag = "v1.6.1",
     keys = {
       { "<leader>pt", ":NvimTreeFindFileToggle<CR>", desc = "toggle filetree" },
       { "<leader>0", ":NvimTreeFindFile<CR>" },
@@ -41,18 +41,18 @@ return {
 
   -- search/replace in multiple files
   {
-    'MagicDuck/grug-far.nvim',
+    "MagicDuck/grug-far.nvim",
     -- stylua: ignore
     keys = {
       { "<leader>sr", function() require("grug-far").open({ transient = true }) end, desc = "Replace in files (grug-far)" },
     },
     config = function()
-      require('grug-far').setup({
+      require("grug-far").setup({
         -- options, see Configuration section below
         -- there are no required options atm
         -- engine = 'ripgrep' is default, but 'astgrep' can be specified
-      });
-    end
+      })
+    end,
   },
 
   -- fuzzy finder
@@ -141,32 +141,34 @@ return {
 
   -- which-key
   {
-    "Cassin01/wf.nvim",
-    config = function()
-      require("wf").setup()
-      local which_key = require("wf.builtin.which_key")
-
-      if _G.__key_prefixes == nil then
-        _G.__key_prefixes = {
-          n = {},
-        }
-      end
-
-      _G.__key_prefixes["n"]["<leader>b"] = "+buffer"
-      _G.__key_prefixes["n"]["<leader>f"] = "+find"
-      _G.__key_prefixes["n"]["<leader>g"] = "+git"
-      _G.__key_prefixes["n"]["<leader>h"] = "+gitsigns"
-      _G.__key_prefixes["n"]["<leader>s"] = "+text"
-      _G.__key_prefixes["n"]["<leader>u"] = "+ui"
-      _G.__key_prefixes["n"]["<leader>w"] = "+window"
-      _G.__key_prefixes["n"]["<leader>m"] = "+module"
-      _G.__key_prefixes["n"]["<leader>x"] = "+diagnostics/quickfix"
-
-      vim.keymap.set(
-        "n",
-        "<leader>",
-        which_key({ text_insert_in_advance = "<Space>", key_group_dict = _G.__key_prefixes["n"] })
-      )
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      plugins = {
+        spelling = {
+          enabled = true,
+        },
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.add({
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        {"<leader>b", group = "+buffer"},
+        {"<leader>f", group = "+find"},
+        {"<leader>g", group = "+git"},
+        {"<leader>h", group = "+gitsigns"},
+        {"<leader>s", group = "+text"},
+        {"<leader>u", group = "+ui"},
+        {"<leader>w", group = "+window"},
+        {"<leader>m", group = "+module"},
+        {"<leader>x", group = "+diagnostics/quickfix"},
+        {"<leader>p", group = "+project"},
+        {"g", group = "+goto"},
+        {"]", group = "+next"},
+        {"[", group = "+prev"},
+      })
     end,
   },
 
