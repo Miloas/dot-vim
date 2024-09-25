@@ -41,11 +41,18 @@ return {
 
   -- search/replace in multiple files
   {
-    "windwp/nvim-spectre",
+    'MagicDuck/grug-far.nvim',
     -- stylua: ignore
     keys = {
-      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+      { "<leader>sr", function() require("grug-far").open({ transient = true }) end, desc = "Replace in files (grug-far)" },
     },
+    config = function()
+      require('grug-far').setup({
+        -- options, see Configuration section below
+        -- there are no required options atm
+        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
+      });
+    end
   },
 
   -- fuzzy finder
