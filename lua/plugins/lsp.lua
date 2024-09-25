@@ -278,7 +278,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "tsserver",
+          "ts_ls",
           "tailwindcss",
           "eslint",
           "quick_lint_js",

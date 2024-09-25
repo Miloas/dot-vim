@@ -2,7 +2,7 @@ return {
   -- file explorer
   {
     "kyazdani42/nvim-tree.lua",
-    version = false,
+    tag = 'v1.6.1',
     keys = {
       { "<leader>pt", ":NvimTreeFindFileToggle<CR>", desc = "toggle filetree" },
       { "<leader>0", ":NvimTreeFindFile<CR>" },
@@ -15,6 +15,13 @@ return {
         },
         filters = {
           custom = { ".git$" },
+        },
+        git = {
+          -- disable git integration because it's slow
+          enable = false,
+          ignore = false,
+          show_on_dirs = true,
+          timeout = 400,
         },
       })
     end,

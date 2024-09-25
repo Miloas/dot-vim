@@ -5,6 +5,10 @@ vim.g.maplocalleader = " "
 vim.g.neovide_unlink_border_highlights = true
 vim.g.neovide_scroll_animation_length = 0.20
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
