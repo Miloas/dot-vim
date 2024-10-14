@@ -230,6 +230,19 @@ return {
     },
   },
 
+  -- lsp rename
+  {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup{
+        input_buffer_type = "dressing"
+      }
+    end,
+    keys = {
+     {"<leader>mr", ":IncRename ", desc = "LSP rename"}
+    }
+  },
+
   -- todo comments
   {
     "folke/todo-comments.nvim",
