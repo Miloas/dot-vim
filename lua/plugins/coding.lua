@@ -337,6 +337,12 @@ return {
       })
     end,
   },
+  {
+    "benomahony/uv.nvim",
+    opts = {
+      picker_integration = true,
+    }
+  },
 
   -- multi cursor
   {
