@@ -130,7 +130,7 @@ return {
           vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function(event)
               if require("lspconfig.util").get_active_client_by_name(event.buf, "eslint") then
-                vim.cmd("EslintFixAll")
+                vim.cmd("LspEslintFixAll")
               end
             end,
           })
@@ -187,7 +187,7 @@ return {
             return
           end
         end
-        require("lspconfig")[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
       end
 
       for server, server_opts in pairs(servers) do
