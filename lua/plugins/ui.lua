@@ -33,23 +33,31 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    after = "catppuccin",
-    opts = {
-      highlights = require("catppuccin.special.bufferline").get_theme(),
-      options = {
-        offsets = {
-          {
-            filetype = "NvimTree",
-            text = "File Explorer",
+    version = "*",
+    dependencies = { "catppuccin/nvim" },
+    -- `opts` must be a function: the highlights are read from catppuccin, which
+    -- is only guaranteed to be loaded by the time the spec is resolved.
+    opts = function()
+      return {
+        -- moved from `catppuccin.groups.integrations.bufferline`; `get_theme()`
+        -- now returns a function that bufferline calls itself.
+        highlights = require("catppuccin.special.bufferline").get_theme(),
+        options = {
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "File Explorer",
+            },
           },
         },
-      },
-    },
+      }
+    end,
   },
 
   -- lsp symbol navigation
   {
     'Bekaboo/dropbar.nvim',
+    event = { "BufReadPost", "BufNewFile" },
     -- optional, but required for fuzzy finder support
     dependencies = {
       'nvim-telescope/telescope-fzf-native.nvim'
@@ -183,22 +191,32 @@ return {
   },
 
   -- icons
-  { 'echasnovski/mini.icons', version = false },
-
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    'echasnovski/mini.icons',
+    version = false,
+    lazy = true,
+    opts = {},
+    init = function()
+      -- let plugins that ask for nvim-web-devicons get mini.icons instead
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  },
 
 
   -- line decorations (color)
   {
     "mvllow/modes.nvim",
-    config = function(_, opts)
-      require("modes").setup(opts)
-    end,
+    event = "VeryLazy",
+    opts = {},
   },
 
   "mhinz/vim-startify",
   {
     "kevinhwang91/nvim-bqf",
+    ft = "qf",
     opts = {
       auto_enable = true,
       auto_resize_height = true,

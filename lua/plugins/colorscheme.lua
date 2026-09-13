@@ -27,11 +27,23 @@ return {
           crust = "#000000",
         },
       },
+      -- Auto-detection calls `vim.pack.get()`, which creates an empty
+      -- `site/pack/core/opt` that both `:checkhealth vim.pack` and lazy then
+      -- warn about. Everything it used to detect is listed explicitly below,
+      -- so add new plugins here rather than turning this back on.
+      auto_integrations = false,
       integrations = {
         illuminate = {
           enabled = true,
-          lsp = false
+          lsp = false,
         },
+        -- previously enabled by auto-detection
+        dropbar = true,
+        fidget = true,
+        flash = true,
+        grug_far = true,
+        nvim_surround = true,
+        which_key = true,
         lsp_trouble = false,
         treesitter = true,
         nvimtree = true,
@@ -56,7 +68,7 @@ return {
         cmp = true,
         mini = {
           enabled = true,
-          indentscope_color = ""
+          indentscope_color = "",
         },
         mason = false,
         gitsigns = true,

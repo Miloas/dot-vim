@@ -9,6 +9,22 @@ vim.g.neovide_scroll_animation_length = 0.20
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- No remote-plugin hosts are used, so skip probing for them. Silences the
+-- `:checkhealth vim.provider` warnings and saves the startup cost.
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- gopls handles Go templates, but Nvim has no detection for them, so the
+-- filetype could never be set. Add `tmpl` here too if you use that extension.
+vim.filetype.add({
+  extension = {
+    gotmpl = "gotmpl",
+    gohtml = "gotmpl",
+  },
+})
+
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
@@ -23,7 +39,8 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 0
+-- `laststatus` is owned by lualine (it sets 2, or 3 with globalstatus). Setting
+-- it here only caused a layout shift until lualine loaded on VeryLazy.
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend

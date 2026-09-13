@@ -1,26 +1,26 @@
 return {
   {
     "akinsho/git-conflict.nvim",
-    version = false,
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       default_mappings = false,
     },
     keys = {
-      { "co", ":GitConflictChooseOurs<CR>", { desc = "choose ours" } },
-      { "ct", ":GitConflictChooseTheirs<CR>", { desc = "choose theirs" } },
-      { "cb", ":GitConflictChooseBoth<CR>", { desc = "choose both" } },
-      { "c0", ":GitConflictChooseNone<CR>", { desc = "choose none" } },
-      { "]x", ":GitConflictNextConflict<CR>", { desc = "next conflict" } },
-      { "[x", ":GitConflictPrevConflict<CR>", { desc = "prev conflict" } },
+      { "co", ":GitConflictChooseOurs<CR>", desc = "choose ours" },
+      { "ct", ":GitConflictChooseTheirs<CR>", desc = "choose theirs" },
+      { "cb", ":GitConflictChooseBoth<CR>", desc = "choose both" },
+      { "c0", ":GitConflictChooseNone<CR>", desc = "choose none" },
+      { "]x", ":GitConflictNextConflict<CR>", desc = "next conflict" },
+      { "[x", ":GitConflictPrevConflict<CR>", desc = "prev conflict" },
     },
-    config = function(_, opts)
-      require("git-conflict").setup(opts)
-    end,
   },
   {
     "kdheepak/lazygit.nvim",
+    cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>gs", ":LazyGit<CR>", { desc = "lazygit" } },
-    }
-  }
+      { "<leader>gs", ":LazyGit<CR>", desc = "lazygit" },
+    },
+  },
 }

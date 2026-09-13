@@ -1,43 +1,29 @@
 return {
   -- file explorer
   {
-    "kyazdani42/nvim-tree.lua",
-    tag = "v1.6.1",
+    "nvim-tree/nvim-tree.lua",
+    version = "^1",
     keys = {
       { "<leader>pt", ":NvimTreeFindFileToggle<CR>", desc = "toggle filetree" },
       { "<leader>0", ":NvimTreeFindFile<CR>" },
     },
-    config = function()
-      require("nvim-tree").setup({
-        hijack_cursor = true,
-        update_focused_file = {
-          enable = true,
-        },
-        filters = {
-          custom = { ".git$" },
-        },
-        git = {
-          -- disable git integration because it's slow
-          enable = false,
-          ignore = false,
-          show_on_dirs = true,
-          timeout = 400,
-        },
-      })
-    end,
+    opts = {
+      hijack_cursor = true,
+      update_focused_file = {
+        enable = true,
+      },
+      filters = {
+        custom = { ".git$" },
+      },
+      git = {
+        -- disable git integration because it's slow
+        enable = false,
+        ignore = false,
+        show_on_dirs = true,
+        timeout = 400,
+      },
+    },
   },
-
-  -- -- auto save
-  -- {
-  --   '0x00-ketsu/autosave.nvim',
-  --   -- lazy-loading on events
-  --   event = { "InsertLeave", "TextChanged" },
-  --   config = function()
-  --     require('autosave').setup {
-  --       prompt_style = 'notify',
-  --     }
-  --   end
-  -- },
 
   -- search/replace in multiple files
   {
@@ -46,13 +32,7 @@ return {
     keys = {
       { "<leader>sr", function() require("grug-far").open({ transient = true }) end, desc = "Replace in files (grug-far)" },
     },
-    config = function()
-      require("grug-far").setup({
-        -- options, see Configuration section below
-        -- there are no required options atm
-        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
-      })
-    end,
+    opts = {},
   },
 
   -- fuzzy finder
@@ -71,8 +51,6 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
-      telescope.load_extension("fzf")
-      telescope.load_extension("file_browser")
       telescope.setup({
         pickers = {
           find_files = {
@@ -113,6 +91,8 @@ return {
           },
         },
       })
+      telescope.load_extension("fzf")
+      telescope.load_extension("file_browser")
     end,
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "switch buffer" },
@@ -149,27 +129,23 @@ return {
           enabled = true,
         },
       },
+      spec = {
+        { "<leader>b", group = "+buffer" },
+        { "<leader>f", group = "+find" },
+        { "<leader>g", group = "+git" },
+        { "<leader>h", group = "+gitsigns" },
+        { "<leader>s", group = "+text" },
+        { "<leader>u", group = "+ui" },
+        { "<leader>w", group = "+window" },
+        { "<leader>m", group = "+module" },
+        { "<leader>x", group = "+diagnostics/quickfix" },
+        { "<leader>p", group = "+project" },
+        { "g", group = "+goto" },
+        { "]", group = "+next" },
+        { "[", group = "+prev" },
+        mode = { "n", "v" },
+      },
     },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.add({
-        mode = { "n", "v" }, -- NORMAL and VISUAL mode
-        {"<leader>b", group = "+buffer"},
-        {"<leader>f", group = "+find"},
-        {"<leader>g", group = "+git"},
-        {"<leader>h", group = "+gitsigns"},
-        {"<leader>s", group = "+text"},
-        {"<leader>u", group = "+ui"},
-        {"<leader>w", group = "+window"},
-        {"<leader>m", group = "+module"},
-        {"<leader>x", group = "+diagnostics/quickfix"},
-        {"<leader>p", group = "+project"},
-        {"g", group = "+goto"},
-        {"]", group = "+next"},
-        {"[", group = "+prev"},
-      })
-    end,
   },
 
   -- git signs
@@ -184,19 +160,19 @@ return {
         changedelete = { text = "┃" },
       },
       on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
+        local gs = require("gitsigns")
 
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
 
         -- stylua: ignore start
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        map("n", "]h", function() gs.nav_hunk("next") end, "Next Hunk")
+        map("n", "[h", function() gs.nav_hunk("prev") end, "Prev Hunk")
         map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
         map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
         map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>hu", gs.stage_hunk, "Unstage Hunk")
         map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
         map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
         map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, "Blame Line")
@@ -210,6 +186,7 @@ return {
   -- buffer remove
   {
     "echasnovski/mini.bufremove",
+    version = false,
     -- stylua: ignore
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
@@ -220,27 +197,27 @@ return {
   -- better diagnostics list and others
   {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
+    version = "^3",
+    cmd = "Trouble",
+    opts = {},
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
     },
   },
 
   -- lsp rename
   {
     "smjonas/inc-rename.nvim",
-    config = function()
-      require("inc_rename").setup{
-        input_buffer_type = "dressing"
-      }
-    end,
+    cmd = "IncRename",
+    opts = {
+      input_buffer_type = "dressing",
+    },
     keys = {
-     {"<leader>mr", ":IncRename ", desc = "LSP rename"}
-    }
+      { "<leader>mr", ":IncRename ", desc = "LSP rename" },
+    },
   },
 
   -- todo comments
@@ -248,7 +225,7 @@ return {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPost", "BufNewFile" },
-    config = true,
+    opts = {},
     -- stylua: ignore
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },

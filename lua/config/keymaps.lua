@@ -13,12 +13,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- move lines
-map("n", "∆", "<cmd>m .+1<cr>==", { desc = "move down"})
-map("n", "˚", "<cmd>m .-2<cr>==", { desc = "move up"})
-map("i", "∆", "<esc><cmd>m .+1<cr>==gi", { desc = "move down"})
-map("i", "˚", "<esc><cmd>m .-2<cr>==gi", { desc = "move up"})
-map("v", "∆", ":m '>+1<cr>gv=gv", { desc = "move down"})
-map("v", "˚", ":m '<-2<cr>gv=gv", { desc = "move up"})
+map("n", "∆", "<cmd>m .+1<cr>==", { desc = "move down" })
+map("n", "˚", "<cmd>m .-2<cr>==", { desc = "move up" })
+map("i", "∆", "<esc><cmd>m .+1<cr>==gi", { desc = "move down" })
+map("i", "˚", "<esc><cmd>m .-2<cr>==gi", { desc = "move up" })
+map("v", "∆", ":m '>+1<cr>gv=gv", { desc = "move down" })
+map("v", "˚", ":m '<-2<cr>gv=gv", { desc = "move up" })
 
 -- emacs move
 map("i", "<C-A>", "<Home>", { desc = "move to beginning of line" })
@@ -30,7 +30,8 @@ map("i", "<C-F>", "<Right>", { desc = "move one character right" })
 map("n", "<leader><Tab>", "<C-^>", { desc = "switch to previous buffer" })
 map("n", "<leader>bn", ":bnext<CR>", { desc = "next buffer" })
 map("n", "<leader>bp", ":bprevious<CR>", { desc = "previous buffer" })
-map("n", "<leader>bd", ":bd<CR>", { desc = "delete buffer" })
+-- <leader>bd / <leader>bD are owned by mini.bufremove (see plugins/editor.lua);
+-- it deletes the buffer without closing the window, unlike `:bd`.
 
 -- bufferline
 map("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", { desc = "go to buffer 1" })

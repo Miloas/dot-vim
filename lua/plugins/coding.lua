@@ -1,12 +1,16 @@
 return {
   {
     "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
     dependencies = {
       "Miloas/miloas.snippets",
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
+      {
+        "rafamadriz/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
     },
     opts = {
       history = true,
@@ -32,7 +36,15 @@ return {
         updateevents = "TextChanged,TextChangedI",
         ft_func = ft_func.from_pos_or_filetype,
       })
-      ls.add_snippets("go", require("snippets").go)
+      -- keep a broken snippets repo from taking down all of LuaSnip
+      local ok, snippets = pcall(require, "snippets")
+      if ok then
+        -- above friendly-snippets' default of 1000, so our `ife` / `make` win
+        -- instead of being shadowed by the generic ones
+        ls.add_snippets("go", snippets.go, { key = "miloas_go", default_priority = 1500 })
+      else
+        vim.notify("miloas.snippets failed to load: " .. snippets, vim.log.levels.WARN)
+      end
     end,
   },
 
@@ -75,18 +87,22 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
-        json = { "biome" },
-        javascript = { "biome" },
-        typescript = { "biome" },
-        typescriptreact = { "biome" },
-        javascriptreact = { "biome" },
+        -- oxfmt (oxc) is Prettier-compatible and replaces biome here. It also
+        -- picks up Vite+ config from `vite.config.ts`, and conform prefers a
+        -- project-local `node_modules/.bin/oxfmt` over the Mason one.
+        json = { "oxfmt" },
+        jsonc = { "oxfmt" },
+        javascript = { "oxfmt" },
+        typescript = { "oxfmt" },
+        typescriptreact = { "oxfmt" },
+        javascriptreact = { "oxfmt" },
         swift = { "swift_format" },
         go = { "gofmt" },
         rust = { "rustfmt" },
         zig = { "zigfmt" },
       },
       -- Set up format-on-save
-      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
       -- Customize formatters
       formatters = {
         shfmt = {
@@ -104,6 +120,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false,
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -127,7 +144,7 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           })
-        elseif ls.expand_or_jumpable() then
+        elseif ls.expand_or_locally_jumpable() then
           ls.expand_or_jump()
         else
           fallback()
@@ -137,7 +154,7 @@ return {
       local function s_tab_func(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif ls.jumpable(-1) then
+        elseif ls.locally_jumpable(-1) then
           ls.jump(-1)
         else
           fallback()
@@ -165,6 +182,8 @@ return {
           }),
         },
         sources = cmp.config.sources({
+          -- group_index 0 lets lazydev replace lua_ls's `require` completions
+          { name = "lazydev", group_index = 0 },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
@@ -196,15 +215,15 @@ return {
   -- auto pairs
   {
     "echasnovski/mini.pairs",
+    version = false,
     event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.pairs").setup(opts)
-    end,
+    opts = {},
   },
 
   -- more textobjects
   {
     "echasnovski/mini.ai",
+    version = false,
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = function()
@@ -221,9 +240,6 @@ return {
         },
       }
     end,
-    config = function(_, opts)
-      require("mini.ai").setup(opts)
-    end,
   },
 
   -- entire buffer textobjects
@@ -239,9 +255,9 @@ return {
   -- surround
   {
     "kylechui/nvim-surround",
-    config = function(_, opts)
-      require("nvim-surround").setup(opts)
-    end,
+    version = "^4",
+    event = "VeryLazy",
+    opts = {},
   },
 
   -- tm indent
@@ -276,7 +292,7 @@ return {
   -- indent object
   {
     "echasnovski/mini.indentscope",
-    version = false, -- wait till new 0.7.0 release to put it back on semver
+    version = false,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       symbol = "╎",
@@ -290,6 +306,7 @@ return {
           "dashboard",
           "nvim-tree",
           "Trouble",
+          "trouble",
           "lazy",
           "mason",
           "notify",
@@ -303,118 +320,102 @@ return {
     end,
   },
 
-  -- comments
+  -- comments: Neovim has built-in `gc`/`gcc` since 0.10, so this only teaches it
+  -- about embedded languages (jsx, vue, ...).
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-  },
-  {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
-    opts = {
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
+    event = { "BufReadPost", "BufNewFile" },
+    init = function()
+      -- the nvim-treesitter module system is gone on the `main` branch
+      vim.g.skip_ts_context_commentstring_module = true
+    end,
+    config = function()
+      require("ts_context_commentstring").setup({})
+
+      local get_option = vim.filetype.get_option
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.filetype.get_option = function(filetype, option)
+        if option ~= "commentstring" then
+          return get_option(filetype, option)
+        end
+        local ok, commentstring = pcall(require("ts_context_commentstring.internal").calculate_commentstring)
+        return (ok and commentstring) or get_option(filetype, option)
+      end
     end,
   },
+
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = "<C-e>",
-          },
+    opts = {
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-e>",
         },
-      })
-    end,
+      },
+    },
   },
+
   {
     "benomahony/uv.nvim",
+    ft = "python",
     opts = {
       picker_integration = true,
-    }
+    },
   },
 
   -- multi cursor
   {
     "jake-stewart/multicursor.nvim",
     branch = "1.0",
+    event = "VeryLazy",
     config = function()
-        local mc = require("multicursor-nvim")
+      local mc = require("multicursor-nvim")
 
-        mc.setup()
+      mc.setup()
 
-        -- Add cursors above/below the main cursor.
-        vim.keymap.set({"n", "v"}, "<up>", function() mc.addCursor("k") end)
-        vim.keymap.set({"n", "v"}, "<down>", function() mc.addCursor("j") end)
+      -- Add cursors above/below the main cursor.
+      vim.keymap.set({ "n", "v" }, "<up>", function()
+        mc.addCursor("k")
+      end)
+      vim.keymap.set({ "n", "v" }, "<down>", function()
+        mc.addCursor("j")
+      end)
 
-        -- Add a cursor and jump to the next word under cursor.
-        vim.keymap.set({"n", "v"}, "<c-n>", function() mc.addCursor("*") end)
+      -- Add a cursor and jump to the next word under cursor.
+      vim.keymap.set({ "n", "v" }, "<c-n>", function()
+        mc.addCursor("*")
+      end)
 
-        -- Jump to the next word under cursor but do not add a cursor.
-        vim.keymap.set({"n", "v"}, "<c-s>", function() mc.skipCursor("*") end)
+      -- Jump to the next word under cursor but do not add a cursor.
+      vim.keymap.set({ "n", "v" }, "<c-s>", function()
+        mc.skipCursor("*")
+      end)
 
-        -- Rotate the main cursor.
-        vim.keymap.set({"n", "v"}, "<left>", mc.nextCursor)
-        vim.keymap.set({"n", "v"}, "<right>", mc.prevCursor)
+      -- Rotate the main cursor.
+      vim.keymap.set({ "n", "v" }, "<left>", mc.nextCursor)
+      vim.keymap.set({ "n", "v" }, "<right>", mc.prevCursor)
 
-        -- Delete the main cursor.
-        -- vim.keymap.set({"n", "v"}, "<leader>x", mc.deleteCursor)
+      -- Add and remove cursors with control + left click.
+      vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
 
-        -- Add and remove cursors with control + left click.
-        vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+      vim.keymap.set("n", "<esc>", function()
+        if not mc.cursorsEnabled() then
+          mc.enableCursors()
+        elseif mc.hasCursors() then
+          mc.clearCursors()
+        else
+          -- Default <esc> handler.
+        end
+      end)
 
-        -- vim.keymap.set({"n", "v"}, "<c-q>", function()
-        --     if mc.cursorsEnabled() then
-        --         -- Stop other cursors from moving.
-        --         -- This allows you to reposition the main cursor.
-        --         mc.disableCursors()
-        --     else
-        --         mc.addCursor()
-        --     end
-        -- end)
-
-        vim.keymap.set("n", "<esc>", function()
-            if not mc.cursorsEnabled() then
-                mc.enableCursors()
-            elseif mc.hasCursors() then
-                mc.clearCursors()
-            else
-                -- Default <esc> handler.
-            end
-        end)
-
-        -- Align cursor columns.
-        -- vim.keymap.set("n", "<leader>a", mc.alignCursors) 
-
-        -- Split visual selections by regex.
-        -- vim.keymap.set("v", "S", mc.splitCursors)
-
-        -- Append/insert for each line of visual selections.
-        -- vim.keymap.set("v", "I", mc.insertVisual)
-        -- vim.keymap.set("v", "A", mc.appendVisual)
-
-        -- match new cursors within visual selections by regex.
-        -- vim.keymap.set("v", "M", mc.matchCursors)
-
-        -- Rotate visual selection contents.
-        -- vim.keymap.set("v", "<leader>t", function() mc.transposeCursors(1) end)
-        -- vim.keymap.set("v", "<leader>T", function() mc.transposeCursors(-1) end)
-
-        -- Customize how cursors look.
-        vim.api.nvim_set_hl(0, "MultiCursorCursor", { link = "Cursor" })
-        vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
-        vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { link = "Visual" })
-        vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
+      -- Customize how cursors look.
+      vim.api.nvim_set_hl(0, "MultiCursorCursor", { link = "Cursor" })
+      vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
+      vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { link = "Visual" })
+      vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
     end,
-  }
+  },
 }
