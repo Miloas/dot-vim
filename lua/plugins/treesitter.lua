@@ -114,7 +114,24 @@ return {
     },
     config = function()
       require("nvim-treesitter").setup()
-      require("nvim-treesitter").install(ensure_installed)
+
+      -- The `main` branch compiles parsers with the tree-sitter CLI. Homebrew
+      -- split that binary out of the `tree-sitter` formula (which is only the
+      -- library nvim links against), so a machine can have `tree-sitter` and
+      -- still fail here -- once per parser, with a bare ENOENT. Say it once,
+      -- clearly, instead.
+      -- Still register highlighting below either way: Nvim ships its own
+      -- parsers (lua, vim, markdown, ...) that work without the CLI.
+      if vim.fn.executable("tree-sitter") == 0 then
+        vim.notify(
+          "nvim-treesitter: `tree-sitter` CLI not found, parsers cannot be built.\n"
+            .. "Install it with:  brew install tree-sitter-cli\n"
+            .. "(not npm -- see :checkhealth nvim-treesitter)",
+          vim.log.levels.ERROR
+        )
+      else
+        require("nvim-treesitter").install(ensure_installed)
+      end
 
       -- Highlighting is provided by Neovim itself now; turn it on for any
       -- filetype that has a parser available.
